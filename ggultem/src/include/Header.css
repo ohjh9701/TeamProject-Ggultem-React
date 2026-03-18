@@ -95,3 +95,24 @@
   display: flex;
   align-items: center;
 }
+.user-menu {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.user-nickname {
+  font-weight: 800;
+  color: var(--bee-brown);
+  font-size: 16px;
+}
+
+.nav-auth-btn.logout {
+  background-color: #f1f1f1;
+  border-color: #ddd;
+}
+
+.nav-auth-btn.logout:hover {
+  background-color: var(--bee-brown);
+  color: var(--honey-color);
+}
