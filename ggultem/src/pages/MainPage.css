@@ -6,7 +6,7 @@
 
 /* ✅ 전체 레이아웃 100% 활용 */
 .main-container {
-  width: 100%;
+  width: 1920px;
   min-height: 100vh;
   display: flex;
   flex-direction: column;

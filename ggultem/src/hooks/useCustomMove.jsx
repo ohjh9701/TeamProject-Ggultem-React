@@ -33,6 +33,16 @@ const useCustomMove = () => {
 
   const [refresh, setRefresh] = useState(false);
 
+  //********************************** MyPage 영역 *************************************
+
+  const moveToMyPageModify = (email) => {
+    console.log(queryDefault);
+    navigate({
+      pathname: `../mypage/modify/${email}`,
+      search: queryDefault, //수정시에 기존의 쿼리 스트링 유지를 위해
+    });
+  };
+
   //********************************** BusinessBoard 영역 *************************************
 
   const moveToBusinessBoardList = (pageParam) => {
@@ -79,6 +89,7 @@ const useCustomMove = () => {
     moveToBusinessBoardList,
     moveToBusinessBoardRead,
     moveToBusinessBoardModify,
+    moveToMyPageModify,
     page,
     size,
     keyword,

@@ -43,3 +43,21 @@ export const loginPost = async (loginParam) => {
 
   return res.data;
 };
+
+//*************************** 마이페이지 ******************************* */
+// 마이페이지 정보 가져오기
+export const getMyInfo = async (email) => {
+  const res = await axios.get(`${host}/mypage/${email}`);
+  return res.data;
+};
+
+export const putOne = async (email, formData) => {
+  const res = await axios.put(
+    `${host}/mypage/${encodeURIComponent(email)}`,
+    formData,
+    {
+      headers: { "Content-Type": "multipart/form-data" },
+    },
+  );
+  return res.data;
+};

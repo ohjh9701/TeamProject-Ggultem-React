@@ -58,7 +58,12 @@ export default function Header() {
           {loginState ? (
             // ✅ 로그인 성공 시: 닉네임과 로그아웃 버튼
             <div className="user-menu">
-              <span className="user-nickname">🍯 {loginState.nickname}님</span>
+              <Link
+                to={`/mypage/${loginState.email}`}
+                className="user-nickname"
+              >
+                🍯 {loginState.nickname}님
+              </Link>
               <button onClick={handleLogout} className="nav-auth-btn logout">
                 로그아웃
               </button>

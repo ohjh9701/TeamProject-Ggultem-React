@@ -7,6 +7,9 @@ const Main = lazy(() => import("../pages/MainPage"));
 const Login = lazy(() => import("../pages/LoginPage"));
 const Business = lazy(() => import("../pages/Business/MainPage"));
 const KakaoRedirect = lazy(() => import("../pages/KakaoRedirectPage")); // 경로 확인!
+//* 마이페이지 lazy */
+const MyPage = lazy(() => import("../pages/MyPage/MyPage"));
+const Modify = lazy(() => import("../pages/MyPage/ModifyPage"));
 const root = createBrowserRouter([
   /* ===== 메인페이지 연결 영역 ===== */
   {
@@ -38,6 +41,23 @@ const root = createBrowserRouter([
         ),
       },
     ],
+  },
+  /* ===== 마이페이지 연결 영역 ===== */
+  {
+    path: "/mypage/:email",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <MyPage />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/mypage/modify/:email",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <Modify />
+      </Suspense>
+    ),
   },
   /* ===== 비즈니스 연결 영역 ===== */
   {
