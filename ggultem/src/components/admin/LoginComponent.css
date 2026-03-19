@@ -1,0 +1,83 @@
+.login-container {
+  width: 100%;
+  max-width: 450px;
+  padding: 20px;
+}
+
+.login-box {
+  background: white;
+  padding: 50px 40px;
+  border-radius: 30px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.15);
+  text-align: center;
+}
+
+.login-logo {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #ffb400;
+  margin-bottom: 20px;
+}
+
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #222;
+  margin-bottom: 8px;
+}
+
+.login-subtitle {
+  color: #888;
+  margin-bottom: 35px;
+  font-size: 0.95rem;
+}
+
+.login-form {
+  text-align: left;
+}
+
+.input-group {
+  margin-bottom: 20px;
+}
+
+.input-group label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: 8px;
+  color: #444;
+  font-size: 0.9rem;
+}
+
+.input-group input {
+  width: 100%;
+  padding: 16px;
+  border: 2px solid #f0f0f0;
+  border-radius: 12px;
+  font-size: 1rem;
+  box-sizing: border-box; /* 삐져나옴 방지 */
+  transition: border-color 0.2s;
+}
+
+.input-group input:focus {
+  outline: none;
+  border-color: #ffd900;
+}
+
+.login-btn {
+  width: 100%;
+  padding: 18px;
+  background-color: #222; /* 관리자 로그인은 블랙으로 무게감 */
+  color: white;
+  border: none;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 15px;
+  transition: transform 0.2s, background-color 0.2s;
+}
+
+.login-btn:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+}

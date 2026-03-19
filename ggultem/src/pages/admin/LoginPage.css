@@ -1,0 +1,14 @@
+.login-page-container {
+  width: 100%;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffd900 0%, #ffb400 100%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.login-content-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}

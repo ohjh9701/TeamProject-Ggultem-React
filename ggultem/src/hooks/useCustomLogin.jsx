@@ -29,6 +29,10 @@ const useCustomLogin = () => {
     // 현재 위치를 대체하며 /member/login 으로  즉시 이동
     return <Navigate replace to="/member/login" />;
   };
+  const moveToAdminLoginReturn = () => {
+    // 현재 위치를 대체하며 /admin/login 으로  즉시 이동
+    return <Navigate replace to="/admin/login" />;
+  };
   return {
     loginState,
     isLogin,
@@ -37,6 +41,7 @@ const useCustomLogin = () => {
     moveToPath,
     moveToLogin,
     moveToLoginReturn,
+    moveToAdminLoginReturn,
   };
 };
 

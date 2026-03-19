@@ -3,6 +3,11 @@ import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Loading from "../pages/Loading";
 
+//* 관리자 페이지 */
+const AdminMain = lazy(() => import("../pages/admin/MainPage"));
+const AdminLogin = lazy(() => import("../pages/admin/LoginPage"));
+
+//* 사용자 페이지 */
 const Main = lazy(() => import("../pages/MainPage"));
 const Login = lazy(() => import("../pages/LoginPage"));
 const Business = lazy(() => import("../pages/Business/MainPage"));
@@ -13,6 +18,24 @@ const Modify = lazy(() => import("../pages/MyPage/ModifyPage"));
 //* 커뮤니티 lazy */
 const BoardList = lazy(() => import("../pages/Board/BoardListPage"));
 const root = createBrowserRouter([
+  /* ===== 관리자 영역 ===== */
+  /* ===== 메인페이지 연결 영역 ===== */
+  {
+    path: "/admin/",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminMain />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/admin/login",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminLogin />
+      </Suspense>
+    ),
+  },
   /* ===== 메인페이지 연결 영역 ===== */
   {
     path: "/",
