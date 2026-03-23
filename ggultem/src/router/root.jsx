@@ -2,6 +2,7 @@
 import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Loading from "../pages/Loading";
+import BoardRegisterPage from "../pages/Board/BoardRegisterPage";
 
 //* 관리자 페이지 */
 const AdminMain = lazy(() => import("../pages/admin/MainPage"));
@@ -37,6 +38,8 @@ const NoticeList = lazy(() => import("../pages/Notice/NoticePage"));
 //* 커뮤니티 lazy */
 const BoardList = lazy(() => import("../pages/Board/BoardListPage"));
 const BoardRead = lazy(() => import("../pages/Board/BoardReadPage"));
+const BoardRegister = lazy(() => import("../pages/Board/BoardRegisterPage"));
+const BoardModify = lazy(() => import("../pages/Board/BoardModifyPage"));
 //* 판매게시판 lazy */
 const ItemBoardList = lazy(
   () => import("../pages/ItemBoard/ItemBoardListPage"),
@@ -200,7 +203,7 @@ const root = createBrowserRouter([
       </Suspense>
     ),
   },
-  /* ===== 마이페이지 연결 영역 ===== */
+  /* ===== 커뮤니티 연결 영역 ===== */
   {
     path: "/board/list",
     element: (
@@ -214,6 +217,22 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <BoardRead />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/board/register",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BoardRegister />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/board/modify/:boardNo",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BoardModify />
       </Suspense>
     ),
   },

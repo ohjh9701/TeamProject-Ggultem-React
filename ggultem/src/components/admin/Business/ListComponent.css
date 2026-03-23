@@ -1,20 +1,19 @@
 /* 전체 레이아웃 - 일반 회원 리스트와 동일한 1280px 설정 */
-.member-list-wrapper {
+.businessmember-list-wrapper {
     width: 1280px;
     margin: 0 auto;
     padding: 20px;
     min-height: 100vh;
 }
 
-.member-list-container {
+.businessmember-list-container {
     background: #fff;
     padding: 30px;
     border-radius: 15px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05); /* 약간의 그림자로 입체감 추가 */
 }
 
 /* 헤더 스타일 */
-.member-header {
+.businessmember-header {
     display: flex;
     justify-content: space-between;
     align-items: flex-end;
@@ -23,27 +22,27 @@
     padding-bottom: 20px;
 }
 
-.member-title {
+.businessmember-title {
     font-size: 1.8rem;
     color: #333;
     margin-bottom: 5px;
     font-weight: bold;
 }
 
-.member-title-point {
+.businessmember-title-point {
     font-size: 2.6rem;
     color: #ffc107; /* 꿀템 옐로우 */
     font-weight: 800;
 }
 
-.member-subtitle {
+.businessmember-subtitle {
     color: #777;
     font-size: 0.95rem;
     text-align: left;
 }
 
 /* 버튼 그룹 */
-.member-actions {
+.businessmember-actions {
     display: flex;
     gap: 10px;
 }
@@ -68,16 +67,16 @@
 }
 
 /* 테이블 스타일 */
-.member-table-wrapper {
+.businessmember-table-wrapper {
     margin-top: 10px;
 }
 
-.member-table {
+.businessmember-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.member-table th {
+.businessmember-table th {
     background-color: #f8f9fa;
     padding: 15px;
     text-align: center;
@@ -86,17 +85,17 @@
     border-bottom: 2px solid #dee2e6;
 }
 
-.member-tr {
+.businessmember-tr {
     border-bottom: 1px solid #eee;
     transition: background 0.2s;
     cursor: pointer;
 }
 
-.member-tr:hover {
+.businessmember-tr:hover {
     background-color: #fff9e6; /* 꿀템 테마 호버 효과 */
 }
 
-.member-table td {
+.businessmember-table td {
     padding: 15px;
     color: #444;
     vertical-align: middle;
@@ -104,7 +103,7 @@
 }
 
 /* 비즈니스 전용 컬럼 강조 스타일 */
-.member-td-email {
+.businessmember-td-email {
     color: #1976d2;
     font-weight: 500;
 }
@@ -120,14 +119,14 @@
 }
 
 /* 상태 표시 (점) */
-.status-dot {
+.businessmember-status-dot {
     display: inline-flex;
     align-items: center;
     font-weight: bold;
     font-size: 0.9rem;
 }
 
-.status-dot::before {
+.businessmember-status-dot::before {
     content: "";
     display: inline-block;
     width: 10px;
@@ -136,11 +135,11 @@
     margin-right: 8px;
 }
 
-.status-dot.active { color: #2e7d32; }
-.status-dot.active::before { background-color: #4caf50; }
+.businessmember-status-dot.active { color: #2e7d32; }
+.businessmember-status-dot.active::before { background-color: #4caf50; }
 
-.status-dot.inactive { color: #d32f2f; }
-.status-dot.inactive::before { background-color: #f44336; }
+.businessmember-status-dot.inactive { color: #d32f2f; }
+.businessmember-status-dot.inactive::before { background-color: #f44336; }
 
 /* 데이터 없을 때 */
 .no-data {
@@ -151,7 +150,7 @@
 }
 
 /* 페이징 */
-.member-pagination-wrapper {
+.businessmember-pagination-wrapper {
     margin-top: 30px;
     display: flex;
     justify-content: center;
