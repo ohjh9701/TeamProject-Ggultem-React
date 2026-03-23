@@ -49,7 +49,7 @@ export default function Header() {
           <Link to="/notice/list" className="header-nav-link">
             공지사항
           </Link>
-          <Link to="/business/list" className="header-nav-link">
+          <Link to="/business" className="header-nav-link">
             비즈니스
           </Link>
         </div>

@@ -23,11 +23,11 @@ const useCustomLogin = () => {
   };
   const moveToLogin = () => {
     //로그인 페이지로 이동
-    navigate({ pathname: "/member/login" }, { replace: true });
+    navigate({ pathname: "/login" }, { replace: true });
   };
   const moveToLoginReturn = () => {
     // 현재 위치를 대체하며 /member/login 으로  즉시 이동
-    return <Navigate replace to="/member/login" />;
+    return <Navigate replace to="/login" />;
   };
   const moveToAdminLoginReturn = () => {
     // 현재 위치를 대체하며 /admin/login 으로  즉시 이동

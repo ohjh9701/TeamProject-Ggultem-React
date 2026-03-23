@@ -1,11 +1,6 @@
 import { useParams, useNavigate } from "react-router-dom";
 import { useEffect, useRef, useState } from "react";
-import {
-  postAdd,
-  API_SERVER_HOST,
-  putOne,
-  uploadImageApi,
-} from "../../../api/admin/MemberApi";
+import { postAdd, API_SERVER_HOST } from "../../../api/admin/MemberApi";
 import "./RegisterComponent.css";
 
 const host = API_SERVER_HOST;
@@ -56,7 +51,9 @@ const RegisterPage = () => {
     const files = uploadRef.current.files;
     const formData = new FormData();
 
-    formData.append("files", files);
+    for (let i = 0; i < files.length; i++) {
+      formData.append("files", files[i]);
+    }
 
     formData.append("email", member.email);
     formData.append("pw", member.pw);

@@ -51,7 +51,10 @@ export const uploadImageApi = async (email, formData) => {
 };
 
 export const postAdd = async (formData) => {
-  const header = { headers: { "Content-Type": "multipart/form-data" } };
-  const res = await axios.post(`${host}/admin/member/`, formData, header);
+  const res = await axios.post(`${host}/admin/member/`, formData, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+    },
+  });
   return res.data;
 };

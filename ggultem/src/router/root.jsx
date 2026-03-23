@@ -15,16 +15,23 @@ const AdminMemberModify = lazy(
 const AdminMemberRegister = lazy(
   () => import("../pages/admin/Member/RegisterPage"),
 );
+//* 비즈니스 회원 관리 페이지 */
+const AdminBusinessMemberList = lazy(
+  () => import("../pages/admin/Business/ListPage"),
+);
 
 //* 사용자 페이지 */
 const Main = lazy(() => import("../pages/MainPage"));
 const Login = lazy(() => import("../pages/LoginPage"));
-const Business = lazy(() => import("../pages/Business/MainPage"));
 const KakaoRedirect = lazy(() => import("../pages/KakaoRedirectPage"));
 const GoogleRedirect = lazy(() => import("../pages/GoogleRedirectPage"));
 //* 마이페이지 lazy */
 const MyPage = lazy(() => import("../pages/MyPage/MyPage"));
 const Modify = lazy(() => import("../pages/MyPage/ModifyPage"));
+//* 비즈니스 페이지 lazy */
+const BusinessMain = lazy(() => import("../pages/Business/MainPage"));
+const BusinessList = lazy(() => import("../pages/Business/ListPage"));
+const BusinessRegister = lazy(() => import("../pages/Business/RegisterPage"));
 //* 공지사항 lazy */
 const NoticeList = lazy(() => import("../pages/Notice/NoticePage"));
 //* 커뮤니티 lazy */
@@ -36,6 +43,12 @@ const ItemBoardList = lazy(
 );
 const ItemBoardRegister = lazy(
   () => import("../pages/ItemBoard/ItemBoardRegisterPage"),
+);
+const ItemBoardRead = lazy(
+  () => import("../pages/ItemBoard/ItemBoardReadPage"),
+);
+const ItemBoardModify = lazy(
+  () => import("../pages/ItemBoard/ItemBoardModifyPage"),
 );
 const root = createBrowserRouter([
   /* ===== 관리자 영역 ===== */
@@ -86,6 +99,15 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <AdminMemberModify />
+      </Suspense>
+    ),
+  },
+  /* ===== 비즈니스 회원관리 영역 ===== */
+  {
+    path: "/admin/businessmember/list",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminBusinessMemberList />
       </Suspense>
     ),
   },
@@ -162,6 +184,22 @@ const root = createBrowserRouter([
       </Suspense>
     ),
   },
+  {
+    path: "/itemBoard/read/:id",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <ItemBoardRead />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/itemBoard/modify/:id",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <ItemBoardModify />
+      </Suspense>
+    ),
+  },
   /* ===== 마이페이지 연결 영역 ===== */
   {
     path: "/board/list",
@@ -193,7 +231,23 @@ const root = createBrowserRouter([
     path: "/business",
     element: (
       <Suspense fallback={<Loading />}>
-        <Business />
+        <BusinessMain />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/business/list",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BusinessList />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/business/register",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BusinessRegister />
       </Suspense>
     ),
   },

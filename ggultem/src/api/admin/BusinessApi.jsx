@@ -4,15 +4,15 @@ import axios from "axios";
 export const API_SERVER_HOST = "http://localhost:8080";
 const host = `${API_SERVER_HOST}`;
 
-//비즈니스 광고 게시글
-export const getOne = async (no) => {
-  const res = await axios.get(`${host}/business/board/${no}`);
+//비즈니스 회원 리스트
+export const getOne = async (email) => {
+  const res = await axios.get(`${host}/businessmember/${email}`);
   return res.data;
 };
 
 export const getList = async (pageParam) => {
   const { page, size, keyword, searchType } = pageParam;
-  const res = await axios.get(`${host}/business/board/list`, {
+  const res = await axios.get(`${host}/businessmember/list`, {
     params: {
       page: page,
       size: size,
