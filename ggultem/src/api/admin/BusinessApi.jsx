@@ -37,3 +37,15 @@ export const verifyBusinessApi = async (businessNumber) => {
   });
   return res.data; // { isValid: true/false } 형태라고 가정
 };
+
+//비즈니스 회원 승인
+export const approve = async (email) => {
+  const res = await axios.get(`${host}/businessmember/approve/${email}`);
+  return res.data;
+};
+
+//비즈니스 회원 승인 취소
+export const reject = async (email) => {
+  const res = await axios.get(`${host}/businessmember/reject/${email}`);
+  return res.data;
+};

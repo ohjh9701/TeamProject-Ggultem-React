@@ -33,21 +33,21 @@ const ListComponent = () => {
   }, [page, size, keyword, searchType, refresh]);
 
   return (
-    <div className="member-list-wrapper">
-      <div className="member-list-container">
+    <div className="businessmember-list-wrapper">
+      <div className="businessmember-list-container">
         {/* 헤더 섹션 */}
-        <div className="member-header">
+        <div className="businessmember-header">
           <div className="title-group">
-            <h2 className="member-title">
-              <span className="member-title-point">꿀템</span> 비즈니스 회원
-              관리
+            <h2 className="businessmember-title">
+              <span className="businessmember-title-point">꿀템</span> 비즈니스
+              회원 관리
             </h2>
-            <p className="member-subtitle">
+            <p className="businessmember-subtitle">
               국세청 인증을 통과한 비즈니스 파트너 목록입니다.
             </p>
           </div>
 
-          <div className="member-actions">
+          <div className="businessmember-actions">
             <button
               className="admin-btn biz-btn"
               onClick={() => navigate("/admin/member/list")}
@@ -70,8 +70,8 @@ const ListComponent = () => {
         </div>
 
         {/* 테이블 섹션 - 요청하신 항목들로 구성 */}
-        <div className="member-table-wrapper">
-          <table className="member-table">
+        <div className="businessmember-table-wrapper">
+          <table className="businessmember-table">
             <thead>
               <tr>
                 <th>회원 이메일</th>
@@ -85,8 +85,14 @@ const ListComponent = () => {
             <tbody>
               {serverData.dtoList && serverData.dtoList.length > 0 ? (
                 serverData.dtoList.map((member) => (
-                  <tr key={member.email} className="member-tr">
-                    <td className="member-td-email">{member.email}</td>
+                  <tr
+                    key={member.email}
+                    className="businessmember-tr"
+                    onClick={() =>
+                      navigate(`/admin/businessmember/${member.email}`)
+                    }
+                  >
+                    <td className="businessmember-td-email">{member.email}</td>
                     <td>{member.nickname}</td>
                     <td className="company-td-name">
                       <strong>{member.companyName}</strong>
@@ -94,15 +100,15 @@ const ListComponent = () => {
                     <td className="business-td-number">
                       {member.businessNumber}
                     </td>
-                    <td className="member-td-date">
+                    <td className="businessmember-td-date">
                       {member.regDate ? member.regDate.split("T")[0] : "-"}
                     </td>
-                    <td className="member-td-status">
+                    <td className="businessmember-td-status">
                       {/* 활성화 여부에 따라 다른 스타일 적용 */}
                       <span
-                        className={`status-dot ${member.enabled === 1 ? "active" : "inactive"}`}
+                        className={`businessmember-status-dot ${member.businessVerified === true ? "active" : "inactive"}`}
                       >
-                        {member.enabled === 1 ? "활성" : "비활성"}
+                        {member.businessVerified === true ? "활성" : "비활성"}
                       </span>
                     </td>
                   </tr>
@@ -119,7 +125,7 @@ const ListComponent = () => {
         </div>
 
         {/* 페이징 */}
-        <div className="member-pagination-wrapper">
+        <div className="businessmember-pagination-wrapper">
           <PageComponent serverData={serverData} movePage={moveToBoardList} />
         </div>
       </div>

@@ -1,15 +1,30 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { getOne, API_SERVER_HOST } from "../../api/BoardApi";
+import { useSelector } from "react-redux";
+import { getOne, API_SERVER_HOST, removeBoard } from "../../api/BoardApi";
 import BoardReplyComponent from "./BoardReplyComponent";
 import "./BoardReadComponent.css";
-
 
 const host = API_SERVER_HOST;
 
 const BoardReadComponent = ({ boardNo }) => {
   const navigate = useNavigate();
   const [board, setBoard] = useState(null);
+
+  //  로그인 정보
+  const loginState = useSelector(state => state.loginSlice);
+  const email = loginState?.email;
+
+  //  삭제
+  const handleDelete = () => {
+
+    if (!window.confirm("정말 삭제하시겠습니까?")) return;
+
+    removeBoard(board.boardNo).then(() => {
+      alert("삭제 완료");
+      navigate("/board/list");
+    });
+  };
 
   useEffect(() => {
     if (boardNo) {
@@ -40,20 +55,10 @@ const BoardReadComponent = ({ boardNo }) => {
 
         {/* 본문 */}
         <div className="read-content-area">
-          <p className="read-text">{board.content}</p>
-
-          {/* 이미지 */}
-          <div className="read-image-gallery">
-            {board.uploadFileNames?.map((file) => (
-              <div key={file}>
-                <img
-                  src={`${host}/board/view/${file}`}
-                  alt="img"
-                  className="read-main-img"
-                />
-              </div>
-            ))}
-          </div>
+          <div
+            className="read-text"
+            dangerouslySetInnerHTML={{ __html: board.content }}
+          />
         </div>
 
         {/* 댓글 */}
@@ -65,13 +70,24 @@ const BoardReadComponent = ({ boardNo }) => {
             목록으로
           </button>
 
-          <button
-            onClick={() =>
-              navigate(`/board/modify/${board.boardNo}`)
-            }
-          >
-            수정
-          </button>
+          {/*  작성자만 수정 / 삭제 */}
+          {email === board.email && (
+            <button
+              onClick={() =>
+                navigate(`/board/modify/${board.boardNo}`)
+              }
+            >
+              수정
+            </button>
+          )}
+
+          {email === board.email && (
+            <button
+              onClick={handleDelete}
+            >
+              삭제
+            </button>
+          )}
         </div>
 
       </div>

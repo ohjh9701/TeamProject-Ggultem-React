@@ -122,8 +122,10 @@
     background: #eee;
 }
 
-.memberinfo-role-badge.admin { background: #343a40; color: #fff; }
-.memberinfo-role-badge.user { background: #e7f5ff; color: #1971c2; }
+.memberinfo-role-badge.user { background-color: #e9ecef; color: #495057; }
+.memberinfo-role-badge.member { background-color: #d1ecf1; color: #0c5460; }
+.memberinfo-role-badge.business { background-color: #eff1d1; color: #050942; }
+.memberinfo-role-badge.admin { background-color: #f8d7da; color: #721c24; }
 
 .memberinfo-status.active { color: #2f9e44; font-weight: bold; }
 .memberinfo-status.inactive { color: #e03131; font-weight: bold; }

@@ -112,7 +112,66 @@ const useCustomMove = () => {
     setRefresh(!refresh);
   };
 
+  //********************************** Admin Notice 영역 *************************************
+
+  // 1. 관리자 목록으로 이동
+  const moveToAdminNoticeList = (pageParam) => {
+    let queryStr = "";
+
+    if (pageParam) {
+      // 파라미터가 있을 때 (페이징, 검색 조건 유지)
+      const pageNum = getNum(pageParam.page, page);
+      const sizeNum = getNum(pageParam.size, size);
+      const keywordStr = getString(pageParam.keyword, keyword);
+      const typeStr = getString(pageParam.searchType, searchType);
+
+      queryStr = createSearchParams({
+        page: pageNum,
+        size: sizeNum,
+        keyword: keywordStr,
+        searchType: typeStr,
+      }).toString();
+    } else {
+      // 파라미터가 없을 때 (기본값 사용)
+      queryStr = queryDefault;
+    }
+
+    navigate({
+      pathname: `/admin/notice/list`,
+      search: queryStr,
+    });
+
+    setRefresh(!refresh);
+  };
+
+  // 2. 관리자용 상세 조회 이동
+  const moveToAdminNoticeRead = (noticeId) => {
+    navigate({
+      pathname: `/admin/notice/read/${noticeId}`,
+      search: queryDefault,
+    });
+  };
+
+  // 3. 관리자용 수정 화면 이동
+  const moveToAdminNoticeModify = (noticeId) => {
+    navigate({
+      pathname: `/admin/notice/modify/${noticeId}`,
+      search: queryDefault,
+    });
+  };
+
+  // 4. 관리자용 등록 화면 이동
+  const moveToAdminNoticeRegister = () => {
+    navigate({
+      pathname: `/admin/notice/register`,
+    });
+  };
+
   return {
+    moveToAdminNoticeList,
+    moveToAdminNoticeRead,
+    moveToAdminNoticeModify,
+    moveToAdminNoticeRegister,
     moveToBusinessBoardList,
     moveToBusinessBoardRead,
     moveToBusinessBoardModify,

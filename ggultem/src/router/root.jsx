@@ -2,6 +2,7 @@
 import React, { Suspense, lazy } from "react";
 import { createBrowserRouter } from "react-router-dom";
 import Loading from "../pages/Loading";
+import BoardRegisterPage from "../pages/Board/BoardRegisterPage";
 
 //* 관리자 페이지 */
 const AdminMain = lazy(() => import("../pages/admin/MainPage"));
@@ -18,6 +19,18 @@ const AdminMemberRegister = lazy(
 //* 비즈니스 회원 관리 페이지 */
 const AdminBusinessMemberList = lazy(
   () => import("../pages/admin/Business/ListPage"),
+);
+const AdminBusinessMemberRead = lazy(
+  () => import("../pages/admin/Business/ReadPage"),
+);
+// ===== AdminNotice ===== */
+const NoticeListAdmin = lazy(() => import("../pages/admin/Notice/ListPage"));
+const NoticeRegisterAdmin = lazy(
+  () => import("../pages/admin/Notice/RegisterPage"),
+);
+const NoticeReadAdmin = lazy(() => import("../pages/admin/Notice/ReadPage"));
+const NoticeModifyAdmin = lazy(
+  () => import("../pages/admin/Notice/ModifyPage"),
 );
 
 //* 사용자 페이지 */
@@ -37,6 +50,8 @@ const NoticeList = lazy(() => import("../pages/Notice/NoticePage"));
 //* 커뮤니티 lazy */
 const BoardList = lazy(() => import("../pages/Board/BoardListPage"));
 const BoardRead = lazy(() => import("../pages/Board/BoardReadPage"));
+const BoardRegister = lazy(() => import("../pages/Board/BoardRegisterPage"));
+const BoardModify = lazy(() => import("../pages/Board/BoardModifyPage"));
 //* 판매게시판 lazy */
 const ItemBoardList = lazy(
   () => import("../pages/ItemBoard/ItemBoardListPage"),
@@ -110,6 +125,52 @@ const root = createBrowserRouter([
         <AdminBusinessMemberList />
       </Suspense>
     ),
+  },
+  {
+    path: "/admin/businessmember/:email",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminBusinessMemberRead />
+      </Suspense>
+    ),
+  },
+  // ✅ 관리자 공지사항
+  {
+    path: "admin/notice",
+    children: [
+      {
+        path: "list",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <NoticeListAdmin />
+          </Suspense>
+        ),
+      },
+      {
+        path: "register",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <NoticeRegisterAdmin />
+          </Suspense>
+        ),
+      },
+      {
+        path: "read/:noticeId",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <NoticeReadAdmin />
+          </Suspense>
+        ),
+      },
+      {
+        path: "modify/:noticeId",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <NoticeModifyAdmin />
+          </Suspense>
+        ),
+      },
+    ],
   },
   /* ===== 메인페이지 연결 영역 ===== */
   {
@@ -200,7 +261,7 @@ const root = createBrowserRouter([
       </Suspense>
     ),
   },
-  /* ===== 마이페이지 연결 영역 ===== */
+  /* ===== 커뮤니티 연결 영역 ===== */
   {
     path: "/board/list",
     element: (
@@ -214,6 +275,22 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <BoardRead />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/board/register",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BoardRegister />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/board/modify/:boardNo",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <BoardModify />
       </Suspense>
     ),
   },
