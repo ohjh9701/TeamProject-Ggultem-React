@@ -167,7 +167,61 @@ const useCustomMove = () => {
     });
   };
 
+  //********************************** Admin CodeGrouo 영역 *************************************
+
+  const moveToCodeGroupList = (pageParam) => {
+    let queryStr = "";
+    if (pageParam) {
+      const pageNum = getNum(pageParam.page, page);
+      const sizeNum = getNum(pageParam.size, size);
+      const keywordStr = getString(pageParam.keyword, keyword);
+      const typeStr = getString(pageParam.searchType, searchType);
+      queryStr = createSearchParams({
+        page: pageNum,
+        size: sizeNum,
+        keyword: keywordStr,
+        searchType: typeStr,
+      }).toString();
+    } else {
+      queryStr = queryDefault;
+    }
+
+    navigate({
+      pathname: `../admin/codegroup/list`,
+      search: queryStr,
+    });
+
+    setRefresh(!refresh);
+  };
+
+  const moveToDetailCodeList = (groupCode, pageParam) => {
+    let queryStr = "";
+    if (pageParam) {
+      const pageNum = getNum(pageParam.page, page);
+      const sizeNum = getNum(pageParam.size, size);
+      const keywordStr = getString(pageParam.keyword, keyword);
+      const typeStr = getString(pageParam.searchType, searchType);
+      queryStr = createSearchParams({
+        page: pageNum,
+        size: sizeNum,
+        keyword: keywordStr,
+        searchType: typeStr,
+      }).toString();
+    } else {
+      queryStr = queryDefault;
+    }
+
+    navigate({
+      pathname: `../admin/codegroup/read/${groupCode}`,
+      search: queryStr,
+    });
+
+    setRefresh(!refresh);
+  };
+
   return {
+    moveToCodeGroupList,
+    moveToDetailCodeList,
     moveToAdminNoticeList,
     moveToAdminNoticeRead,
     moveToAdminNoticeModify,

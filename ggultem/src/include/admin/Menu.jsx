@@ -47,7 +47,7 @@ export default function Header() {
           <Link to="/admin/searchrank/list" className="nav-link">
             인기검색어
           </Link>
-          <Link to="/admin/code/list" className="nav-link">
+          <Link to="/admin/codegroup/list" className="nav-link">
             코드관리
           </Link>
         </div>

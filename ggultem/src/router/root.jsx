@@ -32,6 +32,13 @@ const NoticeReadAdmin = lazy(() => import("../pages/admin/Notice/ReadPage"));
 const NoticeModifyAdmin = lazy(
   () => import("../pages/admin/Notice/ModifyPage"),
 );
+// * 그룹코드 관리 페이지 */
+// 코드그룹 관련 lazy 로딩
+const CodeGroupIndex = lazy(() => import("../pages/CodeGroup/IndexPage"));
+const CodeGroupList = lazy(() => import("../pages/CodeGroup/ListPage"));
+const CodeGroupAdd = lazy(() => import("../pages/CodeGroup/AddPage"));
+const CodeGroupRead = lazy(() => import("../pages/CodeGroup/ReadPage"));
+const CodeGroupModify = lazy(() => import("../pages/CodeGroup/ModifyPage"));
 
 //* 사용자 페이지 */
 const Main = lazy(() => import("../pages/MainPage"));
@@ -171,6 +178,47 @@ const root = createBrowserRouter([
         ),
       },
     ],
+  },
+  /* ===== 코드그룹 관리 (추가됨) ===== */
+  {
+    path: "admin/codegroup",
+    element: (
+      <Suspense fallback={<LoadingPage />}>
+        <CodeGroupIndex />
+      </Suspense>
+    ),
+  },
+  {
+    path: "admin/codegroup/list",
+    element: (
+      <Suspense fallback={Loading}>
+        <CodeGroupList />
+      </Suspense>
+    ),
+  },
+  {
+    path: "admin/codegroup/add",
+    element: (
+      <Suspense fallback={Loading}>
+        <CodeGroupAdd />
+      </Suspense>
+    ),
+  },
+  {
+    path: "admin/codegroup/read/:groupCode",
+    element: (
+      <Suspense fallback={Loading}>
+        <CodeGroupRead />
+      </Suspense>
+    ),
+  },
+  {
+    path: "admin/codegroup/modify/:groupCode",
+    element: (
+      <Suspense fallback={Loading}>
+        <CodeGroupModify />
+      </Suspense>
+    ),
   },
   /* ===== 메인페이지 연결 영역 ===== */
   {
