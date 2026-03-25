@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getOne, API_SERVER_HOST } from "../../api/NoticeApi";
 import useCustomMove from "../../hooks/useCustomMove";
+import "./NoticeRead.css"; // CSS 파일 연결 확인!
 
 const NoticeRead = () => {
   const { noticeId } = useParams();
@@ -12,7 +13,6 @@ const NoticeRead = () => {
   useEffect(() => {
     getOne(noticeId)
       .then((data) => {
-        console.log(data);
         setNotice(data);
         setLoading(false);
       })
@@ -22,51 +22,61 @@ const NoticeRead = () => {
       });
   }, [noticeId]);
 
-  if (loading) return <div className="loading">로딩 중...</div>;
-  if (!notice) return <div className="error">데이터를 찾을 수 없습니다.</div>;
+  if (loading) return <div className="loading-container">로딩 중...</div>;
+  if (!notice)
+    return <div className="error-container">데이터를 찾을 수 없습니다.</div>;
 
   return (
-    <div className="notice-read-container">
-      {/* 1. 헤더 */}
-      <div className="notice-read-header">
-        <h2 className="notice-read-title">{notice.title || "제목 없음"}</h2>
-        <div className="notice-read-meta">
-          <span>작성자: 익명</span>
-          <span>조회수: {notice.viewCount || 0}</span>
-          <span>
-            등록일:{" "}
-            {notice.regDate ? notice.regDate.substring(0, 10) : "날짜 없음"}
-          </span>
+    <div className="notice-read-wrapper">
+      <div className="notice-read-container">
+        {/* 1. 헤더 */}
+        <div className="notice-read-header">
+          {/* 상단 고정 뱃지 추가 */}
+          {notice.isPinned === 1 && (
+            <span className="read-pinned-badge">상단 고정 공지</span>
+          )}
+          <h2 className="notice-read-title">{notice.title || "제목 없음"}</h2>
+          <div className="notice-read-meta">
+            <span className="meta-writer">
+              작성자: {notice.writer || "관리자"}
+            </span>
+            <span className="meta-item">조회수 {notice.viewCount || 0}</span>
+            <span className="meta-item">
+              등록일{" "}
+              {notice.regDate ? notice.regDate.substring(0, 10) : "날짜 없음"}
+            </span>
+          </div>
         </div>
-      </div>
 
-      {/* 2. 이미지 영역 (배열 처리) */}
-      {notice.uploadFileNames && notice.uploadFileNames.length > 0 && (
-        <div className="notice-read-images">
-          {notice.uploadFileNames.map((imgName, i) => (
-            <img
-              key={i}
-              src={`${API_SERVER_HOST}/admin/notice/view/${imgName}`}
-              alt={`첨부이미지-${i + 1}`}
-              className="notice-read-img"
-              onError={(e) => {
-                e.target.style.display = "none";
-              }}
-            />
-          ))}
+        {/* 2. 이미지 영역 */}
+        {notice.uploadFileNames && notice.uploadFileNames.length > 0 && (
+          <div className="notice-read-images">
+            {notice.uploadFileNames.map((imgName, i) => (
+              <div key={i} className="notice-img-box">
+                <img
+                  src={`${API_SERVER_HOST}/admin/notice/view/${imgName}`}
+                  alt={`첨부이미지-${i + 1}`}
+                  className="notice-read-img"
+                  onError={(e) => {
+                    e.target.style.display = "none";
+                  }}
+                />
+              </div>
+            ))}
+          </div>
+        )}
+
+        {/* 3. 본문 내용 */}
+        <div className="notice-read-content">
+          {notice.content || "내용이 없습니다."}
         </div>
-      )}
 
-      {/* 3. 본문 내용 */}
-      <div className="notice-read-content">
-        {notice.content || "내용이 없습니다."}
-      </div>
-
-      {/* 4. 푸터(버튼) */}
-      <div className="notice-read-footer">
-        <button className="btn-back" onClick={() => moveToNoticeList()}>
-          목록으로
-        </button>
+        {/* 4. 푸터(버튼) */}
+        <div className="notice-read-footer">
+          <button className="btn-back" onClick={() => moveToNoticeList()}>
+            목록으로 돌아가기
+          </button>
+        </div>
       </div>
     </div>
   );

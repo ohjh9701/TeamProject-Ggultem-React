@@ -1,0 +1,132 @@
+/* 전체 레이아웃 래퍼 */
+.notice-read-wrapper {
+  padding: 60px 20px;
+  background-color: #f8f9fa; /* 배경색을 연하게 깔아 카드 강조 */
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+/* 메인 카드 컨테이너 */
+.notice-read-container {
+  width: 100%;
+  max-width: 1000px;
+  background: #fff;
+  padding: 60px;
+  border-radius: 30px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.03);
+}
+
+/* 헤더 영역 */
+.notice-read-header {
+  border-bottom: 2px solid #fff9e6; /* 꿀템 연노랑 포인트 라인 */
+  padding-bottom: 30px;
+  margin-bottom: 40px;
+}
+
+/* 📌 상단 고정 뱃지 */
+.read-pinned-badge {
+  display: inline-block;
+  background-color: #ffd900;
+  color: #222;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.85rem;
+  font-weight: 800;
+  margin-bottom: 15px;
+}
+
+.notice-read-title {
+  font-size: 2.4rem;
+  font-weight: 900;
+  color: #222;
+  margin: 0 0 20px 0;
+  letter-spacing: -1px;
+}
+
+/* 작성자, 조회수 등 메타 정보 */
+.notice-read-meta {
+  display: flex;
+  gap: 15px;
+  color: #999;
+  font-size: 1rem;
+}
+
+.meta-writer {
+  color: #444;
+  font-weight: 700;
+}
+
+.meta-item::before {
+  content: "•";
+  margin-right: 15px;
+  color: #ddd;
+}
+
+/* 이미지 영역 */
+.notice-read-images {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  margin-bottom: 50px;
+  align-items: center;
+}
+
+.notice-img-box {
+  width: 100%;
+  max-width: 800px;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+}
+
+.notice-read-img {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* 본문 텍스트 영역 */
+.notice-read-content {
+  font-size: 1.15rem;
+  line-height: 2;
+  color: #333;
+  min-height: 300px;
+  margin-bottom: 60px;
+  white-space: pre-wrap; /* 줄바꿈 및 공백 유지 */
+}
+
+/* 하단 버튼 영역 */
+.notice-read-footer {
+  display: flex;
+  justify-content: center;
+  border-top: 1px solid #eee;
+  padding-top: 40px;
+}
+
+.btn-back {
+  background-color: #222;
+  color: #fff;
+  border: none;
+  padding: 16px 40px;
+  border-radius: 15px;
+  font-weight: 700;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-back:hover {
+  background-color: #444;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* 로딩 및 에러 메시지 */
+.loading-container,
+.error-container {
+  padding: 100px;
+  text-align: center;
+  font-size: 1.2rem;
+  color: #888;
+}
