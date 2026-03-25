@@ -26,8 +26,9 @@ export const deleteBoard = async (boardNo, token) => {
   return res.data;
 };
 
+//댓글 리스트
 export const getAdminReplyList = async (params, token) => {
-  const res = await axios.get(`${host}/admin/board/reply/list`, {
+  const res = await axios.get(`${host}/admin/reply/list`, {
     params,
     headers: {
       Authorization: `Bearer ${token}`,
@@ -37,8 +38,9 @@ export const getAdminReplyList = async (params, token) => {
   return res.data;
 };
 
+//댓글 삭제 
 export const deleteReply = async (replyNo, token) => {
-  const res = await axios.put(`${host}/admin/board/reply/${replyNo}`, null, {
+  const res = await axios.put(`${host}/admin/reply/${replyNo}`, null, {
     headers: {
       Authorization: `Bearer ${token}`,
     },

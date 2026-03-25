@@ -4,65 +4,84 @@ import { useNavigate } from "react-router-dom";
 import "./AdminBoardListComponent.css";
 
 const AdminBoardListComponent = () => {
-  const [list, setList] = useState([]);
+
+  const [serverData, setServerData] = useState({
+    dtoList: [],
+    pageNumList: [],
+    prev: false,
+    next: false,
+    prevPage: 0,
+    nextPage: 0,
+    current: 1,
+  });
+
+  const [page, setPage] = useState(1);
   const [keyword, setKeyword] = useState("");
   const [enabled, setEnabled] = useState("");
 
   const navigate = useNavigate();
   const token = localStorage.getItem("accessToken");
 
+  //  데이터 로딩
   const loadData = () => {
     const params = {
-      page: 1,
+      page,
       size: 10,
-      enabled,
+
+      //  핵심 (댓글이랑 동일)
+      enabled: enabled === "" ? null : Number(enabled),
+      keyword: keyword.trim() === "" ? null : keyword.trim(),
     };
 
-    if (keyword.trim() !== "") {
-      params.keyword = keyword.trim();
-    }
-
-    console.log("최종 params:", params);
-
     getAdminList(params, token).then((data) => {
-      console.log("관리자 데이터:", data);
-      setList(data.dtoList || []);
+      console.log("게시글 서버 응답:", data);
+
+      setServerData({
+        dtoList: data?.dtoList || [],
+        pageNumList: data?.pageNumList || [],
+        prev: data?.prev || false,
+        next: data?.next || false,
+        prevPage: data?.prevPage || 0,
+        nextPage: data?.nextPage || 0,
+        current: data?.current || 1,
+      });
     });
   };
 
   useEffect(() => {
     loadData();
-  }, []);
+  }, [page]);
 
+  // 🔥 검색
   const handleSearch = () => {
+    setPage(1);
     loadData();
   };
 
+  //  삭제
   const handleDelete = async (boardNo) => {
-    const confirmDelete = window.confirm("정말 삭제 하시겠습니까?");
-    if (!confirmDelete) return;
+    if (!window.confirm("정말 삭제 하시겠습니까?")) return;
 
     try {
       await deleteBoard(boardNo, token);
-
-      alert("삭제가 완료되었습니다.");
-
+      alert("삭제 완료");
       loadData();
-    } catch (error) {
-      console.error(error);
-      alert("삭제 중 오류가 발생했습니다.");
+    } catch {
+      alert("삭제 실패");
     }
+  };
+
+  const movePage = (pageNum) => {
+    setPage(pageNum);
   };
 
   return (
     <div className="admin-board-list">
-      <div className="admin-board-header">
-        <h2 className="admin-board-title-text">커뮤니티 게시글 관리</h2>
 
-        <button
-          className="admin-reply-btn"
-          onClick={() => navigate("/admin/reply")}
-        >
+      <div className="admin-board-header">
+        <h2>게시글 관리</h2>
+
+        <button onClick={() => navigate("/admin/reply/list")}>
           댓글 관리
         </button>
       </div>
@@ -75,10 +94,7 @@ const AdminBoardListComponent = () => {
           onChange={(e) => setKeyword(e.target.value)}
         />
 
-        <select
-          value={enabled}
-          onChange={(e) => setEnabled(e.target.value)}
-        >
+        <select value={enabled} onChange={(e) => setEnabled(e.target.value)}>
           <option value="">전체</option>
           <option value="1">활성</option>
           <option value="0">삭제됨</option>
@@ -87,35 +103,64 @@ const AdminBoardListComponent = () => {
         <button onClick={handleSearch}>검색</button>
       </div>
 
-      {list.map((board) => (
+      {/*  데이터 없을 때 */}
+      {serverData.dtoList.length === 0 && (
+        <div style={{ marginTop: "20px", color: "#888" }}>
+          조회된 게시글이 없습니다.
+        </div>
+      )}
+
+      {/*  리스트 */}
+      {serverData.dtoList.map((board) => (
         <div
-          className={`admin-board-item ${board.enabled === 0 ? "deleted" : ""}`}
           key={board.boardNo}
+          className={`admin-board-item ${board.enabled === 0 ? "deleted" : ""}`}
         >
-          <div className="admin-board-left">
+          <div>
             <span
-              className="admin-board-title"
               style={{ cursor: "pointer" }}
               onClick={() => navigate(`/board/read/${board.boardNo}`)}
             >
               {board.title}
             </span>
 
-            <span className="admin-board-writer">- {board.writer}</span>
+            <span> - {board.writer}</span>
 
-            {board.enabled === 0 && (
-              <span className="deleted-text">(삭제됨)</span>
-            )}
+            {board.enabled === 0 && <span>(삭제됨)</span>}
           </div>
 
-          <button
-            className="admin-delete-btn"
-            onClick={() => handleDelete(board.boardNo)}
-          >
+          <button onClick={() => handleDelete(board.boardNo)}>
             삭제
           </button>
         </div>
       ))}
+
+      {/*  페이징 */}
+      {serverData.pageNumList.length > 0 && (
+        <div className="pagination">
+
+          {serverData.prev && (
+            <button onClick={() => movePage(serverData.prevPage)}>이전</button>
+          )}
+
+          {serverData.pageNumList.map((num) => (
+            <button
+              key={num}
+              onClick={() => movePage(num)}
+              style={{
+                fontWeight: num === serverData.current ? "bold" : "normal",
+              }}
+            >
+              {num}
+            </button>
+          ))}
+
+          {serverData.next && (
+            <button onClick={() => movePage(serverData.nextPage)}>다음</button>
+          )}
+
+        </div>
+      )}
     </div>
   );
 };

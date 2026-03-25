@@ -1,42 +1,111 @@
 .admin-reply-list {
-  padding: 10px;
+  padding: 20px;
+  max-width: 900px;
+  margin: 0 auto;
 }
 
+/* 헤더 */
 .admin-reply-header {
   display: flex;
   justify-content: space-between;
-  margin-bottom: 20px;
+  align-items: center;
+  margin-bottom: 16px;
 }
 
+.admin-reply-header h2 {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+.admin-reply-header button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #ff9800;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 검색 */
 .admin-reply-search {
   display: flex;
-  gap: 10px;
-  margin-bottom: 20px;
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
+.admin-reply-search input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+
+.admin-reply-search select {
+  padding: 8px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+
+.admin-reply-search button {
+  padding: 8px 14px;
+  border: none;
+  border-radius: 8px;
+  background-color: #333;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 댓글 카드 */
 .admin-reply-item {
   display: flex;
   justify-content: space-between;
-  padding: 12px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  margin-bottom: 10px;
+  align-items: center;
+
+  padding: 12px 14px;
+  margin-bottom: 8px;
+
+  border: 1px solid #eee;
+  border-radius: 10px;
+  background-color: #fff;
 }
 
+/* 대댓글 들여쓰기 */
+.admin-reply-item span:first-child {
+  margin-right: 6px;
+}
+
+/* 삭제된 댓글 */
 .admin-reply-item.deleted {
   opacity: 0.5;
+  background-color: #fafafa;
 }
 
-.admin-reply-left {
+/* 삭제 버튼 */
+.admin-reply-item button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  background-color: #ff5252;
+  color: #fff;
+  cursor: pointer;
+}
+
+/* 페이징 */
+.pagination {
   display: flex;
-  gap: 10px;
+  justify-content: center;
+  gap: 6px;
+  margin-top: 20px;
 }
 
-.admin-reply-content {
-  font-weight: 500;
+.pagination button {
+  padding: 6px 10px;
+  border: 1px solid #ddd;
+  background-color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
 }
 
-.admin-reply-writer {
-  font-size: 12px;
-  color: gray;
+.pagination button:hover {
+  background-color: #eee;
 }
