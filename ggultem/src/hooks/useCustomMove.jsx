@@ -106,9 +106,14 @@ const useCustomMove = () => {
     if (pageParam) {
       const pageNum = getNum(pageParam.page, page);
       const sizeNum = getNum(pageParam.size, size);
+      const keywordStr = getString(pageParam.keyword, ""); // 검색 시 전달받은 값 우선
+      const typeStr = getString(pageParam.searchType, "e");
+
       queryStr = createSearchParams({
         page: pageNum,
         size: sizeNum,
+        keyword: keywordStr,
+        searchType: typeStr,
       }).toString();
     } else {
       queryStr = queryDefault;
