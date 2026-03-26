@@ -30,6 +30,24 @@ export const getList = async (pageParam) => {
   return res.data;
 };
 
+//사용자 AD 노출용 리스트
+export const getADSPList = async () => {
+  const res = await axios.get(`${host}/business/board/adlist`);
+  return res.data;
+};
+
+//사용자 AD 노출용 리스트
+export const getADPLList = async () => {
+  const res = await axios.get(`${host}/business/board/adpllist`);
+  return res.data;
+};
+
+//광고 클릭시 조회수 증가
+export const viewCountAdd = async (no) => {
+  const res = await axios.put(`${host}/business/board/viewcount/${no}`);
+  return res.data;
+};
+
 //비즈니스 회원 등록
 export const postAdd = async (businessData) => {
   const res = await axios.post(`${host}/businessmember/`, businessData);

@@ -4,6 +4,7 @@ import "./MainPage.css";
 import { Link, useNavigate } from "react-router-dom";
 import Footer from "../include/Footer";
 import logoImg from "../assets/logo.png";
+import AD from "../include/business/AD";
 
 const MainPage = () => {
   const [keyword, setKeyword] = useState("");
@@ -69,6 +70,7 @@ const MainPage = () => {
             <div className="content-box">공지사항</div>
           </Link>
         </div>
+        <AD />
       </main>
 
       <Footer />

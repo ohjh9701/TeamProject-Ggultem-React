@@ -148,7 +148,7 @@ const ListComponent = () => {
               <th>이미지</th>
               <th>상품명</th>
               <th>가격</th>
-              <th>조회수</th>
+              <th>클릭수</th>
               <th>등록일</th>
               <th>종료일</th>
               <th>상태</th>

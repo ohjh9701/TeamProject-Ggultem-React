@@ -1,0 +1,31 @@
+/* 전체를 감싸는 컨테이너 */
+.AD-section-all-container {
+  width: 100%;
+  max-width: 1200px; /* 전체 사이트 컨텐츠 너비와 맞춤 */
+  margin: 0 auto;    /* 중앙 정렬 */
+  padding: 40px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;         /* 파워쇼핑과 파워링크 사이의 넉넉한 간격 */
+}
+
+/* 파워쇼핑(카드형) 섹션 래퍼 */
+.AD-section-all-PowerShoping {
+  width: 100%;
+  /* 필요 시 여기에 배경색이나 테두리를 추가할 수 있습니다 */
+}
+
+/* 파워링크(리스트형) 섹션 래퍼 */
+.AD-section-all-PowerLink {
+  width: 100%;
+  background-color: #ffffff;
+  /* 파워링크 쪽이 너무 길어 보이면 padding으로 조절 */
+}
+
+/* 반응형 대응 (선택 사항) */
+@media (max-width: 768px) {
+  .AD-section-all-container {
+    gap: 40px;
+    padding: 20px 15px;
+  }
+}

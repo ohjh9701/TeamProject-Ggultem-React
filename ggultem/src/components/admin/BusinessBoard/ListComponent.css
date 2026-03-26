@@ -1,0 +1,217 @@
+/* 전체 레이아웃 */
+.businessboard-list-wrapper {
+  padding: 30px;
+  min-height: 100vh;
+}
+
+.businessboard-list-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  background-color: #ffffff;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+/* 헤더 섹션 */
+.businessboard-header {
+  margin-bottom: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.businessboard-title {
+  font-size: 1.8rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+}
+
+.businessboard-title-point {
+  color: #ffb400; /* 꿀템 시그니처 옐로우 */
+}
+
+.businessboard-subtitle {
+  color: #777;
+  margin-top: 5px;
+}
+
+* 검색 폼 레이아웃 */
+.codegroup-search-form {
+  margin-top: 15px;
+}
+
+.codegroup-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 요소 간격 */
+}
+
+/* 검색 셀렉트 박스 */
+.admin-search {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.admin-search:focus {
+  border-color: #ffc107;
+}
+
+/* 검색 입력창 */
+.codegroup-actions input[type="text"] {
+  padding: 10px 15px;
+  width: 250px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 0.9rem;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.codegroup-actions input[type="text"]:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 5px rgba(255, 193, 7, 0.2);
+}
+
+/* 검색 버튼 */
+.search-btn-wide {
+  padding: 10px 20px;
+  background-color: #333; /* 어두운 톤으로 포인트 */
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-btn-wide:hover {
+  background-color: #000;
+  transform: translateY(-1px);
+}
+
+.admin-btn-group {
+  display: flex;
+  gap: 10px;
+}
+
+.admin-btn {
+    padding: 10px 18px;
+    border-radius: 8px;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: auto;
+}
+/* 테이블 섹션 */
+.businessboard-table-wrapper {
+  overflow-x: auto;
+  margin-bottom: 30px;
+}
+
+.businessboard-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+  text-align: left;
+}
+
+.businessboard-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 2px solid #eee;
+  color: #555;
+  font-weight: 700;
+  white-space: nowrap;
+  text-align: center;
+}
+
+.businessboard-table td {
+  padding: 15px;
+  border-bottom: 1px solid #f1f1f1;
+  color: #444;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.businessboard-tr {
+  cursor: pointer;
+  transition: background 0.1s;
+}
+
+.businessboard-tr:hover {
+  background-color: #fff9eb; /* 마우스 호버 시 연한 노란색 */
+}
+
+/* 특정 열 스타일 */
+.company-td-name strong {
+  color: #222;
+  font-weight: 600;
+}
+
+.business-td-title {
+  max-width: 250px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.business-td-category {
+  text-transform: capitalize;
+  font-weight: 500;
+}
+
+/* 승인 상태 뱃지 */
+.businessboard-status-dot {
+  display: inline-block;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.businessboard-status-dot.active {
+  background-color: #e3f7ed;
+  color: #1db46c; /* 승인: 초록색 */
+}
+
+.businessboard-status-dot.inactive {
+  background-color: #fff0f0;
+  color: #eb5757; /* 비승인: 빨간색 */
+}
+
+/* 데이터 없음 */
+.no-data {
+  text-align: center;
+  padding: 100px 0 !important;
+  color: #999;
+  font-size: 1.1rem;
+}
+
+/* 페이징 */
+.businessboard-pagination-wrapper {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.biz-btn { background-color: #e3f2fd; color: #1976d2; }
+.money-btn { background-color: #f3e5f5; color: #7b1fa2; }
+.add-btn { background-color: #ffc107; color: #333; }
+.reset-btn { background-color: #1a1608; color: #ffffff; }
+
+.admin-btn:hover {
+    transform: translateY(-2px);
+    filter: brightness(0.9);
+}

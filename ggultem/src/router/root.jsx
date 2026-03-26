@@ -25,6 +25,13 @@ const AdminBusinessMemberList = lazy(
 const AdminBusinessMemberRead = lazy(
   () => import("../pages/admin/Business/ReadPage"),
 );
+//* 비즈니스 광고 등록 관리 페이지 */
+const AdminBusinessBoardList = lazy(
+  () => import("../pages/admin/BusinessBoard/ListPage"),
+);
+const AdminBusinessBoardRead = lazy(
+  () => import("../pages/admin/BusinessBoard/ReadPage"),
+);
 // ===== AdminNotice ===== */
 const NoticeListAdmin = lazy(() => import("../pages/admin/Notice/ListPage"));
 const NoticeRegisterAdmin = lazy(
@@ -160,6 +167,23 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <AdminBusinessMemberRead />
+      </Suspense>
+    ),
+  },
+  /* ===== 비즈니스 광고 관리 영역 ===== */
+  {
+    path: "/admin/businessboard/list",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminBusinessBoardList />
+      </Suspense>
+    ),
+  },
+  {
+    path: "/admin/businessboard/:no",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminBusinessBoardRead />
       </Suspense>
     ),
   },

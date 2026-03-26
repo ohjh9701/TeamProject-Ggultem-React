@@ -1,0 +1,128 @@
+/* 전체 컨테이너 및 구분선 */
+.compact-ad-section {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 10px 20px;
+}
+
+.AD-compact-item {
+  display: flex;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee; /* 한 줄마다 구분선 */
+  gap: 15px;
+}
+
+/* [왼쪽] 50px x 50px 썸네일 */
+.AD-compact-thumb {
+  flex: 0 0 85px;
+  width: 85px;
+  height: 85px;
+  border: 1px solid #f0f0f0;
+  border-radius: 4px;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.AD-compact-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.no-thumb {
+  width: 100%;
+  height: 100%;
+  background-color: #f8f8f8;
+}
+
+/* [오른쪽] 세로 정렬 정보 박스 */
+.AD-compact-info {
+  display: flex;
+  flex-direction: column; /* 세로 정렬 핵심 */
+  gap: 2px; /* 줄 간격 좁게 */
+}
+
+/* 1. URL 스타일 */
+.AD-info-url {
+  font-size: 0.75rem;
+  color: #999; /* 회색 작게 */
+  margin-bottom: 2px;
+}
+
+/* 2. 제목 스타일 */
+.AD-info-title {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #00aaff; /* 하늘색 */
+  text-decoration: underline; /* 밑줄 */
+  cursor: pointer;
+  display: inline-block;
+}
+
+.AD-info-title:hover {
+  color: #0088cc;
+}
+
+/* 3. 설명 및 가격 스타일 */
+.AD-info-desc {
+  font-size: 0.85rem;
+  color: #666; /* 작은 글씨 설명 */
+  line-height: 1.4;
+}
+
+.AD-info-price {
+  font-size: 0.85rem;
+  color: #333;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+/* 파워링크 전용 비어있을 때 컨테이너 */
+.ADPL-empty-container {
+  width: 100%;
+  padding: 50px 0;
+  border-top: 1px solid #f0f0f0;
+  border-bottom: 1px solid #f0f0f0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #fafafa; /* 아주 옅은 배경색으로 영역 구분 */
+  border-radius: 8px;
+}
+
+.ADPL-empty-content {
+  text-align: center;
+}
+
+.ADPL-empty-main-text {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  margin-bottom: 6px;
+}
+
+.ADPL-empty-sub-text {
+  font-size: 0.85rem;
+  color: #888;
+  margin-bottom: 20px;
+}
+
+/* 파워링크 스타일 버튼 (하늘색 포인트) */
+.ADPL-register-btn {
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  font-weight: bold;
+  color: #0087f5; /* 지훈님이 말씀하신 제목 하늘색과 통일 */
+  background-color: #fff;
+  border: 1px solid #0087f5;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.ADPL-register-btn:hover {
+  background-color: #0087f5;
+  color: #fff;
+  box-shadow: 0 4px 12px rgba(0, 135, 245, 0.2);
+}

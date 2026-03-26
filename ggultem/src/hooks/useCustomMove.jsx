@@ -29,6 +29,8 @@ const useCustomMove = () => {
     queryParams.get("businessVerified"),
     "all",
   );
+  const sign = getString(queryParams.get("sign"), "all");
+  const category = getString(queryParams.get("category"), "all");
   const queryDefault = createSearchParams({
     page,
     size,
@@ -151,18 +153,22 @@ const useCustomMove = () => {
       const sizeNum = getNum(pageParam.size, size);
       const keywordStr = getString(pageParam.keyword, keyword);
       const typeStr = getString(pageParam.searchType, searchType);
+      const signStr = getString(pageParam.sign, sign);
+      const categoryStr = getString(pageParam.category, category);
       queryStr = createSearchParams({
         page: pageNum,
         size: sizeNum,
         keyword: keywordStr,
         searchType: typeStr,
+        sign: signStr,
+        category: categoryStr,
       }).toString();
     } else {
       queryStr = queryDefault;
     }
 
     navigate({
-      pathname: `../business/board/list`,
+      pathname: `../admin/businessboard/list`,
       search: queryStr,
     });
 
@@ -171,7 +177,7 @@ const useCustomMove = () => {
 
   const moveToBusinessBoardRead = (no) => {
     navigate({
-      pathname: `../business/board/read/${no}`,
+      pathname: `../admin/businessboard/read/${no}`,
       search: queryDefault, //수정시에 기존의 쿼리 스트링 유지를 위해
     });
   };
@@ -179,7 +185,7 @@ const useCustomMove = () => {
   const moveToBusinessBoardModify = (no) => {
     console.log(queryDefault);
     navigate({
-      pathname: `../business/board/modify/${no}`,
+      pathname: `../admin/businessboard/modify/${no}`,
       search: queryDefault, //수정시에 기존의 쿼리 스트링 유지를 위해
     });
   };
@@ -381,6 +387,8 @@ const useCustomMove = () => {
     searchType,
     enabled,
     businessVerified,
+    category,
+    sign,
     refresh,
   };
 };

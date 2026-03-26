@@ -143,19 +143,15 @@ const RegisterComponent = () => {
             />
           </div>
           <div className="business-form-group">
-            <label>카테고리</label>
+            <label>광고 종류</label>
             <select
               name="category"
               value={item.category}
               onChange={handleChangeItem}
             >
               <option value="">선택하세요</option>
-              <option value="electronics">전자제품</option>
-              <option value="clothing">의류</option>
-              <option value="sports">스포츠</option>
-              <option value="books">도서</option>
-              <option value="health">건강식품</option>
-              <option value="furniture">가구</option>
+              <option value="powershoping">파워쇼핑</option>
+              <option value="powerlink">파워링크</option>
             </select>
           </div>
         </div>

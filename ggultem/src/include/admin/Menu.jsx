@@ -29,6 +29,9 @@ export default function Header() {
           <Link to="/admin/member/list" className="nav-link">
             회원정보관리
           </Link>
+          <Link to="/admin/businessboard/list" className="nav-link">
+            비즈니스 광고 관리
+          </Link>
           <Link to="/admin/itemboard/list" className="nav-link">
             중고거래 게시판 관리
           </Link>

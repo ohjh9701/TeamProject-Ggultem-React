@@ -1,0 +1,146 @@
+/* ADSection.css */
+.AD-section-container {
+  width: 100%;
+  padding: 40px 0;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.AD-section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+.AD-card-wrapper {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr); /* 🚩 정확히 한 줄에 5개 */
+  gap: 20px;
+}
+
+.AD-card {
+  background: #fff;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1); /* 지훈님 스타일의 박스 섀도우 */
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.AD-card:hover {
+  transform: translateY(-5px); /* 호버 시 살짝 들리는 효과 */
+}
+
+/* 🚩 3:4 비율을 만드는 핵심 로직 */
+.AD-card-image-box {
+  width: 100%;
+  aspect-ratio: 3 / 4; /* 가로 3 : 세로 4 비율 고정 */
+  background-color: #f0f0f0;
+  overflow: hidden;
+}
+
+.AD-card-image-box img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* 이미지가 꽉 차게 */
+}
+
+.AD-card-content {
+  padding: 12px;
+}
+
+.AD-card-category {
+  font-size: 0.75rem;
+  color: #ffb400; /* 꿀템 느낌의 노란색 */
+  font-weight: 600;
+}
+
+.AD-card-title {
+  font-size: 1rem;
+  margin: 4px 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis; /* 제목이 길면 ... 처리 */
+}
+
+.AD-card-price {
+  font-weight: bold;
+  color: #222;
+}
+
+/* 제목과 뱃지를 가로로 정렬 */
+.AD-section-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.AD-section-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin: 0;
+  color: #333;
+}
+
+/* 🚩 AD 뱃지 스타일 */
+.AD-badge {
+  display: inline-block;
+  padding: 2px 8px;
+  font-size: 0.7rem;
+  font-weight: bold;
+  color: #888;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  line-height: 1.4;
+  vertical-align: middle;
+}
+
+.AD-card {
+  cursor: pointer; /* 클릭 가능하다는 표시 */
+  /* 기존 스타일 유지... */
+}
+
+/* 데이터가 없을 때 전체 박스 스타일 */
+.AD-empty-state {
+  width: 100%;
+  padding: 60px 20px;
+  background-color: #fcfcfc;
+  border: 1px dashed #ddd; /* 점선 테두리로 허전함 방지 */
+  border-radius: 12px;
+  text-align: center;
+  margin-top: 10px;
+}
+
+.AD-empty-text {
+  font-size: 1.1rem;
+  color: #888;
+  margin-bottom: 8px;
+}
+
+.AD-suggest-text {
+  font-size: 0.95rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* 비즈니스 신청 버튼 스타일 */
+.AD-partner-btn {
+  padding: 12px 24px;
+  font-size: 1rem;
+  font-weight: bold;
+  color: #fff;
+  background-color: #ffb400; /* 꿀템 포인트 컬러 */
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 180, 0, 0.2);
+  transition: all 0.2s ease;
+}
+
+.AD-partner-btn:hover {
+  background-color: #e6a200;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(255, 180, 0, 0.3);
+}
