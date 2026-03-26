@@ -199,8 +199,7 @@ const ItemBoardList = () => {
               }
             >
               <div className="item-image">
-                {/* 🔥 상태 표시 수정 */}
-                {item.status === "true" && (
+                {(item.status === "판매완료" || item.status === "true") && (
                   <div className="sold-out-overlay">
                     <span>SOLD OUT</span>
                   </div>
@@ -213,7 +212,11 @@ const ItemBoardList = () => {
                       : `${host}/itemBoard/view/default.jpg`
                   }
                   alt={item.title}
-                  className={item.status === "true" ? "img-dark" : ""}
+                  className={
+                    item.status === "판매완료" || item.status === "true"
+                      ? "img-dark"
+                      : ""
+                  }
                 />
               </div>
 

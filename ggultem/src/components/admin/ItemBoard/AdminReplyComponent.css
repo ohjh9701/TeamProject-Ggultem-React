@@ -1,0 +1,206 @@
+/* 전체 배경 레이아웃 */
+.admin-main-wrapper {
+  width: 100%;
+  min-height: 100vh;
+  background-color: #f4f6f8;
+  display: flex;
+  justify-content: center;
+  padding: 50px 0;
+  box-sizing: border-box;
+}
+
+/* 중앙 컨텐츠 박스 */
+.admin-content-box {
+  width: 1280px;
+  margin: 0 auto;
+  background: #ffffff;
+  border-radius: 12px;
+  padding: 40px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+/* 헤더 영역 */
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 30px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #f1f3f5;
+}
+
+.admin-title {
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #333;
+  margin: 0;
+}
+
+.yellow-point {
+  color: #ffc107;
+  margin-left: 5px;
+}
+
+/* 검색바 영역 */
+.admin-search-bar {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: #f1f3f5;
+  padding: 6px 15px;
+  border-radius: 30px;
+  border: 1px solid #e9ecef;
+}
+
+.admin-search-bar select {
+  border: none;
+  background: transparent;
+  font-weight: 600;
+  color: #495057;
+  outline: none;
+  cursor: pointer;
+}
+
+.admin-search-bar input {
+  border: none;
+  background: transparent;
+  padding: 8px;
+  width: 200px;
+  outline: none;
+}
+
+.search-btn {
+  background: #343a40;
+  color: #fff;
+  border: none;
+  padding: 6px 16px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.search-btn:hover {
+  background: #000;
+}
+
+/* 우측 상태 셀렉트 및 버튼 */
+.admin-header-right {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.admin-status-select {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.yellow-btn {
+  background-color: #ffc107;
+  color: #fff;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* 테이블 공통 스타일 */
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.admin-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  color: #868e96;
+  font-size: 0.9rem;
+  border-bottom: 2px solid #dee2e6;
+}
+
+/* 테이블 행(Row) 클릭 스타일 */
+.admin-table-row {
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.admin-table-row:hover {
+  background-color: #fff9e6 !important;
+}
+
+.admin-table td {
+  padding: 18px 15px;
+  border-bottom: 1px solid #f1f3f5;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+/* 댓글 내용 상세 스타일 */
+.content-td {
+  text-align: left !important;
+  max-width: 400px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  color: #495057;
+}
+
+.text-muted {
+  color: #adb5bd;
+  text-decoration: line-through;
+  font-style: italic;
+}
+
+/* 상태 버튼 스타일 */
+.btn-delete-status {
+  padding: 6px 12px;
+  background: white;
+  color: #ff6b6b;
+  border: 1px solid #ff6b6b;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.btn-delete-status:hover {
+  background: #ff6b6b;
+  color: #fff;
+}
+
+.status-label-disabled {
+  background: #f1f3f5;
+  color: #868e96;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 0.85rem;
+}
+
+/* 텍스트 강조 컬러 */
+.item-title-td {
+  font-weight: 600;
+  color: #212529;
+}
+
+.num-td {
+  color: #adb5bd;
+}
+
+/* 페이징 */
+.admin-paging {
+  display: flex;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.no-data {
+  padding: 50px !important;
+  color: #adb5bd;
+  font-size: 1.1rem;
+}
