@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { getMyInfo, API_SERVER_HOST } from "../../api/MemberApi";
 import { useNavigate } from "react-router";
-import { getList } from "../../api/ItemBoardApi";
+import { getList as getItemList } from "../../api/ItemBoardApi";
+import { getList as getCartList } from "../../api/CartApi";
 import useCustomMove from "../../hooks/useCustomMove";
 import PageComponent from "../common/PageComponent";
 import "./MyPageComponent.css";
@@ -33,6 +34,14 @@ const MyPageMain = ({ email }) => {
     prev: false,
     next: false,
   });
+
+  const [cartData, setCartData] = useState({
+    dtoList: [],
+    totalCount: 0,
+    pageNumList: [],
+    prev: false,
+    next: false,
+  });
   const moveToList = (pageParam) => {
     setPage(pageParam.page);
   };
@@ -50,8 +59,12 @@ const MyPageMain = ({ email }) => {
       searchType: "w",
       email: email,
     };
-
-    getList(pageParam)
+    getCartList(pageParam).then((data) => {
+      if (data) {
+        setCartData(data);
+      }
+    });
+    getItemList(pageParam)
       .then((data) => {
         if (data) {
           setServerData(data);
@@ -87,7 +100,7 @@ const MyPageMain = ({ email }) => {
             {serverData.dtoList && serverData.dtoList.length > 0 ? (
               serverData.dtoList
                 .filter((item) => item.email === email) // ✅ 서버에서 온 email과 내 email이 같은 것만!
-                .map((item, cart) => (
+                .map((item) => (
                   <div
                     key={item.id}
                     className="mp-item-card"
@@ -106,6 +119,7 @@ const MyPageMain = ({ email }) => {
                       <span className="mp-item-price">
                         {item.price?.toLocaleString() || 0}원
                       </span>
+                      <span className="mp-item-title">{item.regDate}</span>
                     </div>
                   </div>
                 ))
@@ -129,9 +143,37 @@ const MyPageMain = ({ email }) => {
                 장바구니 바로가기
               </button>
             </div>
-            <div className="mp-empty-placeholder">
-              장바구니가 비어 있습니다.
-            </div>
+            {cartData.dtoList && cartData.dtoList.length > 0 ? (
+              cartData.dtoList.map((item) => (
+                <div
+                  key={item.id}
+                  className="mp-item-card"
+                  onClick={() => navigate(`/cart/read/${item.id}`)}
+                >
+                  <img
+                    src={
+                      item.uploadFileNames?.[0]
+                        ? `${host}/itemBoard/view/s_${item.uploadFileNames[0]}`
+                        : `${host}/itemBoard/view/default.jpg`
+                    }
+                    alt="cart-item"
+                  />
+                  <div className="mp-item-info">
+                    <span className="mp-item-title">{item.title}</span>
+                    <span className="mp-item-price">
+                      {item.price?.toLocaleString() || 0}원
+                    </span>
+                    <span className="mp-item-date">
+                      담은 날짜: {item.regDate?.substring(0, 10)}
+                    </span>
+                  </div>
+                </div>
+              ))
+            ) : (
+              <div className="mp-empty-placeholder">
+                장바구니가 비어 있습니다.
+              </div>
+            )}
           </section>
         </div>
 
