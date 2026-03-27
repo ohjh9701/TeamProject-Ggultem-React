@@ -95,6 +95,11 @@ const ItemBoardList = () => {
     params.set("keyword", searchState.word.trim());
 
     navigate(`/itemBoard/list?${params.toString()}`);
+
+    setSearchState({
+      ...searchState,
+      word: "",
+    });
   };
 
   return (
@@ -127,7 +132,11 @@ const ItemBoardList = () => {
             type="text"
             name="word"
             className="search-input-wide"
-            placeholder="어떤 꿀템을 찾으시나요?"
+            placeholder={
+              keyword
+                ? `'${keyword}' 검색 결과입니다.`
+                : "어떤 꿀템을 찾으시나요?"
+            }
             value={searchState.word}
             onChange={handleChangeSearch}
           />

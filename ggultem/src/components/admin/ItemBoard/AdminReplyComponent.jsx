@@ -7,6 +7,7 @@ import "./AdminReplyComponent.css";
 const AdminReplyComponent = () => {
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
+  const [searchTerm, setSearchTerm] = useState("");
   const [serverData, setServerData] = useState({
     dtoList: [],
     totalCount: 0,
@@ -49,13 +50,21 @@ const AdminReplyComponent = () => {
 
   const handleSearch = () => {
     const type = document.getElementById("searchType").value;
-    const word = document.getElementById("searchKeyword").value.trim();
+    const word = searchTerm.trim();
     const params = new URLSearchParams(searchParams);
+
     params.set("page", "1");
     params.set("searchType", type);
-    params.set("keyword", word);
-    if (!word) params.delete("keyword");
+
+    if (word) {
+      params.set("keyword", word);
+    } else {
+      params.delete("keyword");
+    }
+
     navigate({ search: params.toString() });
+
+    setSearchTerm("");
   };
 
   const handleEnabledChange = (e) => {
@@ -67,7 +76,7 @@ const AdminReplyComponent = () => {
   };
 
   const handleClickDelete = (e, replyNo) => {
-    e.stopPropagation(); // 행 클릭 이벤트(상세 이동) 전파 방지
+    e.stopPropagation();
     if (window.confirm("해당 댓글을 비활성화 하시겠습니까?")) {
       removeReply(replyNo).then(() => {
         alert("비활성화 되었습니다.");
@@ -98,7 +107,8 @@ const AdminReplyComponent = () => {
             <input
               type="text"
               id="searchKeyword"
-              defaultValue={keyword}
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
               placeholder="검색어를 입력하세요"
               onKeyDown={(e) => e.key === "Enter" && handleSearch()}
             />
@@ -130,12 +140,12 @@ const AdminReplyComponent = () => {
         <table className="admin-table">
           <thead>
             <tr>
-              <th style={{ width: "80px" }}>번호</th>
-              <th style={{ width: "200px" }}>상품명</th>
+              <th>번호</th>
+              <th>상품명</th>
               <th className="content-col">댓글 내용</th>
-              <th style={{ width: "120px" }}>작성자</th>
-              <th style={{ width: "120px" }}>등록일</th>
-              <th style={{ width: "150px" }}>상태 관리</th>
+              <th>작성자</th>
+              <th>등록일</th>
+              <th>상태 관리</th>
             </tr>
           </thead>
           <tbody>

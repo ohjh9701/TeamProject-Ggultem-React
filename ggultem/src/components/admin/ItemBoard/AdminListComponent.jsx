@@ -22,37 +22,51 @@ const AdminListComponent = () => {
   const size = parseInt(searchParams.get("size")) || 10;
   const enabled = searchParams.get("enabled") || "all";
 
-  // [중요] 페이지 이동 시 경로 수정 (admin 필수)
+  //검색후 초기화
+  const handleSearch = () => {
+    const type = document.getElementById("searchType").value;
+    const inputElement = document.getElementById("searchKeyword");
+    const word = inputElement.value.trim(); // 공백 제거
+
+    navigate(
+      `/admin/itemBoard/list?page=1&searchType=${type}&keyword=${encodeURIComponent(word)}`,
+    );
+
+    // 입력창 비우기
+    inputElement.value = "";
+  };
   const moveToList = (pageParam) => {
     const params = new URLSearchParams();
     params.set("page", pageParam.page);
     params.set("searchType", searchType);
     params.set("keyword", keyword);
 
-    if (enabled !== "all" && enabled !== null) {
+    if (enabled !== "all") {
       params.set("enabled", enabled);
     }
 
-    // /admin/itemBoard/list로 가야 관리자 페이지가 유지됩니다.
     navigate(`/admin/itemBoard/list?${params.toString()}`);
   };
 
   useEffect(() => {
-    // 1. 가공할 객체를 따로 생성
     const params = {
       page,
       size,
-      searchType,
-      keyword,
+      searchType: searchType || "all", // 타입이 없으면 'all'
     };
 
-    // 2. 'all'이 아닐 때만 숫자로 바꿔서 params에 추가
+    if (keyword && keyword.trim() !== "") {
+      params.keyword = keyword;
+    }
+
+    // 판매 상태 필터링 처리
     if (enabled !== "all" && enabled !== null && enabled !== undefined) {
       params.enabled = Number(enabled);
     }
 
     getList(params).then((data) => setServerData(data));
   }, [page, size, enabled, searchType, keyword]);
+
   return (
     <div className="admin-main-wrapper">
       <div className="admin-content-box">
@@ -71,26 +85,17 @@ const AdminListComponent = () => {
             <input
               type="text"
               id="searchKeyword"
-              defaultValue={keyword}
               placeholder="검색어를 입력하세요"
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
-                  const type = document.getElementById("searchType").value;
-                  const word = document.getElementById("searchKeyword").value;
-                  navigate(
-                    `/admin/itemBoard/list?page=1&searchType=${type}&keyword=${word}`,
-                  );
+                  handleSearch();
                 }
               }}
             />
             <button
               className="search-btn"
               onClick={() => {
-                const type = document.getElementById("searchType").value;
-                const word = document.getElementById("searchKeyword").value;
-                navigate(
-                  `/admin/itemBoard/list?page=1&searchType=${type}&keyword=${word}`,
-                );
+                handleSearch();
               }}
             >
               검색
