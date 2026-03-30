@@ -320,6 +320,36 @@ const useCustomMove = () => {
     setRefresh(!refresh);
   };
 
+  const moveToAdminBizMoneyList = (pageParam) => {
+    let queryStr = "";
+    if (pageParam) {
+      // getString을 쓰지 말고 직접 체크해서 넣기!
+      const pageNum = pageParam.page !== undefined ? pageParam.page : page;
+      const sizeNum = pageParam.size !== undefined ? pageParam.size : size;
+      const keywordStr =
+        pageParam.keyword !== undefined ? pageParam.keyword : keyword; // ""도 값으로 인정!
+      const typeStr =
+        pageParam.searchType !== undefined ? pageParam.searchType : searchType;
+      const stateStr = pageParam.state !== undefined ? pageParam.state : state;
+      queryStr = createSearchParams({
+        page: pageNum,
+        size: sizeNum,
+        keyword: keywordStr,
+        searchType: typeStr,
+        state: stateStr,
+      }).toString();
+    } else {
+      queryStr = queryDefault;
+    }
+
+    navigate({
+      pathname: `../admin/bizmoney/list`,
+      search: queryStr,
+    });
+
+    setRefresh(!refresh);
+  };
+
   //********************************** Board 영역 *************************************
 
   const moveToBoardList = (pageParam) => {
@@ -517,6 +547,7 @@ const useCustomMove = () => {
     moveToBusinessBoardRead,
     moveToBusinessBoardModify,
     moveToBizMoneyList,
+    moveToAdminBizMoneyList,
     moveToMemberList,
     moveToBusinessMemberList,
     moveToMyPageModify,

@@ -25,6 +25,10 @@ const AdminBusinessMemberList = lazy(
 const AdminBusinessMemberRead = lazy(
   () => import("../pages/admin/Business/ReadPage"),
 );
+//* 비즈머니 회원 관리 페이지 */
+const AdminBizMoneyList = lazy(
+  () => import("../pages/admin/BizMoney/ListPage"),
+);
 //* 비즈니스 광고 등록 관리 페이지 */
 const AdminBusinessBoardList = lazy(
   () => import("../pages/admin/BusinessBoard/ListPage"),
@@ -195,6 +199,15 @@ const root = createBrowserRouter([
     element: (
       <Suspense fallback={<Loading />}>
         <AdminBusinessMemberRead />
+      </Suspense>
+    ),
+  },
+  /* ===== 비즈머니 영역 ============================================================================================== */
+  {
+    path: "/admin/bizmoney/list",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <AdminBizMoneyList />
       </Suspense>
     ),
   },
