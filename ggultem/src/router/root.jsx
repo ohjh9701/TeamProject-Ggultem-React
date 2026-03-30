@@ -118,6 +118,13 @@ const ItemBoardModify = lazy(
 );
 //* 장바구니 페이지 */
 const CartList = lazy(() => import("../pages/Cart/CartListPage"));
+// ✅ 신고 관리 페이지 추가
+const ReportListAdmin = lazy(
+  () => import("../components/admin/ReportProcess/ListComponent"),
+);
+const ReportReadAdmin = lazy(
+  () => import("../pages/admin/ReportProcess/ReadPage"),
+);
 
 const root = createBrowserRouter([
   /* ===== 관리자 영역 ============================================================================================== */
@@ -583,6 +590,28 @@ const root = createBrowserRouter([
         <BusinessBoardDList />
       </Suspense>
     ),
+  },
+  // ✅ 관리자 신고 관리
+  {
+    path: "admin/report",
+    children: [
+      {
+        path: "list",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <ReportListAdmin />
+          </Suspense>
+        ),
+      },
+      {
+        path: "read/:reportId",
+        element: (
+          <Suspense fallback={<Loading />}>
+            <ReportReadAdmin />
+          </Suspense>
+        ),
+      },
+    ],
   },
 ]);
 

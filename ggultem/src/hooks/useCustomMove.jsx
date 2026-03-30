@@ -460,6 +460,14 @@ const useCustomMove = () => {
     setRefresh(!refresh);
   };
 
+  // ******************************* ProcessedReport 영역 *************************************
+  const moveToRead = (reportId) => {
+    navigate({
+      pathname: `../read/${reportId}`,
+      search: queryDefault, // 페이지 번호 유지용
+    });
+  };
+
   return {
     moveToCodeGroupList,
     moveToDetailCodeList,
@@ -483,6 +491,7 @@ const useCustomMove = () => {
     moveToBlackListList,
     moveToAdd,
     movePage,
+    moveToRead,
     page,
     size,
     keyword,
