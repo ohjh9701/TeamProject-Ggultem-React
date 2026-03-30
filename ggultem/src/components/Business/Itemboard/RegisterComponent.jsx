@@ -37,7 +37,7 @@ const initStateMember = {
 };
 
 const RegisterComponent = () => {
-  const { loginState, isLogin, moveToLogin } = useCustomLogin();
+  const { loginState } = useCustomLogin();
   const navigate = useNavigate();
   const uploadRef = useRef();
 

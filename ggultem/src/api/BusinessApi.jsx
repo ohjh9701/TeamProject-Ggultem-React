@@ -30,9 +30,9 @@ export const getOne = async (no) => {
   return res.data;
 };
 
-export const getList = async (pageParam) => {
+export const getList = async (pageParam, email) => {
   const { page, size, keyword, searchType, sign, category } = pageParam;
-  const res = await axios.get(`${host}/business/board/list`, {
+  const res = await axios.get(`${host}/business/board/list/${email}`, {
     params: {
       page: page,
       size: size,
@@ -45,9 +45,9 @@ export const getList = async (pageParam) => {
   return res.data;
 };
 
-export const getDeleteList = async (pageParam) => {
+export const getDeleteList = async (pageParam, email) => {
   const { page, size, keyword, searchType, sign, category } = pageParam;
-  const res = await axios.get(`${host}/business/board/deletelist`, {
+  const res = await axios.get(`${host}/business/board/deletelist/${email}`, {
     params: {
       page: page,
       size: size,

@@ -4,6 +4,7 @@ import useCustomMove from "../../hooks/useCustomMove";
 import PageComponent from "../common/PageComponent";
 import { useNavigate } from "react-router-dom";
 import "./ListComponent.css";
+import useCustomLogin from "../../hooks/useCustomLogin";
 
 const initState = {
   dtoList: [],
@@ -38,16 +39,27 @@ const ListComponent = () => {
   const [adSign, setAdSign] = useState("all");
   const [adCategory, setAdCategory] = useState("all");
   const navigate = useNavigate();
+  const { loginState } = useCustomLogin();
 
   //내가 등록한 businessBoard 리스트
   useEffect(() => {
-    getList({ page, size, keyword, searchType, sign, category }).then(
-      (data) => {
-        console.log(data);
-        setServerData(data);
-      },
-    );
-  }, [page, size, keyword, searchType, sign, category, refresh]);
+    getList(
+      { page, size, keyword, searchType, sign, category },
+      loginState.email,
+    ).then((data) => {
+      console.log(data);
+      setServerData(data);
+    });
+  }, [
+    page,
+    size,
+    keyword,
+    searchType,
+    sign,
+    category,
+    refresh,
+    loginState.email,
+  ]);
 
   const handleReset = () => {
     setCodeKeyword(""); // 입력창 비우기
