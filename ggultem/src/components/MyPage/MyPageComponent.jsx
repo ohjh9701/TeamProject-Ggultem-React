@@ -79,7 +79,7 @@ const MyPageMain = ({ email }) => {
     }
 
     // location.key를 넣어 페이지 이동(뒤로가기 포함) 시 매번 체크하도록 설정
-  }, [email, itemPage, cartPage, location.key, location.state]);
+  }, [email, itemPage, cartPage, location.key]);
 
   const moveItemPage = (pageParam) => {
     setItemPage(pageParam.page);
