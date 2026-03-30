@@ -1,5 +1,5 @@
 import { useRef, useState } from "react";
-import { postAdd } from "../../../api/admin/NoticeApi";
+import { postAdd } from "../../../api/config";
 import useCustomMove from "../../../hooks/useCustomMove";
 import "./RegisterComponent.css";
 
