@@ -4,19 +4,18 @@ import { useSelector } from "react-redux";
 import { addBoard } from "../../api/BoardApi";
 import { Editor } from "@toast-ui/react-editor";
 import "@toast-ui/editor/dist/toastui-editor.css";
+import "./BoardRegisterComponent.css";
 
 const BoardRegisterComponent = () => {
-
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const editorRef = useRef();
 
-  const loginState = useSelector(state => state.loginSlice);
+  const loginState = useSelector((state) => state.loginSlice);
   const email = loginState?.email;
 
   const navigate = useNavigate();
   const handleRegister = () => {
-
     const content = editorRef.current.getInstance().getHTML();
     console.log("🔥 email:", email);
 
@@ -42,24 +41,22 @@ const BoardRegisterComponent = () => {
     });
   };
   return (
-    <div>
+    <div className="board-register-wrapper">
       <h2>게시글 등록</h2>
-
       <input
         type="text"
-        placeholder="제목"
+        className="board-title-input"
+        placeholder="제목을 입력해주세요"
         value={title}
         onChange={(e) => setTitle(e.target.value)}
       />
-
       <Editor
         ref={editorRef}
         previewStyle="tab"
         initialEditType="wysiwyg"
-        height="400px"
+        height="500px"
         hooks={{
           addImageBlobHook: async (blob, callback) => {
-
             console.log("이미지 업로드 시작");
 
             const formData = new FormData();
@@ -74,25 +71,27 @@ const BoardRegisterComponent = () => {
               const data = await res.json();
 
               callback(data.url, "이미지");
-
             } catch (err) {
               console.error("이미지 업로드 실패", err);
             }
-          }
+          },
         }}
       />
-
-
-      <div style={{ marginTop: "10px" }}>
-
-        <button type="button" onClick={handleRegister}>
+      <div className="board-btn-group">
+        <button
+          className="board-btn board-register-btn"
+          type="button"
+          onClick={handleRegister}
+        >
           등록
         </button>
-
-        <button type="button" onClick={() => navigate(-1)}>
+        <button
+          className="board-btn board-cancel-btn"
+          type="button"
+          onClick={() => navigate(-1)}
+        >
           취소
         </button>
-
       </div>
     </div>
   );

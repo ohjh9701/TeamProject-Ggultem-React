@@ -34,8 +34,13 @@ const MainPage = () => {
       alert("검색어를 입력해주세요!");
       return;
     }
-    // 선택한 카테고리와 키워드를 가지고 이동
-    navigate(`/${searchType}/list?page=1&size=10&keyword=${keyword}`);
+    if (searchType === "report") {
+      // 사기조회 페이지로 키워드와 함께 이동
+      navigate(`/report?keyword=${keyword}`);
+    } else {
+      // 기존 카테고리(중고거래, 커뮤니티 등) 검색 로직
+      navigate(`/${searchType}/list?page=1&size=10&keyword=${keyword}`);
+    }
   };
 
   return (
@@ -57,6 +62,7 @@ const MainPage = () => {
               <option value="itemBoard">중고거래</option>
               <option value="board">커뮤니티</option>
               <option value="notice">공지사항</option>
+              <option value="report">사기조회</option>
             </select>
 
             <input

@@ -132,6 +132,7 @@ const ItemBoardModify = lazy(
 );
 //* 장바구니 페이지 */
 const CartList = lazy(() => import("../pages/Cart/CartListPage"));
+const MyPageList = lazy(() => import("../pages/itemBoard/MyPageList"));
 // ✅ 신고 관리 페이지 추가
 const ReportListAdmin = lazy(
   () => import("../components/admin/ReportProcess/ListComponent"),
@@ -139,6 +140,8 @@ const ReportListAdmin = lazy(
 const ReportReadAdmin = lazy(
   () => import("../pages/admin/ReportProcess/ReadPage"),
 );
+// ✅ [추가] 사용자 사기조회 페이지 (FraudSearch)
+const FraudSearch = lazy(() => import("../pages/Report/FraudSearchPage"));
 
 const root = createBrowserRouter([
   /* ===== 관리자 영역 ============================================================================================== */
@@ -539,6 +542,14 @@ const root = createBrowserRouter([
       </Suspense>
     ),
   },
+  {
+    path: "/itemBoard/myPage",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <MyPageList />
+      </Suspense>
+    ),
+  },
   /* ===== 커뮤니티 연결 영역 ===== */
   {
     path: "/board/list",
@@ -684,6 +695,15 @@ const root = createBrowserRouter([
         ),
       },
     ],
+  },
+  // ✅ [추가] 사기조회 (FraudSearch) 페이지 경로
+  {
+    path: "/report",
+    element: (
+      <Suspense fallback={<Loading />}>
+        <FraudSearch />
+      </Suspense>
+    ),
   },
 ]);
 

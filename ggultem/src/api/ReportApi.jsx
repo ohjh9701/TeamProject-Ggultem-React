@@ -19,7 +19,7 @@ export const registerReport = async (reportData) => {
     });
   }
 
-  const res = await axios.post(`${host}/`, formData, {
+  const res = await axios.post(`${host}/register`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;

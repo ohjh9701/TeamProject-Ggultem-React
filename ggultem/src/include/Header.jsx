@@ -69,7 +69,7 @@ export default function Header() {
           <Link to="/itemBoard/list" className="header-nav-link">
             중고거래
           </Link>
-          <Link to="/report/list" className="header-nav-link">
+          <Link to="/report" className="header-nav-link">
             사기조회
           </Link>
           <Link to="/board/list" className="header-nav-link">

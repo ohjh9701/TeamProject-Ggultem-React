@@ -189,7 +189,7 @@ const KakaoMap = ({
               className="sidebar-location-btn"
               onClick={moveToCurrentLocation}
             >
-              📍위치
+              위치
             </button>
           </div>
         </div>
@@ -213,7 +213,7 @@ const KakaoMap = ({
         <div className="content-wrapper">
           <div className="item-header">
             <h3 className="item-title">
-              🎁 {selectedRegion ? `${selectedRegion} 꿀템` : "전체 지역 꿀템"}
+              {selectedRegion ? `${selectedRegion} 꿀템` : "전체 지역 꿀템"}
             </h3>
             <div className="item-filter-group">
               <select

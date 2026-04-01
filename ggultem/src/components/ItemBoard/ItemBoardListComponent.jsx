@@ -60,16 +60,16 @@ const ItemBoardList = () => {
   };
 
   return (
-    <div className="board-list-full-wrapper">
-      <div className="board-header-fixed">
-        <h2>🍯 꿀템 매물 목록</h2>
+    <div className="itemboard-list-full-wrapper">
+      <div className="itemboard-header-fixed">
+        <h2>우리동네 꿀템목록</h2>
       </div>
 
-      <div className="search-area-center">
-        <form className="search-form-wide" onSubmit={handleSearch}>
+      <div className="itemboard-search-area-center">
+        <form className="itemboard-search-form-wide" onSubmit={handleSearch}>
           <select
             name="type"
-            className="search-type-select"
+            className="itemboard-search-type-select"
             value={searchState.type}
             onChange={(e) =>
               setSearchState({ ...searchState, type: e.target.value })
@@ -81,20 +81,20 @@ const ItemBoardList = () => {
           </select>
           <input
             type="text"
-            className="search-input-wide"
+            className="itemboard-search-input-wide"
             value={searchState.word}
             onChange={(e) =>
               setSearchState({ ...searchState, word: e.target.value })
             }
             placeholder="어떤 꿀템을 찾으시나요?"
           />
-          <button type="submit" className="search-btn-wide">
+          <button type="submit" className="itemboard-search-btn-wide">
             검색
           </button>
         </form>
       </div>
 
-      <div className="map-content-section">
+      <div className="itemboard-map-content-section">
         <KakaoMap
           currentFilters={{
             category,
