@@ -146,32 +146,47 @@ const MyPageMain = ({ email }) => {
             </div>
             {serverData.dtoList && serverData.dtoList.length > 0 ? (
               serverData.dtoList
+                /* ✅ 본인 이메일과 일치하는 상품만 필터링 */
                 .filter((item) => item.email === email)
-                .map((item) => (
-                  <div
-                    key={item.id}
-                    className="mp-item-card"
-                    onClick={() => navigate(`/itemBoard/read/${item.id}`)}
-                  >
-                    <img
-                      src={
-                        item.uploadFileNames && item.uploadFileNames.length > 0
-                          ? `${host}/itemBoard/view/s_${item.uploadFileNames[0]}`
-                          : `${host}/itemBoard/view/default.jpg`
-                      }
-                      alt="item"
-                    />
-                    <div className="mp-item-info">
-                      <span className="mp-item-title">{item.title}</span>
-                      <span className="mp-item-price">
-                        {item.price?.toLocaleString() || 0}원
-                      </span>
-                      <span className="mp-item-date">
-                        추가한 날짜: {item.regDate?.substring(0, 10)}
-                      </span>
+                .map((item) => {
+                  const isSoldOut =
+                    item.status === "판매완료" ||
+                    item.status === "true" ||
+                    Number(item.enabled) === 2;
+
+                  return (
+                    <div
+                      key={item.id}
+                      className="mp-item-card"
+                      onClick={() => navigate(`/itemBoard/read/${item.id}`)}
+                    >
+                      <div className="mp-image-container">
+                        {isSoldOut && (
+                          <div className="mp-sold-out-overlay">SOLD OUT</div>
+                        )}
+                        <img
+                          className={`mp-item-img ${isSoldOut ? "mp-img-darken" : ""}`}
+                          src={
+                            item.uploadFileNames &&
+                            item.uploadFileNames.length > 0
+                              ? `${host}/itemBoard/view/s_${item.uploadFileNames[0]}`
+                              : `${host}/itemBoard/view/default.jpg`
+                          }
+                          alt="item"
+                        />
+                      </div>
+                      <div className="mp-item-info">
+                        <span className="mp-item-title">{item.title}</span>
+                        <span className="mp-item-price">
+                          {item.price?.toLocaleString() || 0}원
+                        </span>
+                        <span className="mp-item-date">
+                          추가한 날짜: {item.regDate?.substring(0, 10)}
+                        </span>
+                      </div>
                     </div>
-                  </div>
-                ))
+                  );
+                })
             ) : (
               <div className="mp-empty-placeholder">
                 등록된 상품이 없습니다.
@@ -185,6 +200,7 @@ const MyPageMain = ({ email }) => {
             </div>
           </section>
 
+          {/* 2. 장바구니 섹션 */}
           <section className="mp-content-box">
             <div className="mp-section-header">
               <h3 className="mp-section-title">장바구니</h3>
@@ -196,39 +212,49 @@ const MyPageMain = ({ email }) => {
               </button>
             </div>
             {cartData.dtoList && cartData.dtoList.length > 0 ? (
-              cartData.dtoList.map((item) => (
-                <div
-                  key={item.id}
-                  className="mp-item-card"
-                  onClick={() =>
-                    navigate(`/itemBoard/read/${item.itemBoard.id}`)
-                  }
-                >
-                  <img
-                    src={
-                      item.itemBoard.itemList &&
-                      item.itemBoard.itemList.length > 0
-                        ? `${host}/itemBoard/view/s_${item.itemBoard.itemList[0].fileName}`
-                        : item.itemBoard.uploadFileNames &&
-                            item.itemBoard.uploadFileNames.length > 0
-                          ? `${host}/itemBoard/view/s_${item.itemBoard.uploadFileNames[0]}`
-                          : `${host}/itemBoard/view/default.jpg`
+              cartData.dtoList.map((item) => {
+                const isSoldOut =
+                  item.itemBoard?.status === "판매완료" ||
+                  item.itemBoard?.status === "true" ||
+                  Number(item.itemBoard?.enabled) === 2;
+
+                return (
+                  <div
+                    key={item.id}
+                    className="mp-item-card"
+                    onClick={() =>
+                      navigate(`/itemBoard/read/${item.itemBoard.id}`)
                     }
-                    alt="cart-item"
-                  />
-                  <div className="mp-item-info">
-                    <span className="mp-item-title">
-                      {item.itemBoard.title}
-                    </span>
-                    <span className="mp-item-price">
-                      {item.itemBoard.price?.toLocaleString() || 0}원
-                    </span>
-                    <span className="mp-item-date">
-                      담은 날짜: {item.itemBoard.regDate?.substring(0, 10)}
-                    </span>
+                  >
+                    <div className="mp-image-container">
+                      {isSoldOut && (
+                        <div className="mp-sold-out-overlay">SOLD OUT</div>
+                      )}
+                      <img
+                        className={`mp-item-img ${isSoldOut ? "mp-img-darken" : ""}`}
+                        src={
+                          item.itemBoard.itemList &&
+                          item.itemBoard.itemList.length > 0
+                            ? `${host}/itemBoard/view/s_${item.itemBoard.itemList[0].fileName}`
+                            : `${host}/itemBoard/view/default.jpg`
+                        }
+                        alt="cart-item"
+                      />
+                    </div>
+                    <div className="mp-item-info">
+                      <span className="mp-item-title">
+                        {item.itemBoard.title}
+                      </span>
+                      <span className="mp-item-price">
+                        {item.itemBoard.price?.toLocaleString() || 0}원
+                      </span>
+                      <span className="mp-item-date">
+                        담은 날짜: {item.itemBoard.regDate?.substring(0, 10)}
+                      </span>
+                    </div>
                   </div>
-                </div>
-              ))
+                );
+              })
             ) : (
               <div className="mp-empty-placeholder">
                 장바구니가 비어 있습니다.

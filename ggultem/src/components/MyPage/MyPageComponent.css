@@ -56,13 +56,48 @@
   border-color: #ffd900;
 }
 
-.mp-item-card img {
+/* SOLD OUT 문구를 가두기 위한 이미지 컨테이너 */
+.mp-image-container {
+  position: relative;
   width: 90px;
   height: 90px;
+  flex-shrink: 0;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+/* SOLD OUT 오버레이 스타일 */
+.mp-sold-out-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 12px;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* 판매 완료 시 이미지 어둡게 */
+.mp-img-darken {
+  filter: brightness(0.6);
+}
+
+/* 기존 img 스타일을 mp-item-img로 클래스화 (또는 유지) */
+.mp-item-card img,
+.mp-item-img {
+  width: 100%;
+  height: 100%;
   border-radius: 8px;
   object-fit: cover;
   background-color: #f8f9fa;
-  flex-shrink: 0;
+  display: block;
 }
 
 .mp-item-info {

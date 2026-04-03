@@ -1,5 +1,5 @@
 import { useNavigate, useSearchParams } from "react-router";
-import { getList, deleteOne, API_SERVER_HOST } from "../../api/ItemBoardApi"; // ItemBoardApi 사용
+import { getList, deleteOne, API_SERVER_HOST } from "../../api/ItemBoardApi";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PageComponent from "../common/PageComponent";
@@ -37,15 +37,12 @@ const MyPageList = () => {
     next: false,
   });
 
-  // 내 상품 목록 가져오기 (getList 활용)
   const fetchMyItemList = () => {
     if (!email) return;
 
     getList({ page, size, searchType, keyword, email })
       .then((data) => {
         if (data && data.dtoList) {
-          // 1. 삭제되지 않은 상품(enabled !== 0)
-          // 2. AND 작성자 이메일이 현재 로그인한 이메일과 일치하는 상품만 필터링
           const myActiveItems = data.dtoList.filter(
             (item) => item.enabled !== 0 && item.email === email,
           );
@@ -53,7 +50,6 @@ const MyPageList = () => {
           setServerData({
             ...data,
             dtoList: myActiveItems,
-            // 필터링된 결과에 맞춰 전체 개수도 시각적으로 조정 (옵션)
             totalCount: data.totalCount,
           });
         }
@@ -64,7 +60,6 @@ const MyPageList = () => {
   useEffect(() => {
     fetchMyItemList();
 
-    // 카테고리 및 지역 코드 로드 (공통 코드)
     const pageParam = { page: 1, size: 100 };
     axios
       .get(`${host}/api/codegroup/list`, { params: pageParam })
@@ -90,7 +85,7 @@ const MyPageList = () => {
   const moveToList = (pageParam) => {
     const params = new URLSearchParams(searchParams);
     params.set("page", pageParam.page);
-    navigate(`/mypage/list?${params.toString()}`); // 경로에 맞춰 수정하세요
+    navigate(`/mypage/list?${params.toString()}`);
   };
 
   const getCodeName = (codeList, codeValue) => {
@@ -117,7 +112,6 @@ const MyPageList = () => {
     }
   };
 
-  // 단일 삭제 (ItemBoard용 deleteOne 호출)
   const handleDelete = async (id) => {
     if (window.confirm("등록한 상품을 삭제하시겠습니까?")) {
       try {
@@ -134,7 +128,6 @@ const MyPageList = () => {
     }
   };
 
-  // 선택 삭제
   const handleSelectDelete = async () => {
     if (checkedItems.length === 0) return alert("삭제할 상품을 선택해주세요.");
     if (!window.confirm(`${checkedItems.length}개의 상품을 삭제하시겠습니까?`))
@@ -143,7 +136,7 @@ const MyPageList = () => {
     try {
       await Promise.all(checkedItems.map((id) => deleteOne(id)));
       alert("선택한 상품이 삭제되었습니다.");
-      fetchMyItemList(); // 삭제 후 목록 새로고침
+      fetchMyItemList();
       setCheckedItems([]);
     } catch (error) {
       alert("일부 상품 삭제에 실패했습니다.");
@@ -217,66 +210,68 @@ const MyPageList = () => {
 
       <div className="cart-list">
         {serverData.dtoList.length > 0 ? (
-          serverData.dtoList.map((item) => (
-            <div key={item.id} className="cart-item-card">
-              <div className="cart-item-left">
-                <input
-                  type="checkbox"
-                  className="item-checkbox"
-                  checked={checkedItems.includes(item.id)}
-                  onChange={(e) => handleSingleCheck(e.target.checked, item.id)}
-                />
-                <div
-                  className="cart-item-info"
-                  onClick={() => navigate(`/itemBoard/read/${item.id}`)}
-                >
-                  <div className="cart-img-wrapper">
-                    <img
-                      src={`${host}/itemBoard/view/s_${item.uploadFileNames?.[0] || "default.jpg"}`}
-                      alt={item.title}
-                    />
-                  </div>
-                  <div className="cart-text-details">
-                    <h4 className="cart-item-title">{item.title}</h4>
-                    <p className="cart-item-price">
-                      {item.price?.toLocaleString()}원
-                    </p>
-                    <p className="cart-item-location">
-                      {getCodeName(locations, item.location)}
-                    </p>
-                    {/* 판매 상태 표시 (enabled 값에 따라) */}
-                    <span
-                      className={`status-badge ${
-                        String(item.status) === "true" ||
-                        String(item.enabled) === "2"
-                          ? "sold"
-                          : "sale"
-                      }`}
+          serverData.dtoList.map((item) => {
+            // ✅ 판매 완료 상태 체크 로직 통일
+            const isSoldOut =
+              String(item.status) === "true" || String(item.enabled) === "2";
+
+            return (
+              <div key={item.id} className="cart-item-card">
+                <div className="cart-item-left">
+                  <input
+                    type="checkbox"
+                    className="item-checkbox"
+                    checked={checkedItems.includes(item.id)}
+                    onChange={(e) =>
+                      handleSingleCheck(e.target.checked, item.id)
+                    }
+                  />
+                  <div className="cart-item-info">
+                    {/* ✅ SOLD OUT 오버레이 적용 부분 */}
+                    <div
+                      className="cart-img-wrapper"
+                      onClick={() => navigate(`/itemBoard/read/${item.id}`)}
                     >
-                      {String(item.status) === "true" ||
-                      String(item.enabled) === "2"
-                        ? "판매완료"
-                        : "판매중"}
-                    </span>
+                      {isSoldOut && (
+                        <div className="mp-sold-out-overlay">SOLD OUT</div>
+                      )}
+                      <img
+                        className={isSoldOut ? "mp-img-darken" : ""}
+                        src={`${host}/itemBoard/view/s_${item.uploadFileNames?.[0] || "default.jpg"}`}
+                        alt={item.title}
+                      />
+                    </div>
+                    <div
+                      className="cart-text-details"
+                      onClick={() => navigate(`/itemBoard/read/${item.id}`)}
+                    >
+                      <h4 className="cart-item-title">{item.title}</h4>
+                      <p className="cart-item-price">
+                        {item.price?.toLocaleString()}원
+                      </p>
+                      <p className="cart-item-location">
+                        {getCodeName(locations, item.location)}
+                      </p>
+                    </div>
                   </div>
                 </div>
+                <div className="cart-item-right">
+                  <button
+                    className="item-modify-btn"
+                    onClick={() => navigate(`/itemBoard/modify/${item.id}`)}
+                  >
+                    수정
+                  </button>
+                  <button
+                    className="item-delete-btn"
+                    onClick={() => handleDelete(item.id)}
+                  >
+                    삭제
+                  </button>
+                </div>
               </div>
-              <div className="cart-item-right">
-                <button
-                  className="item-modify-btn"
-                  onClick={() => navigate(`/itemBoard/modify/${item.id}`)}
-                >
-                  수정
-                </button>
-                <button
-                  className="item-delete-btn"
-                  onClick={() => handleDelete(item.id)}
-                >
-                  삭제
-                </button>
-              </div>
-            </div>
-          ))
+            );
+          })
         ) : (
           <div className="empty-cart">
             <p>등록한 상품이 없습니다.</p>

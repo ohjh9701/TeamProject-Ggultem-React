@@ -239,10 +239,24 @@ const CartList = () => {
                   className="cart-item-info"
                   onClick={() => navigate(`/itemBoard/read/${item.itemId}`)}
                 >
+                  {/* ... 상단 생략 ... */}
                   <div className="cart-img-wrapper">
+                    {/* 💡 판매 완료/true 상태일 때 SOLD OUT 오버레이 표시 */}
+                    {(item.itemBoard?.status === "판매완료" ||
+                      item.itemBoard?.status === "true" ||
+                      Number(item.itemBoard?.enabled) === 2) && (
+                      <div className="sold-out-overlay">SOLD OUT</div>
+                    )}
+
                     <img
                       src={`${host}/itemBoard/view/s_${item.itemBoard?.itemList?.[0]?.fileName || "default.jpg"}`}
                       alt={item.itemBoard?.title}
+                      className={
+                        item.itemBoard?.status === "판매완료" ||
+                        item.itemBoard?.status === "true"
+                          ? "img-darken"
+                          : ""
+                      }
                     />
                   </div>
                   <div className="cart-text-details">
