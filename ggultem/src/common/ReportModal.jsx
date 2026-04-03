@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useSelector } from "react-redux"; // 로그인 정보를 가져오기 위해 추가
-import "./InfoModal.css"; // 기존 스타일 재활용
+import "./ReportModal.css"; // 기존 스타일 재활용
 
 const ReportModal = ({ show, targetData, callbackFn, submitFn }) => {
   // 1. 로그인한 사용자의 정보를 리덕스에서 가져옵니다.

@@ -4,7 +4,6 @@ import "./AdminBoardListPage.css"; // 👉 기존 css 재사용
 import useCustomLogin from "../../../hooks/useCustomLogin";
 
 const AdminReplyListPage = () => {
-
   // 로그인 체크
   const { isLogin, moveToAdminLoginReturn } = useCustomLogin();
 
@@ -14,25 +13,13 @@ const AdminReplyListPage = () => {
   }
 
   return (
-
-    <div className="admin-board-page-wrapper">
-
-      {/* 관리자 사이드 메뉴 */}
+    <div className="board-page-wrapper">
       <Menu />
-
-      {/* 메인 영역 */}
-      <main className="admin-board-main-content">
-
-        <h2 style={{ marginBottom: "20px" }}>
-          💬 댓글 관리
-        </h2>
-
-        <div className="admin-board-section">
+      <main className="board-main-content">
+        <div className="board-hero-section">
           <AdminReplyListComponent />
         </div>
-
       </main>
-
     </div>
   );
 };

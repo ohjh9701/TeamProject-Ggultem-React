@@ -9,8 +9,7 @@ import ReportModal from "../../common/ReportModal";
 import Header from "../../include/Header";
 import Footer from "../../include/Footer";
 
-const NoticeRead = () => {
-  const { noticeId } = useParams();
+const NoticeRead = ({ noticeId }) => {
   const { moveToNoticeList } = useCustomMove();
   const [notice, setNotice] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -44,7 +43,6 @@ const NoticeRead = () => {
 
   return (
     <div className="notice-read-wrapper">
-      <Header />
       <div className="notice-read-container">
         {/* 1. 헤더 */}
         <div className="notice-read-header">
@@ -93,9 +91,9 @@ const NoticeRead = () => {
           <button className="btn-back" onClick={() => moveToNoticeList()}>
             목록으로 돌아가기
           </button>
-          {/* 🚨 신고 버튼 등장! */}
+          {/* 신고 버튼 등장! */}
           <button onClick={() => setShowModal(true)} className="btn-report">
-            🚨 신고하기(테스트)
+            신고하기(테스트)
           </button>
         </div>
 
@@ -106,7 +104,6 @@ const NoticeRead = () => {
           submitFn={sendReport}
         />
       </div>
-      <Footer />
     </div>
   );
 };

@@ -122,11 +122,11 @@ const ListComponent = () => {
               </button>
             </div>
           </form>
-          <div className="admin-btn-group">
-            <button className="admin-btn reset-btn" onClick={handleReset}>
-              목록 초기화
-            </button>
-          </div>
+        </div>
+        <div className="admin-btn-group">
+          <button className="admin-btn reset-btn" onClick={handleReset}>
+            목록 초기화
+          </button>
         </div>
 
         {/* 테이블 섹션 - 요청하신 항목들로 구성 */}

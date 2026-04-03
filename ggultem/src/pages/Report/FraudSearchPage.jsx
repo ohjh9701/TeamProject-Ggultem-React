@@ -142,7 +142,7 @@ const FraudSearchPage = () => {
                   placeholder="조회할 이메일 주소를 입력하세요"
                 />
                 <button type="submit" disabled={status === "LOADING"}>
-                  {status === "LOADING" ? "..." : "🔍"}
+                  {status === "LOADING" ? "..." : "조회"}
                 </button>
               </form>
             </div>

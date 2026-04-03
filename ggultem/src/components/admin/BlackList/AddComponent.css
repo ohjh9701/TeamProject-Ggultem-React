@@ -1,0 +1,141 @@
+/* 기본 레이아웃은 기존 ReadComponent 스타일 상속 */
+.admin-main-wrapper {
+  padding: 60px 0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+}
+
+.blacklist-add-box {
+  width: 800px !important; /* 등록 폼은 너무 넓지 않게 조절 */
+  padding: 40px 50px !important;
+}
+
+.add-form-container {
+  margin-top: 30px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+/* 개별 폼 아이템 */
+.form-item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-label {
+  font-weight: 700;
+  color: #3F2E1B; /* 벌꿀 갈색 */
+  font-size: 1.1rem;
+}
+
+/* 입력창 스타일 통일 */
+.form-input, .form-textarea {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: all 0.2s;
+  outline: none;
+}
+
+.form-input:focus, .form-textarea:focus {
+  border-color: #ffc107;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.2);
+}
+
+.form-textarea {
+  min-height: 120px;
+  resize: none;
+}
+
+/* 도움말 텍스트 */
+.form-help-text {
+  font-size: 13px;
+  color: #ff6b6b;
+  margin-top: -5px;
+}
+
+.date-help {
+  font-size: 14px;
+  color: #888;
+  margin-left: 10px;
+}
+
+/* 날짜 입력창 특화 */
+.date-input {
+  width: auto !important;
+  display: inline-block;
+}
+
+/* 하단 버튼 영역 */
+.add-footer {
+  margin-top: 50px;
+  padding-top: 30px;
+  border-top: 1px solid #eee;
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+}
+
+/* 로딩 상태 버튼 스타일 */
+.admin-btn.loading {
+  background-color: #ccc !important;
+  cursor: not-allowed;
+  transform: none !important;
+}
+
+/* ✅ 하단 버튼 그룹 컨테이너 (우측 정렬) */
+.add-footer {
+  margin-top: 40px;
+  padding-top: 25px;
+  border-top: 1px solid #eee; /* 구분선 추가 */
+  display: flex;
+  justify-content: flex-end; /* 🚩 버튼들을 오른쪽으로 밀기 */
+  gap: 12px;
+}
+
+/* ✅ 취소 버튼 (흰색 배경 스타일) */
+.white-btn {
+  background-color: #ffffff !important;
+  color: #666 !important;
+  border: 1.5px solid #dee2e6 !important;
+  padding: 12px 25px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+}
+
+/* ✅ 등록 버튼 (노란색 포인트 스타일) */
+.add-btn {
+  background-color: #ffc107 !important;
+  color: #3f2e1b !important;
+  border: none !important;
+  padding: 12px 25px !important;
+  border-radius: 8px !important;
+  font-weight: 800 !important;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(255, 193, 7, 0.2);
+}
+
+/* ✅ 검증 중(Loading) 상태일 때 버튼 스타일 */
+.admin-btn.loading {
+  background-color: #e9ecef !important;
+  color: #adb5bd !important;
+  cursor: not-allowed !important;
+  transform: none !important;
+  box-shadow: none !important;
+}
+
+/* ✅ 공통 호버 모션 (지훈 님 표준 모션) */
+.white-btn:hover, .add-btn:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.05) !important;
+}
+
+.white-btn:active, .add-btn:active {
+  transform: translateY(0) !important;
+}

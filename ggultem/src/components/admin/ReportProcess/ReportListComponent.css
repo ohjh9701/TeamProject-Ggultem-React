@@ -1,0 +1,140 @@
+/* 전체 레이아웃 */
+.report-list-wrapper {
+    width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.report-list-container {
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
+}
+
+/* 헤더 섹션 */
+.report-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+.report-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.report-title-point {
+    font-size: 2.6rem;
+    color: #ffc107; /* 꿀템 옐로우 */
+    font-weight: 800;
+}
+
+.report-subtitle {
+    color: #777;
+    font-size: 0.95rem;
+}
+
+/* 테이블 공통 스타일 */
+.report-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.report-table th {
+    background-color: #f8f9fa;
+    padding: 15px;
+    text-align: center;
+    color: #555;
+    font-weight: 700;
+    border-bottom: 2px solid #dee2e6;
+}
+
+.report-tr {
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+    cursor: pointer;
+}
+
+.report-tr:hover {
+    background-color: #fff9e6; /* 꿀템 시그니처 호버 */
+}
+
+.report-table td {
+    padding: 18px 15px;
+    color: #444;
+    text-align: center;
+    vertical-align: middle;
+}
+
+/* 신고 전용 스타일 */
+.report-type-badge {
+    background-color: #f3e5f5;
+    color: #7b1fa2;
+    padding: 4px 10px;
+    border-radius: 5px;
+    font-size: 0.85rem;
+    font-weight: 600;
+}
+
+.report-target-bold {
+    font-weight: 700;
+    color: #333;
+}
+
+/* 상태 배지 (접수/완료) */
+.report-status-container {
+    display: flex;
+    justify-content: center;
+}
+
+.report-status-badge {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 5px 12px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 700;
+}
+
+.report-dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+}
+
+/* 접수 대기 (빨간색 계열) */
+.report-status-badge.pending {
+    background: #ffebee;
+    color: #c62828;
+}
+.report-status-badge.pending .report-dot {
+    background: #f44336;
+}
+
+/* 처리 완료 (초록색 계열) */
+.report-status-badge.completed {
+    background: #e8f5e9;
+    color: #2e7d32;
+}
+.report-status-badge.completed .report-dot {
+    background: #4caf50;
+}
+
+/* 기타 */
+.report-pagination-wrapper {
+    margin-top: 30px;
+    display: flex;
+    justify-content: center;
+}
+
+.empty-list {
+    padding: 60px !important;
+    color: #bbb;
+    text-align: center;
+}

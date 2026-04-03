@@ -83,7 +83,7 @@ const FraudSearch = () => {
         {!hasSearched ? (
           <div className="placeholder-text">
             검색창에 이메일을 입력하고 <br />
-            <b>안전한 꿀템 거래</b>를 시작하세요! 🍯
+            <b>안전한 꿀템 거래</b>를 시작하세요!
           </div>
         ) : searchResult ? (
           /* 위험 결과 */

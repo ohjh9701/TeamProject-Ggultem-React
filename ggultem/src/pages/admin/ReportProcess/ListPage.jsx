@@ -1,5 +1,5 @@
 import { useParams } from "react-router-dom";
-import ReadComponent from "../../../components/admin/ReportProcess/ReadComponent";
+import ReportListComponent from "../../../components/admin/ReportProcess/ReportListComponent";
 import "./ListPage.css";
 import Menu from "../../../include/admin/Menu";
 
@@ -14,7 +14,7 @@ const ReadPage = () => {
       <Menu />
       <main className="report-main-content">
         <div className="report-hero-section">
-          <ReadComponent reportId={cleanReportId} />
+          <ReportListComponent />
         </div>
       </main>
     </div>

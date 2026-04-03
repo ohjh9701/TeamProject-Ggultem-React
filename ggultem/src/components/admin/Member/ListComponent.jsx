@@ -101,7 +101,7 @@ const ListComponent = () => {
                 placeholder="검색어를 입력하세요"
               />
               <button type="submit" className="search-btn-wide">
-                🍯 검색
+                검색
               </button>
             </div>
           </form>

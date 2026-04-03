@@ -1,16 +1,100 @@
-/* ProcessComponent.css 예시 */
+/* ✅ 관리자 조치 폼 컨테이너 */
 .process-form {
-  background: #f8f9fa;
-  padding: 20px;
-  border-radius: 10px;
-  margin-top: 20px;
-  border: 1px solid #dee2e6;
+  margin-top: 40px;
+  padding: 30px;
+  border-radius: 15px;
+  border: 1.5px solid #dee2e6;
 }
 
-.process-form textarea {
-  width: 100%;
-  height: 120px;
-  margin: 10px 0;
-  padding: 10px;
+.process-form h3 {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #333;
+  margin-bottom: 25px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 🚩 제목 옆에 아이콘 느낌의 포인트 */
+.process-form h3::before {
+  font-size: 1.2rem;
+}
+
+/* ✅ 폼 그룹 레이아웃 */
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-weight: 700;
+  color: #495057;
+  font-size: 0.95rem;
+}
+
+/* ✅ 셀렉트 박스 스타일 (정지 수위) */
+.form-group select {
+  padding: 12px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  background-color: #fff;
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.form-group select:focus {
+  border-color: #ffc107; /* 🚩 꿀템 옐로우 포커스 */
+}
+
+/* ✅ 조치 사유 텍스트 영역 */
+.form-group textarea {
+  padding: 15px;
+  border: 1px solid #ced4da;
+  border-radius: 8px;
+  min-height: 120px;
+  font-size: 0.95rem;
+  line-height: 1.6;
   resize: none;
+  outline: none;
+  transition: all 0.2s;
+}
+
+.form-group textarea:focus {
+  border-color: #ffc107;
+  background-color: #fff;
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.15);
+}
+
+/* ✅ 처리 확정 버튼 (강조) */
+.submit-btn {
+  width: 100%;
+  padding: 15px;
+  background-color: #3f2e1b; /* 🚩 벌꿀 갈색으로 묵직하게 */
+  color: #ffc107; /* 🚩 꿀템 옐로우 글씨 */
+  border: none;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: 800;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* 🚩 지훈 님이 요청하신 표준 호버 모션 적용 */
+.submit-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 6px 20px rgba(63, 46, 27, 0.2);
+}
+
+.submit-btn:active {
+  transform: translateY(0);
+  filter: brightness(0.95);
 }

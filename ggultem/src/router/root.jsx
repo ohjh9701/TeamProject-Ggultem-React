@@ -111,7 +111,7 @@ const BusinessAdCenter = lazy(
 );
 //* 공지사항 lazy */
 const NoticeList = lazy(() => import("../pages/Notice/NoticePage"));
-const NoticeRead = lazy(() => import("../pages/Notice/NoticeRead"));
+const NoticeRead = lazy(() => import("../pages/Notice/NoticeReadPage"));
 //* 커뮤니티 lazy */
 const BoardList = lazy(() => import("../pages/Board/BoardListPage"));
 const BoardRead = lazy(() => import("../pages/Board/BoardReadPage"));
@@ -135,7 +135,7 @@ const CartList = lazy(() => import("../pages/Cart/CartListPage"));
 const MyPageList = lazy(() => import("../pages/itemBoard/MyPageList"));
 // ✅ 신고 관리 페이지 추가
 const ReportListAdmin = lazy(
-  () => import("../components/admin/ReportProcess/ListComponent"),
+  () => import("../pages/admin/ReportProcess/ListPage"),
 );
 const ReportReadAdmin = lazy(
   () => import("../pages/admin/ReportProcess/ReadPage"),

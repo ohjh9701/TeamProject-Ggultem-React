@@ -1,42 +1,46 @@
-/* 전체 레이아웃 */
+/* 전체 레이아웃 */ 
 .businessboard-list-wrapper {
-  padding: 30px;
-  min-height: 100vh;
+    width: 1280px;
+    margin: 0 auto;
+    padding: 20px;
+    min-height: 100vh;
 }
 
 .businessboard-list-container {
-  max-width: 1400px;
-  margin: 0 auto;
-  background-color: #ffffff;
-  padding: 30px;
-  border-radius: 15px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 15px;
 }
 
 /* 헤더 섹션 */
 .businessboard-header {
-  margin-bottom: 30px;
   display: flex;
-  flex-direction: column;
-  gap: 20px;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-bottom: 30px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
 }
 
 .businessboard-title {
-  font-size: 1.8rem;
-  font-weight: 800;
-  color: #333;
-  margin: 0;
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
 }
 
 .businessboard-title-point {
-  color: #ffb400; /* 꿀템 시그니처 옐로우 */
+      font-size: 2.6rem;
+    color: #ffc107;
+    margin-bottom: 5px;
 }
 
 .businessboard-subtitle {
-  color: #777;
-  margin-top: 5px;
+    color: #777;
+    font-size: 0.95rem;
+    text-align: left;
 }
 
-* 검색 폼 레이아웃 */
+/* 검색 폼 레이아웃 */
 .codegroup-search-form {
   margin-top: 15px;
 }
@@ -123,31 +127,29 @@
 .businessboard-table {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.95rem;
-  text-align: left;
+  margin-top: 10px;
 }
 
 .businessboard-table th {
-  background-color: #f8f9fa;
-  padding: 15px;
-  border-bottom: 2px solid #eee;
-  color: #555;
-  font-weight: 700;
-  white-space: nowrap;
-  text-align: center;
+    background-color: #f8f9fa;
+    padding: 15px;
+    text-align: center;
+    color: #555;
+    font-weight: 600;
+    border-bottom: 2px solid #dee2e6;
 }
 
 .businessboard-table td {
-  padding: 15px;
-  border-bottom: 1px solid #f1f1f1;
-  color: #444;
-  vertical-align: middle;
-  text-align: center;
+    padding: 15px;
+    color: #444;
+    vertical-align: middle;
+    text-align: center;
 }
 
 .businessboard-tr {
-  cursor: pointer;
-  transition: background 0.1s;
+    border-bottom: 1px solid #eee;
+    transition: background 0.2s;
+    cursor: pointer;
 }
 
 .businessboard-tr:hover {

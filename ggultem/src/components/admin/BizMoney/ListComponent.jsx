@@ -96,6 +96,7 @@ const ListComponent = () => {
         <div className="member-header">
           <div className="title-group">
             <h2 className="member-title">
+              <span className="member-title-point">꿀템</span>
               {isTotal ? " 비즈머니 회원 통계" : " 비즈머니 내역 관리"}
             </h2>
             <p className="member-subtitle">

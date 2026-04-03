@@ -4,6 +4,7 @@
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { completeReportProcess } from "../../../api/admin/ReportApi";
+import "./ProcessComponent.css";
 
 const ProcessComponent = ({ reportId, onComplete }) => {
   // ✅ onComplete 추가

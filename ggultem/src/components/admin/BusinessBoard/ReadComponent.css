@@ -1,7 +1,6 @@
 /* 전체 레이아웃 */
 .businessboard-read-wrapper {
   padding: 30px;
-  background-color: #f8f9fa;
   min-height: 100vh;
 }
 
@@ -11,7 +10,6 @@
   background-color: #ffffff;
   padding: 40px;
   border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
 }
 
 /* 상단 헤더 및 버튼 */

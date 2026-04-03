@@ -3,7 +3,7 @@
 ========================= */
 .board-list-wrapper {
   min-height: 100vh; /* 화면 꽉 채우기 */
-  padding: 40px 0;
+  padding: 20px 0;
 }
 
 .board-list-container {
@@ -218,15 +218,54 @@
    [추가] 게시판 리스트 & 테이블 강화 스타일 (PC 최적화)
 ============================================================ */
 .board-list-wrapper {
-  max-width: 1200px;
+  width: 1200px;
+  min-height: 100vh;
   margin: 0 auto;
-  padding: 60px 20px;
+  padding: 20px 20px;
+  display: flex;
+  justify-content: center;
 }
 
-/* 테이블 헤더 강조 */
-.board-table thead {
-  background-color: #FFFCEB;
-  border-top: 2px solid #FFD700;
+/* 게시판 컨테이너: 시원하게 너비 확보 */
+.board-list-container {
+  width: 1200px;
+  background: white;
+  padding: 20px;
+  border-radius: 30px;
+}
+
+/* =========================
+   헤더 영역 (중앙 정렬)
+========================= */
+.board-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.board-title {
+  font-size: 32px; /* 크게 강조 */
+  font-weight: 800;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.board-subtitle {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 25px;
+}
+
+.board-title {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #222;
+  margin-bottom: 12px;
+  letter-spacing: -1px;
+}
+
+.board-subtitle {
+  color: #888;
+  font-size: 1.1rem;
 }
 
 .board-table th {

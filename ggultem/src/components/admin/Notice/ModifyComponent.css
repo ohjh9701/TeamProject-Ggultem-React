@@ -10,7 +10,6 @@
   background: #fff;
   padding: 40px;
   border-radius: 15px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
 }
 
 .notice-modify-title {
@@ -112,12 +111,13 @@
 
 .submit-btn {
   padding: 12px 40px;
-  background-color: #448aff; /* 저장 버튼은 파란색 계열 */
-  color: #fff;
+  background-color: #ffc107;
+  color: #333;
   border: none;
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
+  transition: all 0.2s;
 }
 
 .cancel-btn {
@@ -128,10 +128,16 @@
   border-radius: 8px;
   font-weight: 700;
   cursor: pointer;
+    transition: all 0.2s;
 }
 
 .submit-btn:hover {
-  filter: brightness(0.9);
+  background-color: #ffb300;
+  transform: translateY(-2px);
+}
+.cancel-btn:hover {
+  background-color: #c1c1c1;
+  transform: translateY(-2px);
 }
 
 /* 이미지/파일 미리보기 공통 스타일 */
@@ -172,32 +178,4 @@
   overflow: hidden;
   text-overflow: ellipsis;
   padding: 2px 0;
-}
-
-/* 삭제 버튼 스타일 (빨간색 동그라미) */
-.btn-del {
-  position: absolute;
-  /* ★ 수정: 버튼을 박스 안쪽으로 이동 (양수 값 사용) */
-  top: 5px; /* 위에서 5px 안쪽으로 */
-  right: 5px; /* 오른쪽에서 5px 안쪽으로 */
-
-  width: 24px;
-  height: 24px;
-  background-color: #ff5252; /* 삭제 강조 레드 */
-  color: #fff;
-  border: none;
-  border-radius: 50%;
-  font-size: 1.2rem;
-  line-height: 1;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-  z-index: 10; /* 이미지 위에 뜨게 z-index 추가 */
-  transition: background 0.2s;
-}
-
-.btn-del:hover {
-  background-color: #d32f2f;
 }

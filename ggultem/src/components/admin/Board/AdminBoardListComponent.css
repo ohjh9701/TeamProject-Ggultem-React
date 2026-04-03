@@ -1,119 +1,147 @@
-/* 전체 */
-.admin-board-list {
-  padding: 20px;
-  max-width: 900px;
+/* 🚩 AdminListComponent.css와 동일한 기본 구성을 사용합니다. */
+
+.item-list-wrapper {
+  width: 1280px;
   margin: 0 auto;
+  padding: 20px;
+  min-height: 100vh;
 }
 
-/* 헤더 */
-.admin-board-header {
+.item-list-container {
+  background: #fff;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+/* 헤더 및 검색 폼 */
+.item-header {
   display: flex;
   justify-content: space-between;
-  align-items: center;
-  margin-bottom: 16px;
+  align-items: flex-end;
+  margin-bottom: 25px;
+  border-bottom: 2px solid #eee;
+  padding-bottom: 20px;
 }
 
-.admin-board-header h2 {
-  font-size: 20px;
+.item-title-point {
+  font-size: 2.6rem;
+  color: #ffc107;
+  font-weight: 800;
+}
+
+.codegroup-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.codegroup-actions input, .codegroup-actions select {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  outline: none;
+}
+
+.search-btn-wide {
+  padding: 10px 20px;
+  background-color: #333;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 버튼 그룹 */
+.admin-btn-group {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 15px;
+}
+
+.reply-btn {
+  background-color: #f3e5f5;
+  color: #7b1fa2;
+  padding: 10px 18px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+/* 테이블 스타일 */
+.item-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.item-table th {
+  background-color: #f8f9fa;
+  padding: 15px;
+  border-bottom: 2px solid #dee2e6;
+  color: #555;
+}
+
+.item-table td {
+  padding: 15px;
+  text-align: center;
+  border-bottom: 1px solid #eee;
+}
+
+.item-text-left {
+  text-align: left !important;
+  padding-left: 20px !important;
+}
+
+/* 상태 배지 */
+.item-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
   font-weight: 700;
 }
 
-.admin-board-header button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
-  background-color: #ff9800;
-  color: #fff;
-  cursor: pointer;
-}
+.item-dot { width: 8px; height: 8px; border-radius: 50%; }
 
-/* 검색 */
-.admin-board-search {
-  display: flex;
-  gap: 8px;
-  margin-bottom: 16px;
-}
+.active { background: #e8f5e9; color: #2e7d32; }
+.active .item-dot { background: #4caf50; }
 
-.admin-board-search input {
-  flex: 1;
-  padding: 8px;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-}
+.deleted { background: #ffebee; color: #c62828; }
+.deleted .item-dot { background: #f44336; }
 
-.admin-board-search select {
-  padding: 8px;
-  border-radius: 8px;
-  border: 1px solid #ddd;
-}
-
-.admin-board-search button {
-  padding: 8px 14px;
-  border: none;
-  border-radius: 8px;
-  background-color: #333;
-  color: #fff;
-  cursor: pointer;
-}
-
-/* 리스트 카드 */
-.admin-board-item {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-
-  padding: 14px 16px;
-  margin-bottom: 10px;
-
-  border: 1px solid #eee;
-  border-radius: 10px;
-  background-color: #fff;
-
-  transition: all 0.2s ease;
-}
-
-.admin-board-item:hover {
-  background-color: #f9f9f9;
-}
-
-/* 삭제된 글 */
-.admin-board-item.deleted {
-  opacity: 0.5;
-  background-color: #fafafa;
-}
-
-/* 제목 */
-.admin-board-item span:first-child {
-  font-weight: 600;
-  margin-right: 8px;
-}
-
-/* 삭제 버튼 */
-.admin-board-item button {
+/* 삭제 버튼 (댓글 비활성화 버튼 스타일 계승) */
+.reply-btn-delete {
   padding: 6px 12px;
-  border: none;
+  background-color: #ffebee;
+  color: #c62828;
+  border: 1px solid #ffcdd2;
   border-radius: 6px;
-  background-color: #ff5252;
-  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
   cursor: pointer;
 }
 
-/* 페이징 */
+/* 페이징 커스텀 */
 .pagination {
   display: flex;
   justify-content: center;
-  gap: 6px;
-  margin-top: 20px;
+  gap: 5px;
+  margin-top: 30px;
 }
 
 .pagination button {
-  padding: 6px 10px;
-  border: 1px solid #ddd;
-  background-color: #fff;
-  border-radius: 6px;
+  padding: 8px 14px;
+  border: 1px solid #eee;
+  background: #fff;
   cursor: pointer;
+  border-radius: 4px;
 }
 
-.pagination button:hover {
-  background-color: #eee;
+.pagination button.active {
+  background: #ffc107;
+  color: #fff;
+  border-color: #ffc107;
+  font-weight: bold;
 }

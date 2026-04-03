@@ -1,0 +1,136 @@
+/* ✅ 1. 배경 오버레이 (부드러운 블러 효과) */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2000; /* 헤더보다 위에 위치 */
+  backdrop-filter: blur(3px); /* 🚩 뒷배경 살짝 흐릿하게 */
+}
+
+/* ✅ 2. 모달 컨테이너 */
+.modal-content {
+  width: 100%;
+  max-width: 450px;
+  background: #fff;
+  border-radius: 20px; /* 🚩 꿀템 특유의 둥근 모서리 */
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+  animation: modalFadeUp 0.3s ease-out; /* 🚩 아래에서 위로 슥 올라오는 효과 */
+}
+
+@keyframes modalFadeUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* ✅ 3. 모달 헤더 */
+.modal-header {
+  padding: 20px 25px;
+  background-color: #ffb700; /* 🚩 꿀템 메인 옐로우 */
+  color: #3f2e1b; /* 🚩 벌꿀 갈색 */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.modal-header h4 {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 800;
+}
+
+/* ✅ 4. 모달 본문 및 폼 */
+.modal-body {
+  padding: 25px;
+}
+
+.report-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.report-form p {
+  background: #fff9e6; /* 아주 연한 노란색 */
+  padding: 12px;
+  border-radius: 10px;
+  margin: 0;
+  font-size: 0.95rem;
+  color: #3f2e1b;
+}
+
+.report-form label {
+  font-weight: 700;
+  font-size: 0.9rem;
+  color: #3f2e1b;
+  margin-bottom: -5px;
+}
+
+/* 셀렉트 박스 & 텍스트 영역 */
+.report-form select, 
+.report-form textarea, 
+.report-form input[type="file"] {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 0.95rem;
+  outline: none;
+  transition: border-color 0.2s;
+}
+
+.report-form select:focus, 
+.report-form textarea:focus {
+  border-color: #ffb700;
+}
+
+.report-form textarea {
+  min-height: 100px;
+  resize: none;
+}
+
+/* ✅ 5. 푸터 버튼 영역 */
+.modal-footer {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.modal-submit-btn, .modal-close-btn {
+  flex: 1;
+  padding: 14px;
+  border: none;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+  transition: all 0.2s; /* 🚩 지훈 님이 요청하신 쫀득한 모션 */
+}
+
+/* 제출 버튼 (갈색) */
+.modal-submit-btn {
+  background-color: #3f2e1b;
+  color: #ffb700;
+}
+
+/* 취소 버튼 (연한 회색) */
+.modal-close-btn {
+  background-color: #f1f3f6;
+  color: #666;
+}
+
+/* ✅ 6. 버튼 호버 모션 (지훈 님 표준 모션 적용) */
+.modal-submit-btn:hover, .modal-close-btn:hover {
+  transform: translateY(-2px);
+  filter: brightness(1.1);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.modal-submit-btn:active, .modal-close-btn:active {
+  transform: translateY(0);
+}

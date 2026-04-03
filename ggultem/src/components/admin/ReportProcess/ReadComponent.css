@@ -169,3 +169,54 @@
   background: #ff6b6b;
   color: #fff;
 }
+
+
+/* 추가 보정: 이미지 여러 장일 경우를 대비한 가로 스크롤 (선택사항) */
+.image-list {
+  display: flex;
+  gap: 10px;
+  overflow-x: auto;
+  padding-bottom: 10px;
+}
+
+/* 신고 대상 정보 강조 (주황색 대신 빨간색 포인트) */
+.item-price {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #e03131 !important; /* 사기 의심은 빨간색으로 경고! */
+  margin-bottom: 25px;
+}
+
+/* 뱃지 색상 변경 (신고 유형 강조) */
+.cat-badge {
+  background: #f03e3e !important; /* 빨간색 뱃지 */
+  color: #fff;
+  padding: 5px 12px;
+  border-radius: 5px;
+  font-weight: bold;
+}
+
+/* 처리 상태 텍스트 색상 */
+.location-text {
+  font-weight: bold;
+  color: #495057;
+}
+
+/* 처리 완료 정보 박스 */
+.processed-info {
+  margin-top: 30px;
+  padding: 20px;
+  background: #f1f3f5;
+  border-radius: 10px;
+  border-left: 5px solid #228be6;
+}
+
+.no-img {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #adb5bd;
+  font-weight: bold;
+}

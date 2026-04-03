@@ -27,9 +27,12 @@ const MainPage = () => {
           <div className="business-banner-container">
             {/* 👈 왼쪽: 홍보 문구 영역 */}
             <div className="business-text-section">
-              <h2 className="business-title">꿀템 이용자, 당신의 고객이 되다!</h2>
+              <h2 className="business-title">
+                꿀템 비즈니스 파트너를 모집합니다
+              </h2>
               <p className="business-subtitle">
-                당신의 상품을 알릴 꿀같은 선택<br /> 지금 확인하세요.
+                당신의 상품을 알릴 꿀같은 선택
+                <br /> 지금바로 신청하세요!
               </p>
             </div>
 
@@ -37,13 +40,11 @@ const MainPage = () => {
             <div className="business-button-section">
               <Link to="/business/register" className="business-btn-card">
                 <div className="btn-content">
-                  <span className="btn-icon">📝</span>
                   <span className="btn-text">비즈니스 회원 등록</span>
                 </div>
               </Link>
               <Link to="/business/list" className="business-btn-card">
                 <div className="btn-content">
-                  <span className="btn-icon">🚀</span>
                   <span className="btn-text">비즈니스 센터 이동</span>
                 </div>
               </Link>

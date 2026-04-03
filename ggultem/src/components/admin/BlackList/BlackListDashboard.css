@@ -1,0 +1,284 @@
+/* 대시보드 레이아웃 */
+.dashboard-root {
+  padding-top: 40px;
+}
+
+.stats-card-box {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px;
+  background: #fff;
+  border-radius: 20px;
+  margin-bottom: 30px;
+  border: 1px solid #eee;
+}
+
+.stats-info {
+  font-size: 1.1rem;
+  margin-bottom: 10px;
+  color: #555;
+}
+
+.status-highlight-red {
+  color: #FF4D4D;
+  font-weight: 800;
+}
+
+.chart-container {
+  width: 200px;
+  height: 200px;
+}
+
+/* 헤더 섹션 */
+.item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    margin-bottom: 25px;
+    border-bottom: 2px solid #eee;
+    padding-bottom: 20px;
+}
+
+.item-title {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 5px;
+}
+
+.item-title-point {
+    font-size: 2.6rem;
+    color: #ffc107;
+    font-weight: 800;
+}
+
+.item-subtitle {
+    color: #777;
+    font-size: 0.95rem;
+    text-align: left;
+}
+
+/* 필터 탭 */
+.filter-tab-group {
+  display: flex;
+  justify-content: end;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.tab-btn {
+  background: #fff;
+  border: 1px solid #ddd !important;
+  color: #666;
+  border-radius: 50px !important;
+  padding: 8px 20px !important;
+}
+
+.tab-btn.active {
+  background: #333 !important;
+  color: #fff !important;
+  border-color: #333 !important;
+}
+
+/* 검색 폼 레이아웃 */
+.codegroup-search-form {
+  margin-top: 15px;
+}
+
+.codegroup-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px; /* 요소 간격 */
+}
+
+/* 검색 셀렉트 박스 */
+.admin-search {
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: #fff;
+  color: #333;
+  font-size: 0.9rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.2s;
+}
+
+.admin-search:focus {
+  border-color: #ffc107;
+}
+
+/* 검색 폼 스타일 */
+.codegroup-search-form {
+    margin-bottom: 5px;
+}
+
+.codegroup-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.codegroup-actions select, 
+.codegroup-actions input[type="text"] {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.codegroup-actions select:focus, 
+.codegroup-actions input[type="text"]:focus {
+    border-color: #ffc107;
+}
+
+.codegroup-actions input[type="text"] {
+    width: 250px;
+}
+
+.search-btn-wide {
+    padding: 10px 20px;
+    background-color: #333;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.search-btn-wide:hover {
+    background-color: #000;
+}
+
+/* 테이블 커스텀 */
+.email-link-cell {
+  text-align: left !important;
+  padding-left: 20px !important;
+  color: #1c7ed6;
+  text-decoration: underline;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.row-danger {
+  background-color: #FFF5F5 !important;
+}
+
+.id-cell.danger {
+  background-color: #E03131 !important;
+  color: #fff !important;
+  font-weight: bold;
+}
+
+.detail-btn {
+  background: #eee !important;
+  color: #555 !important;
+  font-size: 12px !important;
+  padding: 5px 10px !important;
+}
+
+/* ✅ 모든 관리자 버튼 공통 호버 베이스 */
+.admin-btn, 
+.search-btn-wide, 
+.tab-btn, 
+.white-btn, 
+.yellow-btn, 
+.remove-btn,
+.detail-btn {
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 부드러운 가속도 */
+  position: relative;
+  overflow: hidden;
+}
+
+/* ✅ 호버 시 공통 모션: 살짝 떠오르면서 밝아짐 */
+.admin-btn:hover, 
+.search-btn-wide:hover, 
+.tab-btn:hover, 
+.white-btn:hover, 
+.yellow-btn:hover, 
+.remove-btn:hover,
+.detail-btn:hover {
+  transform: translateY(-2px) !important; /* 위로 슥- */
+  filter: brightness(1.08) !important; /* 살짝 밝게 */
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1) !important; /* 부드러운 그림자 추가 */
+}
+
+/* ✅ 클릭 시 공통 모션: 쫀득하게 눌림 */
+.admin-btn:active, 
+.search-btn-wide:active, 
+.tab-btn:active, 
+.white-btn:active, 
+.yellow-btn:active, 
+.remove-btn:active,
+.detail-btn:active {
+  transform: translateY(0) !important; /* 제자리로 */
+  filter: brightness(0.95) !important; /* 살짝 어둡게 */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05) !important;
+}
+
+/* ✅ [특수] 삭제/차단 버튼 호버 (강조) */
+.remove-btn:hover, .reply-btn-delete:hover {
+  background-color: #fa5252 !important; /* 조금 더 선명한 레드로 */
+  box-shadow: 0 5px 15px rgba(250, 82, 82, 0.3) !important;
+}
+
+/* ✅ [특수] 비활성화된 버튼은 모션 제외 */
+.admin-btn:disabled {
+  transform: none !important;
+  cursor: not-allowed;
+  filter: grayscale(1);
+  opacity: 0.6;
+}
+
+/* ✅ 1. 신규 유저 차단 버튼 (+ 버튼) */
+.btn-blue-add {
+  background-color: #228be6 !important; /* 포인트 블루 유지 */
+  color: #fff !important;
+  padding: 10px 20px !important;
+  border-radius: 8px !important;
+  font-weight: 700 !important;
+  border: none !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  white-space: nowrap;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 부드러운 가속도 */
+}
+
+/* ✅ 2. 테이블 내 상세보기 버튼 */
+.btn-detail {
+  background-color: #ffffff !important;
+  color: #495057 !important;
+  border: 1.5px solid #dee2e6 !important;
+  padding: 6px 14px !important;
+  border-radius: 6px !important;
+  font-size: 12px !important;
+  font-weight: 700 !important;
+  cursor: pointer;
+  transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1) !important; /* 부드러운 가속도 */
+}
+
+/* 활성 상태(차단중인 행)에서의 상세보기 버튼 스타일 보정 */
+.btn-detail.active {
+  background-color: #495057 !important;
+  color: #fff !important;
+  border-color: #495057 !important;
+}
+
+/* ✅ 3. 호버/액션 통일 (아까 만든 모션 적용 확인용) */
+.btn-blue-add:hover, 
+.btn-detail:hover {
+  transform: translateY(-2px) !important;
+  filter: brightness(1.08) !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1) !important;
+}
+
+.btn-blue-add:active, 
+.btn-detail:active {
+  transform: translateY(0) !important;
+  filter: brightness(0.95) !important;
+}

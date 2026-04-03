@@ -1,11 +1,17 @@
 import React from "react";
 import AddComponent from "../../../components/admin//BlackList/AddComponent";
+import Menu from "../../../include/admin/Menu";
+import "./IndexPage.css";
 
 const AddPage = () => {
   return (
-    <div className="p-4 w-full bg-white">
-      <div className="text-2xl font-bold mb-4">신규 제재 등록</div>
-      <AddComponent />
+    <div className="blacklist-page-wrapper">
+      <Menu />
+      <main className="blacklist-main-content">
+        <div className="blacklist-hero-section">
+          <AddComponent />
+        </div>
+      </main>
     </div>
   );
 };
