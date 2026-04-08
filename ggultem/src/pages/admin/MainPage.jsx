@@ -4,9 +4,14 @@ import logoImg from "../../assets/logo.png";
 import useCustomLogin from "../../hooks/useCustomLogin";
 
 const MainPage = () => {
-  const { isLogin, moveToAdminLoginReturn } = useCustomLogin();
+  const { isLogin, moveToAdminLoginReturn, loginState, doLogout } = useCustomLogin();
 
   if (!isLogin) {
+    return moveToAdminLoginReturn();
+  }
+
+  if(loginState.email !== 'admin@honey.com') {
+    doLogout();
     return moveToAdminLoginReturn();
   }
 
