@@ -1,16 +1,18 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "../config";
+import jwtAxios from "../../util/JwtUtil";
+
 export { API_SERVER_HOST };
 const host = `${API_SERVER_HOST}/admin/dashboard`;
 
 // 대쉬보드 종합 통계 데이터 가져오기
 export const getDashboardStats = async () => {
-  const res = await axios.get(`${host}/stats`);
+  const res = await jwtAxios.get(`${host}/stats`);
   return res.data;
 };
 
 // 중단 및 하단 리스트 데이터 한꺼번에 가져오기
 export const getDashboardLists = async () => {
-  const res = await axios.get(`${host}/lists`);
+  const res = await jwtAxios.get(`${host}/lists`);
   return res.data;
 };

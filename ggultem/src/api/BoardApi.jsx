@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 export { API_SERVER_HOST };
 const prefix = `${API_SERVER_HOST}/board`;
@@ -23,7 +24,7 @@ export const addBoard = async (boardObj) => {
   formData.append("content", boardObj.content);
   formData.append("email", boardObj.email);
 
-  const res = await axios.post(`${prefix}/`, formData, {
+  const res = await jwtAxios.post(`${prefix}/`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -41,7 +42,7 @@ export const modifyBoard = async (boardNo, boardObj) => {
   formData.append("title", boardObj.title);
   formData.append("content", boardObj.content);
 
-  const res = await axios.put(`${prefix}/${boardNo}`, formData, {
+  const res = await jwtAxios.put(`${prefix}/${boardNo}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -54,7 +55,7 @@ export const modifyBoard = async (boardNo, boardObj) => {
 // 일반 삭제 (작성자)
 // =======================
 export const removeBoard = async (boardNo) => {
-  const res = await axios.put(`${prefix}/remove/${boardNo}`);
+  const res = await jwtAxios.put(`${prefix}/remove/${boardNo}`);
   return res.data;
 };
 
@@ -62,7 +63,7 @@ export const removeBoard = async (boardNo) => {
 //  관리자 삭제 (핵심)
 // =======================
 export const adminRemoveBoard = async (boardNo) => {
-  const res = await axios.put(`${adminPrefix}/${boardNo}`);
+  const res = await jwtAxios.put(`${adminPrefix}/${boardNo}`);
   return res.data;
 };
 
@@ -90,7 +91,7 @@ export const getList = async (pageParam) => {
 export const getAdminList = async (pageParam) => {
   const { page, size, keyword, enabled } = pageParam;
 
-  const res = await axios.get(`${adminPrefix}/list`, {
+  const res = await jwtAxios.get(`${adminPrefix}/list`, {
     params: {
       page,
       size,

@@ -1,33 +1,34 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 export { API_SERVER_HOST };
 const host = `${API_SERVER_HOST}`;
 
 export const getOne = async (no) => {
-  const res = await axios.get(`${host}/admin/banner/${no}`);
+  const res = await jwtAxios.get(`${host}/admin/banner/${no}`);
   return res.data;
 };
 
 export const getBannerList = async () => {
-  const res = await axios.get(`${host}/admin/banner/list`);
+  const res = await jwtAxios.get(`${host}/admin/banner/list`);
   return res.data;
 };
 
 export const postAdd = async (formData) => {
-  const res = await axios.post(`${host}/admin/banner/register`, formData, {
+  const res = await jwtAxios.post(`${host}/admin/banner/register`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;
 };
 
 export const removeBanner = async (no) => {
-  const res = await axios.delete(`${host}/admin/banner/${no}`);
+  const res = await jwtAxios.delete(`${host}/admin/banner/${no}`);
   return res.data;
 };
 
 export const postBannerModify = async (no, formData) => {
-  const res = await axios.put(`${host}/admin/banner/modify/${no}`, formData, {
+  const res = await jwtAxios.put(`${host}/admin/banner/modify/${no}`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;

@@ -27,7 +27,7 @@ export const getAccessToken = async (authCode) => {
   };
   // 백엔드의 카카오 로그인 엔드포인트로 인가 코드 전달
   // 보통 쿼리 스트링이나 파라미터로 전달합니다.
-  const res = await jwtAxios.get(`${host}/member/kakao?code=${authCode}`, header);
+  const res = await axios.get(`${host}/member/kakao?code=${authCode}`, header);
 
   return res.data;
 };
@@ -43,7 +43,7 @@ export const loginPost = async (loginParam) => {
   form.append("username", loginParam.email);
   form.append("password", loginParam.pw);
 
-  const res = await jwtAxios.post(`${host}/login`, form, header);
+  const res = await axios.post(`${host}/login`, form, header);
 
   return res.data;
 };

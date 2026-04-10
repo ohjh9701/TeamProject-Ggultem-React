@@ -1,6 +1,7 @@
 import axios from "axios";
 
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 export { API_SERVER_HOST };
 
@@ -8,7 +9,7 @@ const host = API_SERVER_HOST;
 
 //비즈니스 광고 게시글
 export const postItemBoardAdd = async (formData) => {
-  const res = await axios.post(`${host}/business/board/register`, formData, {
+  const res = await jwtAxios.post(`${host}/business/board/register`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;
@@ -16,25 +17,25 @@ export const postItemBoardAdd = async (formData) => {
 
 //비즈니스 광고 게시글 수정
 export const postItemBoardModify = async (no, formData) => {
-  const res = await axios.put(`${host}/business/board/modify/${no}`, formData, {
+  const res = await jwtAxios.put(`${host}/business/board/modify/${no}`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;
 };
 
 export const postItemBoardRemove = async (no) => {
-  const res = await axios.get(`${host}/business/board/remove/${no}`);
+  const res = await jwtAxios.get(`${host}/business/board/remove/${no}`);
   return res.data;
 };
 
 export const getOne = async (no) => {
-  const res = await axios.get(`${host}/business/board/${no}`);
+  const res = await jwtAxios.get(`${host}/business/board/${no}`);
   return res.data;
 };
 
 export const getList = async (pageParam, email) => {
   const { page, size, keyword, searchType, sign, category } = pageParam;
-  const res = await axios.get(`${host}/business/board/list/${email}`, {
+  const res = await jwtAxios.get(`${host}/business/board/list/${email}`, {
     params: {
       page: page,
       size: size,
@@ -49,7 +50,7 @@ export const getList = async (pageParam, email) => {
 
 export const getDeleteList = async (pageParam, email) => {
   const { page, size, keyword, searchType, sign, category } = pageParam;
-  const res = await axios.get(`${host}/business/board/deletelist/${email}`, {
+  const res = await jwtAxios.get(`${host}/business/board/deletelist/${email}`, {
     params: {
       page: page,
       size: size,
@@ -84,14 +85,14 @@ export const viewCountAdd = async (no, email) => {
 
 //비즈니스 회원 등록
 export const postAdd = async (businessData) => {
-  const res = await axios.post(`${host}/businessmember/`, businessData);
+  const res = await jwtAxios.post(`${host}/businessmember/`, businessData);
   return res.data;
 };
 
 //비즈니스 회원 비즈머니 충전
 export const chargeBizMoney = async (email, amount) => {
   // 주소 뒤에 ?amount=10000 형태로 보냅니다.
-  const res = await axios.put(
+  const res = await jwtAxios.put(
     `${host}/businessmember/charge/${email}?amount=${amount}`,
   );
   return res.data;
@@ -99,14 +100,14 @@ export const chargeBizMoney = async (email, amount) => {
 
 //비즈니스 회원 정보
 export const getMyPage = async (email) => {
-  const res = await axios.get(`${host}/businessmember/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/${email}`);
   return res.data;
 };
 
 // 사업자 번호 인증 API 호출 함수
 export const verifyBusinessApi = async (businessNumber) => {
   // 백엔드에 만든 /verify (혹은 설정한 경로) 호출
-  const res = await axios.post(`${host}/businessmember/verify`, {
+  const res = await jwtAxios.post(`${host}/businessmember/verify`, {
     businessNumber,
   });
   return res.data; // { isValid: true/false } 형태라고 가정
@@ -115,7 +116,7 @@ export const verifyBusinessApi = async (businessNumber) => {
 //비즈니스 상품 광고 데이터 통계
 export const getBusinessStats = async (email, start, end) => {
   try {
-    const res = await axios.get(`${API_SERVER_HOST}/business/board/stats`, {
+    const res = await jwtAxios.get(`${API_SERVER_HOST}/business/board/stats`, {
       params: {
         email: email,
         start: start,
@@ -145,7 +146,7 @@ export const spendMoneyByClick = async (email, amount, title) => {
 
 export const getBizMoneyHistory = async (pageParam, email) => {
   const { page, size, keyword, searchType, state } = pageParam;
-  const res = await axios.get(`${host}/businessmember/history/${email}`, {
+  const res = await jwtAxios.get(`${host}/businessmember/history/${email}`, {
     params: {
       page: page,
       size: size,
@@ -158,21 +159,21 @@ export const getBizMoneyHistory = async (pageParam, email) => {
 };
 
 export const getTodaySpend = async (email) => {
-  const res = await axios.get(`${host}/businessmember/todaySpend/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/todaySpend/${email}`);
   return res.data;
 };
 
 export const getTotalSpend = async (email) => {
-  const res = await axios.get(`${host}/businessmember/totalSpend/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/totalSpend/${email}`);
   return res.data;
 };
 
 export const getTodayClick = async (email) => {
-  const res = await axios.get(`${host}/businessmember/todayClick/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/todayClick/${email}`);
   return res.data;
 };
 
 export const getTotalClick = async (email) => {
-  const res = await axios.get(`${host}/businessmember/totalClick/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/totalClick/${email}`);
   return res.data;
 };

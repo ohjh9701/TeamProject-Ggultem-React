@@ -1,5 +1,7 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
+
 export { API_SERVER_HOST };
 
 const prefix = `${API_SERVER_HOST}/itemBoard`;
@@ -33,13 +35,13 @@ export const postAdd = async (formData) => {
     headers: { "Content-Type": "multipart/form-data" },
   };
 
-  const res = await axios.post(`${prefix}/`, formData, header);
+  const res = await jwtAxios.post(`${prefix}/`, formData, header);
 
   return res.data;
 };
 
 export const deleteOne = async (id) => {
-  const res = await axios.get(`${prefix}/remove/${id}`);
+  const res = await jwtAxios.get(`${prefix}/remove/${id}`);
 
   return res.data;
 };
@@ -49,7 +51,7 @@ export const putOne = async (id, formData) => {
     headers: { "Content-Type": "multipart/form-data" },
   };
 
-  const res = await axios.put(`${prefix}/${id}`, formData, header);
+  const res = await jwtAxios.put(`${prefix}/${id}`, formData, header);
 
   return res.data;
 };

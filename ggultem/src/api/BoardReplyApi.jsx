@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 export { API_SERVER_HOST };
 
@@ -13,13 +14,13 @@ export const getReplyList = async (boardNo) => {
 
 // 댓글 생성
 export const addReply = async (reply) => {
-  const res = await axios.post(`${host}/api/reply/`, reply);
+  const res = await jwtAxios.post(`${host}/api/reply/`, reply);
   return res.data;
 };
 
 // 댓글 수정
 export const modifyReply = async (replyNo, content) => {
-  const res = await axios.put(`${host}/api/reply/${replyNo}`, {
+  const res = await jwtAxios.put(`${host}/api/reply/${replyNo}`, {
     content,
   });
   return res.data;
@@ -27,6 +28,6 @@ export const modifyReply = async (replyNo, content) => {
 
 // 댓글 삭제
 export const removeReply = async (replyNo) => {
-  const res = await axios.put(`${host}/api/reply/${replyNo}/delete`);
+  const res = await jwtAxios.put(`${host}/api/reply/${replyNo}/delete`);
   return res.data;
 };

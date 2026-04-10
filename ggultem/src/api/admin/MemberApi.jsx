@@ -1,11 +1,13 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "../config";
+import jwtAxios from "../../util/JwtUtil";
+
 export { API_SERVER_HOST };
 const host = `${API_SERVER_HOST}`;
 
 export const getList = async (pageParam) => {
   const { page, size, keyword, searchType, enabled } = pageParam;
-  const res = await axios.get(`${host}/admin/member/list`, {
+  const res = await jwtAxios.get(`${host}/admin/member/list`, {
     params: {
       page: page,
       size: size,
@@ -18,7 +20,7 @@ export const getList = async (pageParam) => {
 };
 
 export const getOne = async (email) => {
-  const res = await axios.get(
+  const res = await jwtAxios.get(
     `${host}/admin/member/${encodeURIComponent(email)}`,
   );
   console.log(res.data);
@@ -30,7 +32,7 @@ export const putOne = async (email, formData) => {
     console.log(`${key}: ${value}`);
   }
 
-  const res = await axios.put(
+  const res = await jwtAxios.put(
     `${host}/admin/member/${encodeURIComponent(email)}`,
     formData,
     {
@@ -42,7 +44,7 @@ export const putOne = async (email, formData) => {
 
 export const uploadImageApi = async (email, formData) => {
   // axios.put(url, data, config) 순서입니다.
-  const res = await axios.put(`${host}/mypage/thumbnail/${email}`, formData, {
+  const res = await jwtAxios.put(`${host}/mypage/thumbnail/${email}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -51,7 +53,7 @@ export const uploadImageApi = async (email, formData) => {
 };
 
 export const postAdd = async (formData) => {
-  const res = await axios.post(`${host}/admin/member/`, formData, {
+  const res = await jwtAxios.post(`${host}/admin/member/`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -60,14 +62,14 @@ export const postAdd = async (formData) => {
 };
 
 export const checkEmail = async (email) => {
-  const res = await axios.get(`${host}/admin/member/checkEmail`, {
+  const res = await jwtAxios.get(`${host}/admin/member/checkEmail`, {
     params: { email },
   });
   return res.data;
 };
 
 export const checkNickname = async (nickname) => {
-  const res = await axios.get(`${host}/admin/member/checkNickname`, {
+  const res = await jwtAxios.get(`${host}/admin/member/checkNickname`, {
     params: { nickname },
   });
   return res.data;
@@ -77,7 +79,7 @@ export const checkNickname = async (nickname) => {
 export const sendVerificationEmail = async (email) => {
   const formData = new FormData();
   formData.append("email", email);
-  const res = await axios.post(`${host}/api/mail/send`, formData);
+  const res = await jwtAxios.post(`${host}/api/mail/send`, formData);
   return res.data;
 };
 
@@ -85,7 +87,7 @@ export const verifyEmailCode = async (email, code) => {
   const formData = new FormData();
   formData.append("email", email);
   formData.append("code", code);
-  const res = await axios.post(`${host}/api/mail/verify`, formData);
+  const res = await jwtAxios.post(`${host}/api/mail/verify`, formData);
   return res.data;
 };
 
@@ -93,6 +95,6 @@ export const resetPassword = async (email, newPw) => {
   const formData = new FormData();
   formData.append("email", email);
   formData.append("pw", newPw);
-  const res = await axios.put(`${host}/admin/member/resetPw`, formData);
+  const res = await jwtAxios.put(`${host}/admin/member/resetPw`, formData);
   return res.data;
 };

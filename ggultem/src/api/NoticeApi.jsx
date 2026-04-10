@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 const prefix = `${API_SERVER_HOST}/admin/notice`;
 
@@ -31,6 +32,6 @@ export const postAdd = async (formData) => {
     headers: { "Content-Type": "multipart/form-data" },
   };
 
-  const res = await axios.post(`${prefix}/`, formData, header);
+  const res = await jwtAxios.post(`${prefix}/`, formData, header);
   return res.data;
 };

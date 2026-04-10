@@ -1,11 +1,13 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "../config";
+import jwtAxios from "../../util/JwtUtil";
+
 export { API_SERVER_HOST };
 const prefix = `${API_SERVER_HOST}/admin/notice`;
 
 // 등록
 export const postAdd = async (formData) => {
-  const res = await axios.post(`${prefix}/`, formData, {
+  const res = await jwtAxios.post(`${prefix}/`, formData, {
     headers: {
       "Content-Type": "multipart/form-data", // 멀티파트 데이터임을 명시
     },
@@ -15,7 +17,7 @@ export const postAdd = async (formData) => {
 
 // 조회
 export const getOne = async (noticeId) => {
-  const res = await axios.get(`${prefix}/${noticeId}`);
+  const res = await jwtAxios.get(`${prefix}/${noticeId}`);
   return res.data;
 };
 
@@ -23,7 +25,7 @@ export const getOne = async (noticeId) => {
 export const getList = async (pageParam) => {
   const { page, size, keyword, searchType } = pageParam;
 
-  const res = await axios.get(`${prefix}/list`, {
+  const res = await jwtAxios.get(`${prefix}/list`, {
     params: { page, size, keyword, searchType },
   });
 
@@ -34,13 +36,13 @@ export const getList = async (pageParam) => {
 export const remove = async (noticeId) => {
   // 백엔드에서 삭제 여부를 관리하는 API 주소로 요청
   // 예: /api/admin/notice/soft-delete/123
-  const res = await axios.put(`${prefix}/remove/${noticeId}`);
+  const res = await jwtAxios.put(`${prefix}/remove/${noticeId}`);
   return res.data;
 };
 
 // 수정
 export const putOne = async (noticeId, formData) => {
-  const res = await axios.put(`${prefix}/${noticeId}`, formData, {
+  const res = await jwtAxios.put(`${prefix}/${noticeId}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },

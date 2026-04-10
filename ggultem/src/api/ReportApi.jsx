@@ -1,5 +1,6 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "./config";
+import jwtAxios from "../util/JwtUtil";
 
 const host = `${API_SERVER_HOST}/api/report`;
 
@@ -19,7 +20,7 @@ export const registerReport = async (reportData) => {
     });
   }
 
-  const res = await axios.post(`${host}/register`, formData, {
+  const res = await jwtAxios.post(`${host}/register`, formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res.data;
