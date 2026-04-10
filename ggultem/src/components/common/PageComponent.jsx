@@ -15,15 +15,15 @@ const PageComponent = ({ serverData, moveToList }) => {
         )}
 
         {/* 페이지 번호 목록 */}
-        {serverData.pageNumList.map((pageNum) => (
-          <li
-            key={pageNum}
-            className={`page-item ${serverData.current === pageNum ? "active" : ""}`}
-            onClick={() => moveToList({ page: pageNum })}
-          >
-            {pageNum}
-          </li>
-        ))}
+        {(serverData.pageNumList || []).map((pageNum) => (
+  <li
+    key={pageNum}
+    className={`page-item ${serverData.current === pageNum ? "active" : ""}`}
+    onClick={() => moveToList({ page: pageNum })}
+  >
+    {pageNum}
+  </li>
+))}
 
         {/* 다음 페이지 버튼 */}
         {serverData.next && (
