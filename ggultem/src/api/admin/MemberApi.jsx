@@ -62,14 +62,14 @@ export const postAdd = async (formData) => {
 };
 
 export const checkEmail = async (email) => {
-  const res = await jwtAxios.get(`${host}/admin/member/checkEmail`, {
+  const res = await axios.get(`${host}/admin/member/checkEmail`, {
     params: { email },
   });
   return res.data;
 };
 
 export const checkNickname = async (nickname) => {
-  const res = await jwtAxios.get(`${host}/admin/member/checkNickname`, {
+  const res = await axios.get(`${host}/admin/member/checkNickname`, {
     params: { nickname },
   });
   return res.data;
@@ -79,7 +79,7 @@ export const checkNickname = async (nickname) => {
 export const sendVerificationEmail = async (email) => {
   const formData = new FormData();
   formData.append("email", email);
-  const res = await jwtAxios.post(`${host}/api/mail/send`, formData);
+  const res = await axios.post(`${host}/api/mail/send`, formData);
   return res.data;
 };
 
@@ -87,7 +87,7 @@ export const verifyEmailCode = async (email, code) => {
   const formData = new FormData();
   formData.append("email", email);
   formData.append("code", code);
-  const res = await jwtAxios.post(`${host}/api/mail/verify`, formData);
+  const res = await axios.post(`${host}/api/mail/verify`, formData);
   return res.data;
 };
 
@@ -95,6 +95,6 @@ export const resetPassword = async (email, newPw) => {
   const formData = new FormData();
   formData.append("email", email);
   formData.append("pw", newPw);
-  const res = await jwtAxios.put(`${host}/admin/member/resetPw`, formData);
+  const res = await axios.put(`${host}/admin/member/resetPw`, formData);
   return res.data;
 };
