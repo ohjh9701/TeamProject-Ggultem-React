@@ -30,8 +30,8 @@ const refreshJWT = async (accessToken, refreshToken) => {
     `${host}/member/refresh?refreshToken=${refreshToken}`,
     header,
   );
-  console.log(" ---------------------------------------- ");
-  console.log(res.data);
+  //console.log(" ---------------------------------------- ");
+  //console.log(res.data);
   return res.data;
 };
 
@@ -57,7 +57,7 @@ const beforeRes = async (res) => {
       memberCookieValue.refreshToken
     );
 
-    console.log("새로운 토큰 도착:", result);
+    //console.log("새로운 토큰 도착:", result);
 
     // 3. 쿠키 업데이트 (최신 토큰으로 갈아치우기)
     memberCookieValue.accessToken = result.accessToken;
