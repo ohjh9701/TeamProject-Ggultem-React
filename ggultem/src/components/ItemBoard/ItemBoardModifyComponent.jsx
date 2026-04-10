@@ -16,7 +16,6 @@ const initState = {
   content: "",
   category: "",
   location: "",
-  // 초기값 서울시청
   lat: 37.5665,
   lng: 126.978,
   uploadFileNames: [],
@@ -43,7 +42,6 @@ const ItemBoardModifyComponent = () => {
         return;
       }
       setItem(data);
-      setFetching(false);
     });
 
     const pageParam = { page: 1, size: 100 };
@@ -58,14 +56,9 @@ const ItemBoardModifyComponent = () => {
               if (data?.dtoList) setCategories(data.dtoList);
             });
           }
-          if (gCode.includes("ITEM_LOCATION") || gCode.includes("ITEM_LOC")) {
-            getListByGroup(pageParam, group.groupCode).then((data) => {
-              if (data?.dtoList) setLocations(data.dtoList);
-            });
-          }
         });
       })
-      .catch((err) => console.error("그룹 목록 로드 실패:", err));
+      .catch((err) => console.error("데이터 로드 실패:", err));
   }, [id, loginState.email, navigate]);
 
   const handleChangeItem = (e) => {
@@ -83,14 +76,12 @@ const ItemBoardModifyComponent = () => {
     const files = uploadRef.current.files;
     const formData = new FormData();
 
-    // 1. 새로 추가할 파일들이 있는 경우에만 추가
     if (files && files.length > 0) {
       for (let i = 0; i < files.length; i++) {
         formData.append("files", files[i]);
       }
     }
 
-    // 2. 일반 텍스트 데이터 추가
     formData.append("title", item.title);
     formData.append("price", Number(item.price));
     formData.append("content", item.content);
@@ -103,14 +94,11 @@ const ItemBoardModifyComponent = () => {
       item.status === "판매완료" || item.status === "true" ? "true" : "false";
     formData.append("status", statusToSend);
 
-    // 3. ⭐ 중요: 유지할 기존 파일명 리스트를 보냄
-    // 만약 이미지를 삭제하지 않았다면 item.uploadFileNames에 기존 이름들이 그대로 들어있습니다.
     if (item.uploadFileNames && item.uploadFileNames.length > 0) {
       item.uploadFileNames.forEach((fileName) => {
         formData.append("uploadFileNames", fileName);
       });
     } else {
-      // 만약 기존 이미지를 다 지우고 새로도 안 올렸다면 빈 값을 보내서 처리가 필요할 수 있음
       formData.append("uploadFileNames", []);
     }
 
@@ -123,11 +111,10 @@ const ItemBoardModifyComponent = () => {
       })
       .catch((err) => {
         setFetching(false);
-        console.error(err);
         alert("수정 중 오류가 발생했습니다.");
       });
   };
-  // 주소 검색함수
+
   const handleSearchAddress = () => {
     if (!searchKey.trim()) {
       alert("검색어를 입력하세요!");
@@ -139,9 +126,6 @@ const ItemBoardModifyComponent = () => {
       if (status === window.kakao.maps.services.Status.OK) {
         const newLat = result[0].y;
         const newLng = result[0].x;
-
-        // 검색된 주소에서 '구' 또는 '동' 이름 추출 (DB의 location 규격에 맞게 선택)
-        // address_name 전체를 쓰거나, region_2depth_name(구 단위)을 사용하세요.
         const regionName =
           result[0].address.region_2depth_name ||
           result[0].address.region_3depth_name;
@@ -150,7 +134,7 @@ const ItemBoardModifyComponent = () => {
           ...prev,
           lat: parseFloat(newLat),
           lng: parseFloat(newLng),
-          location: regionName, // 검색된 지역명을 location에 자동 할당
+          location: regionName,
         }));
       } else {
         alert("검색 결과가 없습니다.");
@@ -162,6 +146,7 @@ const ItemBoardModifyComponent = () => {
     <div className="modify-container">
       <div className="modify-form">
         <h2>상품 정보 수정</h2>
+
         <div className="form-group">
           <label>제목</label>
           <input
@@ -171,6 +156,7 @@ const ItemBoardModifyComponent = () => {
             onChange={handleChangeItem}
           />
         </div>
+
         <div className="form-group">
           <label>가격</label>
           <input
@@ -180,6 +166,7 @@ const ItemBoardModifyComponent = () => {
             onChange={handleChangeItem}
           />
         </div>
+
         <div className="form-group">
           <label>카테고리</label>
           <select
@@ -195,6 +182,7 @@ const ItemBoardModifyComponent = () => {
             ))}
           </select>
         </div>
+
         <div className="form-group">
           <label>판매 상태</label>
           <div className="status-radio-group">
@@ -205,7 +193,7 @@ const ItemBoardModifyComponent = () => {
                 value="false"
                 checked={item.status === "판매중" || item.status === "false"}
                 onChange={handleChangeItem}
-              />{" "}
+              />
               판매 중
             </label>
             <label>
@@ -215,49 +203,36 @@ const ItemBoardModifyComponent = () => {
                 value="true"
                 checked={item.status === "판매완료" || item.status === "true"}
                 onChange={handleChangeItem}
-              />{" "}
+              />
               판매 완료
             </label>
           </div>
         </div>
 
-        {/* 거래 희망 장소 섹션 - 구조 수정됨 */}
         <div className="form-group">
-          <label>거래 희망 장소 (검색 후 마커를 조정하세요)</label>
-
-          <div style={{ display: "flex", gap: "10px", marginBottom: "10px" }}>
+          <label>거래 희망 장소 (마커 드래그 가능)</label>
+          <div className="address-search-container">
             <input
+              className="address-search-input"
               type="text"
               value={searchKey}
               onChange={(e) => setSearchKey(e.target.value)}
               onKeyDown={(e) => e.key === "Enter" && handleSearchAddress()}
-              placeholder="동네 이름이나 주소 검색 (예: 강남역, 화양동)"
-              style={{
-                flex: 1,
-                padding: "8px",
-                borderRadius: "4px",
-                border: "1px solid #ccc",
-              }}
+              placeholder="동네 이름이나 주소 검색"
             />
             <button
+              className="address-search-btn"
               type="button"
               onClick={handleSearchAddress}
-              style={{
-                padding: "8px 15px",
-                backgroundColor: "#007bff",
-                color: "white",
-                border: "none",
-                borderRadius: "4px",
-              }}
             >
               검색
             </button>
           </div>
 
-          <div style={{ width: "100%", height: "300px", marginBottom: "10px" }}>
+          <div className="map-wrapper">
             <Map
               center={{ lat: item.lat, lng: item.lng }}
-              style={{ width: "100%", height: "100%", borderRadius: "8px" }}
+              style={{ width: "100%", height: "100%" }}
               level={3}
             >
               <MapMarker
@@ -266,8 +241,6 @@ const ItemBoardModifyComponent = () => {
                 onDragEnd={(marker) => {
                   const newLat = marker.getPosition().getLat();
                   const newLng = marker.getPosition().getLng();
-
-                  // 마커를 직접 옮겼을 때도 해당 위치의 주소를 가져와서 location 업데이트 가능 (역지오코딩)
                   const geocoder = new window.kakao.maps.services.Geocoder();
                   geocoder.coord2Address(newLng, newLat, (result, status) => {
                     if (status === window.kakao.maps.services.Status.OK) {
@@ -284,11 +257,8 @@ const ItemBoardModifyComponent = () => {
               />
             </Map>
           </div>
-          {/* 현재 선택된 지역 텍스트 표시 */}
-          <div
-            style={{ fontSize: "14px", color: "#2d8cf0", fontWeight: "bold" }}
-          >
-            선택된 지역: {item.location}
+          <div className="selected-location-text">
+            📍 선택된 지역: {item.location}
           </div>
         </div>
 
@@ -301,10 +271,12 @@ const ItemBoardModifyComponent = () => {
             rows="5"
           ></textarea>
         </div>
+
         <div className="form-group">
           <label>이미지 추가</label>
           <input ref={uploadRef} type="file" multiple={true} accept="image/*" />
         </div>
+
         <div className="form-group">
           <label>기존 이미지 (클릭 시 삭제)</label>
           <div className="modify-image-list">
@@ -320,6 +292,7 @@ const ItemBoardModifyComponent = () => {
             ))}
           </div>
         </div>
+
         <div className="modify-btn-group">
           <button
             className="modify-submit-btn"

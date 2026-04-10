@@ -54,8 +54,8 @@ const KakaoMap = ({
         await removeByItem(item.id, loginState.email);
         setServerData((prevData) => ({
           ...prevData,
-          dtoList: prevData.dtoList.map(
-            (d) => (d.id === item.id ? { ...d, favorite: false } : d), // 여기도 favorite
+          dtoList: prevData.dtoList.map((d) =>
+            d.id === item.id ? { ...d, favorite: false } : d,
           ),
         }));
       } else {
@@ -63,8 +63,8 @@ const KakaoMap = ({
         await addCart(cartData);
         setServerData((prevData) => ({
           ...prevData,
-          dtoList: prevData.dtoList.map(
-            (d) => (d.id === item.id ? { ...d, favorite: true } : d), // 여기도 favorite
+          dtoList: prevData.dtoList.map((d) =>
+            d.id === item.id ? { ...d, favorite: true } : d,
           ),
         }));
       }
@@ -81,7 +81,6 @@ const KakaoMap = ({
     setMapLevel(9);
   };
 
-  // ★ 데이터 로드 로직 (새로고침 시 유지 핵심)
   useEffect(() => {
     const loadData = async () => {
       const locationParam =
@@ -102,7 +101,7 @@ const KakaoMap = ({
               keyword: currentFilters?.keyword || "",
               page: page,
               size: size,
-              email: loginState.email, // ★ 서버에 로그인한 이메일을 보내서 찜 여부를 받아옴
+              email: loginState.email,
             },
           },
         );
@@ -112,7 +111,6 @@ const KakaoMap = ({
       }
     };
     loadData();
-    // loginState.email이 바뀔 때(로그인/로그아웃)도 데이터를 다시 불러와야 별표가 갱신됨
   }, [selectedRegion, currentFilters, page, loginState.email]);
 
   const searchAddress = () => {
@@ -282,8 +280,8 @@ const KakaoMap = ({
                       }}
                     />
                     <button
-                      className={`wish-btn ${item.favorite ? "active" : ""}`} // favorite으로 변경
-                      style={{ color: item.favorite ? "yellow" : "white" }} // favorite으로 변경
+                      className={`wish-btn ${item.favorite ? "active" : ""}`}
+                      style={{ color: item.favorite ? "yellow" : "white" }}
                       onClick={(e) => {
                         e.stopPropagation();
                         handleWishClick(item);

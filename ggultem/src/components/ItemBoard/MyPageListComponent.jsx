@@ -208,7 +208,6 @@ const MyPageList = () => {
       <div className="cart-list">
         {serverData.dtoList.length > 0 ? (
           serverData.dtoList.map((item) => {
-            // ✅ 판매 완료 상태 체크 로직 통일
             const isSoldOut =
               String(item.status) === "true" || String(item.enabled) === "2";
 
@@ -224,7 +223,6 @@ const MyPageList = () => {
                     }
                   />
                   <div className="cart-item-info">
-                    {/* ✅ SOLD OUT 오버레이 적용 부분 */}
                     <div
                       className="cart-img-wrapper"
                       onClick={() => navigate(`/itemBoard/read/${item.id}`)}

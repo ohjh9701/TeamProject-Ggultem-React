@@ -181,14 +181,13 @@
   object-fit: cover;
 }
 
-/* --- SOLD OUT 오버레이 추가 스타일 --- */
 .mp-sold-out-overlay {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5); /* 반투명 검정 */
+  background: rgba(0, 0, 0, 0.5);
   color: #fff;
   display: flex;
   align-items: center;
@@ -232,7 +231,7 @@
   color: #888;
 }
 
-/* 상태 뱃지 (판매중/판매완료) */
+/* (판매중/판매완료) */
 .status-badge {
   display: inline-block;
   width: fit-content;
@@ -281,7 +280,6 @@
   color: #fff;
 }
 
-/* 개별 삭제 버튼 */
 .item-delete-btn {
   background: #fff;
   color: #ff4d4f;
@@ -299,7 +297,6 @@
   color: #fff;
 }
 
-/* 빈 목록 */
 .empty-cart {
   text-align: center;
   padding: 100px 0;
@@ -322,7 +319,6 @@
   font-size: 1rem;
 }
 
-/* 페이지네이션 간격 */
 .cart-list .PageComponent {
   margin-top: 40px;
 }

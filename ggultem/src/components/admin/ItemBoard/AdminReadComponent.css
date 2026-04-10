@@ -14,9 +14,9 @@
 }
 
 .admin-title {
-    font-size: 1.6rem;
-    color: #343a40;
-    margin: 0;
+  font-size: 1.6rem;
+  color: #343a40;
+  margin: 0;
 }
 
 /* 상단 상품 정보 레이아웃 */
@@ -119,7 +119,7 @@
 
 .member-info-grid {
   display: grid;
-  grid-template-columns: repeat(4, 1fr); /* 4열 배치 */
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
   background: #f8f9fa;
   padding: 25px;
@@ -144,7 +144,7 @@
   text-overflow: ellipsis;
 }
 
-/* 버튼 및 공통 스타일 (기존과 동일) */
+/* 버튼 및 공통 스타일 */
 .admin-header {
   display: flex;
   justify-content: space-between;

@@ -14,7 +14,7 @@ const AdminReadComponent = () => {
   const [locations, setLocations] = useState([]);
   const [item, setItem] = useState(null);
 
-  // 코드값을 넣으면 한글명을 찾아주는 마법의 함수
+  // 코드값을 넣으면 한글명을 찾아주는 함수
   const getCodeName = (codeList, codeValue) => {
     if (!codeList || codeList.length === 0) return codeValue;
     const found = codeList.find(
@@ -57,7 +57,6 @@ const AdminReadComponent = () => {
   return (
     <div className="admin-main-wrapper">
       <div className="admin-content-box">
-        {/* 상단 헤더 */}
         <div className="admin-header">
           <h3 className="admin-title">
             상품 상세 관리 <span className="yellow-point">No.{item.id}</span>
@@ -117,7 +116,6 @@ const AdminReadComponent = () => {
           </div>
         </div>
 
-        {/* 메인 하단: 회원 및 보안 정보 (가로형 배치) */}
         <div className="member-detail-section">
           <h4 className="section-title">판매자 및 보안 정보</h4>
           <div className="member-info-grid">

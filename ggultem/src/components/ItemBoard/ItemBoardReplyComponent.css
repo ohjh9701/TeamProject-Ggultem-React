@@ -22,7 +22,6 @@
   color: #222;
 }
 
-/* 댓글 입력 섹션 */
 .reply-input-section {
   padding: 20px;
   border-radius: 12px;
@@ -103,7 +102,7 @@
   font-style: italic;
 }
 
-/* 액션 버튼 (답글, 수정, 삭제) */
+/* (답글, 수정, 삭제) */
 .reply-actions {
   display: flex;
   gap: 15px;
@@ -125,10 +124,10 @@
   text-decoration: none;
 }
 
-/* 대댓글 (Child Reply) 스타일 */
+/* 대댓글 스타일 */
 .child-reply-list {
   margin-top: 15px;
-  margin-left: 20px; /* 대댓글 들여쓰기 */
+  margin-left: 20px;
 }
 
 .child-reply-item {
@@ -184,11 +183,7 @@
   color: #666;
 }
 
-/* =========================
-   수정 모드 (Modify Mode) 스타일
-========================= */
-
-/* 수정 박스 전체 */
+/* 수정 전체 */
 .modify-box {
   display: flex;
   flex-direction: column;
@@ -198,7 +193,7 @@
   margin: 10px 0;
 }
 
-/* 일반 댓글 수정창 (textarea) */
+/* 일반 댓글 수정창 */
 .modify-textarea {
   width: 100%;
   height: 80px;
@@ -213,11 +208,11 @@
 }
 
 .modify-textarea:focus {
-  border-color: #FFD700;
+  border-color: #ffd700;
   background: #fff;
 }
 
-/* 대댓글 수정용 입력창 (input으로 되어 있을 경우 대응) */
+/* 대댓글 수정용 입력창 */
 .modify-input {
   width: 100%;
   padding: 12px;
@@ -229,7 +224,7 @@
 }
 
 .modify-input:focus {
-  border-color: #FFD700;
+  border-color: #ffd700;
 }
 
 /* 수정 모드 버튼 그룹 */
@@ -251,8 +246,8 @@
 
 /* 완료 버튼 */
 .modify-btns button:first-child {
-  background: #FFD700;
-  color: #3F2E1B;
+  background: #ffd700;
+  color: #3f2e1b;
 }
 
 .modify-btns button:first-child:hover {

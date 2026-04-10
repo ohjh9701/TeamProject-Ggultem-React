@@ -76,7 +76,6 @@ const AdminReplyComponent = () => {
             </p>
           </div>
 
-          {/* 검색 폼 스타일 통일 */}
           <div className="codegroup-search-form">
             <div className="codegroup-actions">
               <select
@@ -111,7 +110,6 @@ const AdminReplyComponent = () => {
           </div>
         </div>
 
-        {/* 버튼 그룹 우측 정렬 */}
         <div className="admin-btn-group">
           <button
             className="admin-btn item-btn"

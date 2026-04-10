@@ -1,14 +1,12 @@
-/* 전체 감싸는 영역: 너비 제한 해제 */
 .itemboard-list-full-wrapper {
-  width: 100vw; /* 100% 대신 브라우저 전체 너비 사용 */
+  width: 100vw;
   margin: 0;
-  padding: 0; /* 부모 패딩을 0으로 만들어야 지도가 끝까지 붙음 */
+  padding: 0;
   box-sizing: border-box;
   display: flex;
   flex-direction: column;
 }
 
-/* 상단 헤더: 적절한 너비 유지 */
 .itemboard-header-fixed {
   display: flex;
   justify-content: space-between;
@@ -19,14 +17,12 @@
 }
 
 .itemboard-header-fixed h2 {
-  font-size: 32px; /* 크게 강조 */
+  font-size: 32px;
   font-weight: 800;
   margin-bottom: 10px;
   color: #333;
 }
 
-/* 검색바 영역 */
-/* 검색 영역 중앙 정렬 및 배경 */
 .search-area-center {
   display: flex;
   justify-content: center;
@@ -35,20 +31,18 @@
   margin-bottom: 20px;
 }
 
-/* 폼 컨테이너 (와이드 스타일) */
 .search-form-wide {
   display: flex;
   width: 90%;
-  max-width: 800px; /* 너무 퍼지지 않게 최대 폭 제한 */
+  max-width: 800px;
   height: 50px;
   background: #fff;
-  border: 2px solid #ffca28; /* 포인트 컬러 (노란색) */
-  border-radius: 30px; /* 둥근 캡슐 모양 */
+  border: 2px solid #ffca28;
+  border-radius: 30px;
   overflow: hidden;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
 }
 
-/* 셀렉트 박스 스타일 */
 .search-type-select {
   width: 160px;
   border: none;
@@ -59,12 +53,11 @@
   outline: none;
   background: transparent;
   cursor: pointer;
-  border-right: 1px solid #eee; /* 구분선 */
+  border-right: 1px solid #eee;
 }
 
-/* 입력창 스타일 */
 .search-input-wide {
-  flex: 1; /* 남은 공간 모두 차지 */
+  flex: 1;
   border: none;
   padding: 0 20px;
   font-size: 16px;
@@ -76,11 +69,10 @@
   color: #bbb;
 }
 
-/* 검색 버튼 스타일 */
 .search-btn-wide {
   width: 100px;
   border: none;
-  background-color: #ffca28; /* 포인트 컬러 */
+  background-color: #ffca28;
   color: #fff;
   font-size: 16px;
   font-weight: bold;
@@ -89,10 +81,10 @@
 }
 
 .search-btn-wide:hover {
-  background-color: #fbc02d; /* 호버 시 약간 더 어두운 노란색 */
+  background-color: #fbc02d;
 }
 
-/* 반응형 (모바일 등 작은 화면 처리) */
+/* 반응형*/
 @media (max-width: 600px) {
   .search-form-wide {
     height: 45px;
@@ -110,7 +102,6 @@
   }
 }
 
-/* 지도와 리스트가 들어가는 섹션 */
 .itemboard-map-content-section {
   width: 100%;
 }

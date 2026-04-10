@@ -3,8 +3,8 @@ import { getList, deleteOne, API_SERVER_HOST } from "../../api/CartApi";
 import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 import PageComponent from "../common/PageComponent";
-import axios from "axios"; // axios 추가
-import { getListByGroup } from "../../api/admin/CodeDetailApi"; // 경로 확인 필요
+import axios from "axios";
+import { getListByGroup } from "../../api/admin/CodeDetailApi";
 import "./CartListComponent.css";
 
 const host = API_SERVER_HOST;
@@ -41,7 +41,7 @@ const CartList = () => {
     getList({ page, size, searchType, keyword, email })
       .then((data) => {
         if (data && data.dtoList) {
-          // enabled가 0인 데이터(정상)만 필터링 (사용자님 로직 유지)
+          // enabled가 0인 데이터만 필터링
           const activeItems = data.dtoList.filter((item) => item.enabled === 1);
           setServerData({
             ...data,
@@ -53,7 +53,6 @@ const CartList = () => {
       .catch((err) => console.error("데이터 로드 실패:", err));
   };
 
-  // ✅ 통합 useEffect: 목록 로드 및 공통 코드 로드
   useEffect(() => {
     fetchCartList();
 
@@ -85,7 +84,7 @@ const CartList = () => {
     navigate(`/cart/list?${params.toString()}`);
   };
 
-  // ✅ 코드값 -> 명칭 변환 함수 (문자열 비교 안전하게 처리)
+  // 코드값 -> 명칭 변환 함수
   const getCodeName = (codeList, codeValue) => {
     if (!codeList || codeList.length === 0) return codeValue;
     const found = codeList.find(
@@ -117,7 +116,7 @@ const CartList = () => {
         // 1. 서버에 삭제 요청
         await deleteOne(cartId);
 
-        // 2. 화면(State)에서 즉시 제거 (새로고침 없이 반영)
+        // 2. 화면에서 즉시 제거
         setServerData((prev) => ({
           ...prev,
           dtoList: prev.dtoList.filter((item) => item.id !== cartId),
@@ -142,7 +141,7 @@ const CartList = () => {
 
       alert("선택한 상품이 모두 삭제되었습니다.");
 
-      // ★ 핵심: 체크된 아이템들을 한꺼번에 화면 데이터에서 제거
+      // 체크된 아이템들을 한꺼번에 화면 데이터에서 제거
       setServerData((prevData) => ({
         ...prevData,
         dtoList: prevData.dtoList.filter(
@@ -154,7 +153,7 @@ const CartList = () => {
       setCheckedItems([]); // 체크박스 초기화
     } catch (error) {
       alert("일부 상품 삭제에 실패했습니다.");
-      // 실패 시 데이터 정합성을 위해 전체 목록을 다시 불러오는 것이 안전합니다.
+      // 실패 시 전체 목록을 다시 부르기
       fetchCartList();
     }
   };
@@ -239,9 +238,8 @@ const CartList = () => {
                   className="cart-item-info"
                   onClick={() => navigate(`/itemBoard/read/${item.itemId}`)}
                 >
-                  {/* ... 상단 생략 ... */}
                   <div className="cart-img-wrapper">
-                    {/* 💡 판매 완료/true 상태일 때 SOLD OUT 오버레이 표시 */}
+                    {/* 판매 완료/true 상태일 때 SOLD OUT 오버레이 표시 */}
                     {(item.itemBoard?.status === "판매완료" ||
                       item.itemBoard?.status === "true" ||
                       Number(item.itemBoard?.enabled) === 2) && (
@@ -265,7 +263,6 @@ const CartList = () => {
                       {item.itemBoard?.price?.toLocaleString()}원
                     </p>
                     <p className="cart-item-location">
-                      {/* item.location 또는 item.itemBoard.location 중 실제 데이터가 들어오는 곳을 확인하세요 */}
                       {getCodeName(
                         locations,
                         item.itemBoard?.location || item.location,

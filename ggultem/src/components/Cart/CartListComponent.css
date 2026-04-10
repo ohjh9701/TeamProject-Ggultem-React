@@ -181,7 +181,6 @@
   transition: filter 0.3s;
 }
 
-/* 리스트 스타일을 이식한 SOLD OUT 오버레이 */
 .sold-out-overlay {
   position: absolute;
   top: 0;
