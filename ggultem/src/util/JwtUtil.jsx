@@ -27,7 +27,7 @@ const refreshJWT = async (accessToken, refreshToken) => {
   const host = API_SERVER_HOST;
   const header = { headers: { Authorization: `Bearer ${accessToken}` } };
   const res = await axios.get(
-    `${host}/api/member/refresh?refreshToken=${refreshToken}`,
+    `${host}/member/refresh?refreshToken=${refreshToken}`,
     header,
   );
   console.log(" ---------------------------------------- ");
