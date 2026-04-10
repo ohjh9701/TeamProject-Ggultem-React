@@ -1,17 +1,20 @@
 import axios from "axios";
 import { API_SERVER_HOST } from "../config";
+import jwtAxios from "../../util/JwtUtil";
+
+
 const host = `${API_SERVER_HOST}`;
 export { API_SERVER_HOST };
 
 //비즈니스 회원 리스트
 export const getOne = async (email) => {
-  const res = await axios.get(`${host}/businessmember/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/${email}`);
   return res.data;
 };
 
 export const getList = async (pageParam) => {
   const { page, size, keyword, searchType, businessVerified } = pageParam;
-  const res = await axios.get(`${host}/businessmember/list`, {
+  const res = await jwtAxios.get(`${host}/businessmember/list`, {
     params: {
       page: page,
       size: size,
@@ -25,14 +28,14 @@ export const getList = async (pageParam) => {
 
 //비즈니스 회원 등록
 export const postAdd = async (businessData) => {
-  const res = await axios.post(`${host}/businessmember/`, businessData);
+  const res = await jwtAxios.post(`${host}/businessmember/`, businessData);
   return res.data;
 };
 
 // 사업자 번호 인증 API 호출 함수
 export const verifyBusinessApi = async (businessNumber) => {
   // 백엔드에 만든 /verify (혹은 설정한 경로) 호출
-  const res = await axios.post(`${host}/businessmember/verify`, {
+  const res = await jwtAxios.post(`${host}/businessmember/verify`, {
     businessNumber,
   });
   return res.data; // { isValid: true/false } 형태라고 가정
@@ -40,19 +43,19 @@ export const verifyBusinessApi = async (businessNumber) => {
 
 //비즈니스 회원 승인
 export const approve = async (email) => {
-  const res = await axios.get(`${host}/businessmember/approve/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/approve/${email}`);
   return res.data;
 };
 
 //비즈니스 회원 승인 취소
 export const reject = async (email) => {
-  const res = await axios.get(`${host}/businessmember/reject/${email}`);
+  const res = await jwtAxios.get(`${host}/businessmember/reject/${email}`);
   return res.data;
 };
 
 export const getBizMoneyHistoryAdmin = async (pageParam) => {
   const { page, size, keyword, searchType, state } = pageParam;
-  const res = await axios.get(`${host}/businessmember/admin/history`, {
+  const res = await jwtAxios.get(`${host}/businessmember/admin/history`, {
     params: {
       page: page,
       size: size,
@@ -66,7 +69,7 @@ export const getBizMoneyHistoryAdmin = async (pageParam) => {
 
 export const getBizMoneyTotalHistoryAdmin = async (pageParam) => {
   const { page, size, keyword, searchType, state } = pageParam;
-  const res = await axios.get(`${host}/businessmember/admin/totalhistory`, {
+  const res = await jwtAxios.get(`${host}/businessmember/admin/totalhistory`, {
     params: {
       page: page,
       size: size,

@@ -1,4 +1,5 @@
 import axios from "axios";
+import jwtAxios from "../util/JwtUtil";
 
 import { API_SERVER_HOST } from "./config";
 
@@ -26,7 +27,7 @@ export const getAccessToken = async (authCode) => {
   };
   // 백엔드의 카카오 로그인 엔드포인트로 인가 코드 전달
   // 보통 쿼리 스트링이나 파라미터로 전달합니다.
-  const res = await axios.get(`${host}/member/kakao?code=${authCode}`, header);
+  const res = await jwtAxios.get(`${host}/member/kakao?code=${authCode}`, header);
 
   return res.data;
 };
@@ -42,7 +43,7 @@ export const loginPost = async (loginParam) => {
   form.append("username", loginParam.email);
   form.append("password", loginParam.pw);
 
-  const res = await axios.post(`${host}/login`, form, header);
+  const res = await jwtAxios.post(`${host}/login`, form, header);
 
   return res.data;
 };
@@ -50,7 +51,7 @@ export const loginPost = async (loginParam) => {
 //*************************** 마이페이지 ******************************* */
 // 마이페이지 정보 가져오기
 export const getMyInfo = async (email) => {
-  const res = await axios.get(`${host}/mypage/${encodeURIComponent(email)}`);
+  const res = await jwtAxios.get(`${host}/mypage/${encodeURIComponent(email)}`);
   console.log(res.data);
   return res.data;
 };
@@ -60,7 +61,7 @@ export const putOne = async (email, formData) => {
     console.log(`${key}: ${value}`);
   }
 
-  const res = await axios.put(
+  const res = await jwtAxios.put(
     `${host}/mypage/${encodeURIComponent(email)}`,
     formData,
     {
@@ -72,7 +73,7 @@ export const putOne = async (email, formData) => {
 
 export const uploadImageApi = async (email, formData) => {
   // axios.put(url, data, config) 순서입니다.
-  const res = await axios.put(`${host}/mypage/thumbnail/${email}`, formData, {
+  const res = await jwtAxios.put(`${host}/mypage/thumbnail/${email}`, formData, {
     headers: {
       "Content-Type": "multipart/form-data",
     },
@@ -81,6 +82,6 @@ export const uploadImageApi = async (email, formData) => {
 };
 
 export const removeMember = async (email) => {
-  const res = await axios.put(`${host}/mypage/remove/${email}`);
+  const res = await jwtAxios.put(`${host}/mypage/remove/${email}`);
   return res.data;
 };
