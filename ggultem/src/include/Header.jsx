@@ -15,9 +15,6 @@ export default function Header() {
   // ✨ 리덕스 스토어에서 유저 정보를 실시간으로 감시!
   const loginState = useSelector((state) => state.loginSlice);
 
-  // 🐝 지훈님, 콘솔에 뭐라고 찍히는지 꼭 확인해 보세요!
-  console.log("현재 리덕스 로그인 상태:", loginState);
-
   const handleLogout = () => {
     doLogout();
     alert("로그아웃 되었습니다. 다음에 또 만나요! 🐝");

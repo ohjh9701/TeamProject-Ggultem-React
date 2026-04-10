@@ -51,7 +51,7 @@ export const loginPost = async (loginParam) => {
 //*************************** 마이페이지 ******************************* */
 // 마이페이지 정보 가져오기
 export const getMyInfo = async (email) => {
-  const res = await jwtAxios.get(`${host}/mypage/${encodeURIComponent(email)}`);
+  const res = await jwtAxios.get(`${host}/mypage/${email}`);
   console.log(res.data);
   return res.data;
 };
