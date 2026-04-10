@@ -12,7 +12,7 @@ export default function Footer() {
       <div className="footer-container">
         {/* 상단: 링크 영역 */}
         <div className="footer-links">
-          <Link to="/itemBoard">중고거래</Link>
+          <Link to="/itemBoard/list">중고거래</Link>
           <span className="footer-divider">|</span>
           <Link to="/report">사기조회</Link>
           <span className="footer-divider">|</span>
