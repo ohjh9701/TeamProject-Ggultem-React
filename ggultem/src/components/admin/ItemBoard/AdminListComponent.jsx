@@ -80,7 +80,6 @@ const AdminListComponent = () => {
   return (
     <div className="item-list-wrapper">
       <div className="item-list-container">
-        {/* 헤더 섹션 */}
         <div className="item-header">
           <div className="title-group">
             <h2 className="item-title">

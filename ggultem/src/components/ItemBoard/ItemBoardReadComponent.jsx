@@ -69,7 +69,6 @@ const ItemBoardReadComponent = () => {
     return found ? found.codeName : codeValue;
   };
 
-  // 🛡️ [해결 1] 데이터가 없으면 '로딩 중'만 보여주고 아래 HTML은 쳐다보지도 않게 함
   if (fetching || !item) {
     return (
       <div className="loading-state">
@@ -78,7 +77,6 @@ const ItemBoardReadComponent = () => {
     );
   }
 
-  // 데이터가 확실히 있을 때만 변수 설정
   const isSoldOut =
     String(item.status) === "판매완료" ||
     String(item.status) === "true" ||
@@ -160,7 +158,6 @@ const ItemBoardReadComponent = () => {
           </div>
 
           <div className="info-main">
-            {/* ✅ [해결 2] 배지 클래스 자동 적용 */}
             <span
               className={`status-badge ${isSoldOut ? "sold-out" : "on-sale"}`}
             >
@@ -217,20 +214,10 @@ const ItemBoardReadComponent = () => {
           </div>
         ) : (
           <div className="buyer-btns">
-            <button
-              className="chat-btn dark"
-              onClick={() => {
-                /* 채팅 로직 */
-              }}
-            >
+            <button className="chat-btn dark" onClick={() => {}}>
               판매자와 채팅하기
             </button>
-            <button
-              className="chat-btn yellow"
-              onClick={() => {
-                /* 장바구니 로직 */
-              }}
-            >
+            <button className="chat-btn yellow" onClick={() => {}}>
               장바구니 담기
             </button>
           </div>

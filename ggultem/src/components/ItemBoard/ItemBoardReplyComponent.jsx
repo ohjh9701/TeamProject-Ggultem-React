@@ -92,15 +92,15 @@ const ItemBoardReplyComponent = ({ itemId }) => {
   const handleDelete = (replyNo) => {
     if (!window.confirm("정말 삭제하시겠습니까?")) return;
     removeReply(replyNo).then(() => {
-      loadReplies(); // 삭제 후 목록 갱신 필수
+      loadReplies();
     });
   };
   const [targetData, setTargetData] = useState(null);
   const sendTargetData = (reply) => {
     setTargetData({
-      targetType: "거래게시판", // Notice인지 reply인지 등
-      targetNo: Number(reply.replyNo), // targetNo에 해당하는 변수명
-      targetMemberId: reply.email, // 작성자 이메일로 비교
+      targetType: "거래게시판",
+      targetNo: Number(reply.replyNo),
+      targetMemberId: reply.email,
     });
   };
 
@@ -108,8 +108,6 @@ const ItemBoardReplyComponent = ({ itemId }) => {
     <div className="reply-container">
       <hr className="reply-divider" />
       <h3 className="reply-title">댓글 ({replyList.length})</h3>
-
-      {/* 댓글 입력창 */}
       <div className="reply-input-section">
         <textarea
           className="reply-textarea"
@@ -123,14 +121,11 @@ const ItemBoardReplyComponent = ({ itemId }) => {
           </button>
         </div>
       </div>
-
-      {/* 댓글 리스트 */}
       <div className="reply-list">
         {replyList.map((reply) => (
           <div key={reply.replyNo} className="reply-item">
             <div className="reply-info">
               <span className="reply-writer">
-                {/* == 0 으로 비교하여 타입 무시 */}
                 {reply.enabled == 0
                   ? reply.nickname
                   : reply.nickname || reply.email}
@@ -141,13 +136,11 @@ const ItemBoardReplyComponent = ({ itemId }) => {
             </div>
 
             <div className="reply-content-box">
-              {/* 1순위: 삭제된 댓글인지 확인 (Number로 강제 형변환 후 비교) */}
               {Number(reply.enabled) === 0 ? (
                 <div className="reply-text deleted-text">
                   <span className="text-muted">🔒 삭제된 댓글입니다.</span>
                 </div>
-              ) : /* 2순위: 수정 모드인지 확인 */
-              modifyReplyNo === reply.replyNo ? (
+              ) : modifyReplyNo === reply.replyNo ? (
                 <div className="modify-box">
                   <textarea
                     className="modify-textarea"
@@ -167,12 +160,10 @@ const ItemBoardReplyComponent = ({ itemId }) => {
                   </div>
                 </div>
               ) : (
-                /* 3순위: 평상시 내용 */
                 <div className="reply-text">{reply.content}</div>
               )}
             </div>
 
-            {/* 액션 버튼: 활성 상태(1)일 때만 출력 */}
             <div className="reply-actions">
               {Number(reply.enabled) === 1 && (
                 <>
@@ -185,7 +176,7 @@ const ItemBoardReplyComponent = ({ itemId }) => {
                   {email && reply.email !== email && (
                     <button
                       onClick={() => {
-                        sendTargetData(reply); // 부모 댓글 객체 전달
+                        sendTargetData(reply);
                         setShowModal(true);
                       }}
                       className="btn-report"
@@ -205,7 +196,6 @@ const ItemBoardReplyComponent = ({ itemId }) => {
               )}
             </div>
 
-            {/* 대댓글 입력창 */}
             {openReplyNo === reply.replyNo && (
               <div className="child-reply-input">
                 <textarea
@@ -227,7 +217,6 @@ const ItemBoardReplyComponent = ({ itemId }) => {
               </div>
             )}
 
-            {/* 대댓글 리스트 */}
             {reply.childList && reply.childList.length > 0 && (
               <div className="child-reply-list">
                 {reply.childList.map((child) => (
@@ -276,8 +265,6 @@ const ItemBoardReplyComponent = ({ itemId }) => {
                         <div className="reply-text">{child.content}</div>
                       )}
                     </div>
-
-                    {/* 대댓글 액션 버튼 */}
                     <div className="reply-actions">
                       {email && child.email !== email && (
                         <button

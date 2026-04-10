@@ -17,6 +17,8 @@
 .modify-form h2 {
   margin-bottom: 25px;
   text-align: center;
+  font-size: 1.5rem;
+  color: #333;
 }
 
 .form-group {
@@ -38,6 +40,75 @@
   border: 1px solid #ddd;
   border-radius: 6px;
   font-size: 16px;
+  transition: border-color 0.2s;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+.status-radio-group {
+  display: flex;
+  gap: 20px;
+  padding: 5px 0;
+}
+
+.status-radio-group label {
+  font-weight: normal;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  cursor: pointer;
+}
+
+.address-search-container {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+
+.address-search-input {
+  flex: 1;
+  padding: 10px !important;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+}
+
+.address-search-btn {
+  padding: 0 20px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.address-search-btn:hover {
+  background-color: #0056b3;
+}
+
+.map-wrapper {
+  width: 100%;
+  height: 300px;
+  margin-bottom: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.selected-location-text {
+  font-size: 14px;
+  color: #007bff;
+  font-weight: bold;
+  background: #e7f1ff;
+  padding: 8px 12px;
+  border-radius: 4px;
+  display: inline-block;
 }
 
 .modify-image-list {
@@ -67,13 +138,14 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(255, 0, 0, 0.5);
+  background: rgba(255, 0, 0, 0.6);
   color: white;
   display: none;
   align-items: center;
   justify-content: center;
   font-weight: bold;
   border-radius: 5px;
+  font-size: 14px;
 }
 
 .modify-image-item:hover .delete-overlay {
@@ -95,6 +167,16 @@
   border-radius: 8px;
   cursor: pointer;
   font-weight: bold;
+  font-size: 16px;
+}
+
+.modify-submit-btn:hover {
+  background: #000;
+}
+
+.modify-submit-btn:disabled {
+  background: #ccc;
+  cursor: not-allowed;
 }
 
 .modify-cancel-btn {
@@ -105,4 +187,10 @@
   border: none;
   border-radius: 8px;
   cursor: pointer;
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.modify-cancel-btn:hover {
+  background: #ddd;
 }

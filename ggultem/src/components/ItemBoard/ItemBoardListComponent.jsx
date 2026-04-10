@@ -65,7 +65,7 @@ const ItemBoardList = () => {
     // 검색 실행 후 URL 이동
     navigate(`/itemBoard/list?${params.toString()}`);
 
-    // ★ 입력창 초기화
+    // 입력창 초기화
     inputElement.value = "";
   };
 
@@ -75,7 +75,6 @@ const ItemBoardList = () => {
         <h2>우리동네 꿀템목록</h2>
       </div>
 
-      {/* 검색 영역을 감싸는 중앙 정렬 컨테이너 */}
       <div className="search-area-center">
         <form className="search-form-wide" onSubmit={handleSearch}>
           <select
@@ -121,4 +120,3 @@ const ItemBoardList = () => {
 };
 
 export default ItemBoardList;
-//테스팅 주석
