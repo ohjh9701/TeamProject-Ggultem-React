@@ -26,8 +26,16 @@ const MainDashBoard = () => {
                     { title: "비즈머니 매출", value: statsData.totalSales.toLocaleString(), unit: "원", icon: "📈", color: "#e74a3b" },
                 ];
 
+                const safeLists = {
+                    latestCommunity: listsData.latestCommunity || [],
+                    latestNotice: listsData.latestNotice || [],
+                    latestReports: listsData.latestReports || [],
+                    blacklists: listsData.blacklists || [],
+                    userStatusCounts: listsData.userStatusCounts || { "0": 0, "1": 0, "2": 0 }
+                };
+
                 setStats(formattedStats);
-                setLists(listsData);
+                setLists(safeLists);
                 setLoading(false);
                 console.log(stats);
                 console.log(lists);
@@ -40,7 +48,7 @@ const MainDashBoard = () => {
 
     if (loading) return <div className="loading-honey">꿀템 데이터 가져오는 중 ...</div>;
 
-return (
+    return (
         <div className="dashboard-container">
             {/* 1. 상단 Info 카드 섹션 */}
             <div className="stats-grid">
@@ -118,7 +126,7 @@ return (
                                             <td>{bl.reason}</td>
                                             <td><span className={bl.status === 'Y' ? "badge-red" : "badge-yellow"}>{bl.status === 'Y' ? "BANNED" : "PENDING"}</span></td>
                                         </tr>
-                                    )) : <tr><td colSpan="3" style={{textAlign:'center', padding:'20px'}}>내역이 없습니다.</td></tr>}
+                                    )) : <tr><td colSpan="3" style={{ textAlign: 'center', padding: '20px' }}>내역이 없습니다.</td></tr>}
                                 </tbody>
                             </table>
                         </div>
