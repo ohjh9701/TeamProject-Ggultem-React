@@ -75,7 +75,7 @@ const MainDashBoard = () => {
                             const title = item.title || "제목 없음";
                             return (
                                 <li key={item.boardNo}>
-                                    {item.title.length > 18 ? item.title.substring(0, 18) + "..." : item.title}
+                                    {title.length > 18 ? title.substring(0, 18) + "..." : title}
                                     <span>{item.writer}</span>
                                 </li>
                             );
@@ -101,7 +101,7 @@ const MainDashBoard = () => {
                             const reason = item.reson || "사유없음";
                             return (
                                 <li key={item.reportId} className="urgent">
-                                    [{item.reportType}] {item.reason.length > 15 ? item.reason.substring(0, 15) + "..." : item.reason}
+                                    [{item.reportType}] {reason.length > 15 ? reason.substring(0, 15) + "..." : reason}
                                     <span>{item.targetMemberId?.split('@')[0]}</span>
                                 </li>
                             );
