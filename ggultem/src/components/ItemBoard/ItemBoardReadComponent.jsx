@@ -103,6 +103,8 @@ const ItemBoardReadComponent = () => {
       buyerId: loginState.email,
       sellerId: item.email,
       roomName: roomName,
+      buyerLeft: false,
+      sellerLeft: false,
     };
     postChatAdd(chatObj).then((data) => {
       alert("새로운 채팅방이 개설되었습니다.");
