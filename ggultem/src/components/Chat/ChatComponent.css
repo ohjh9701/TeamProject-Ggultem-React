@@ -158,3 +158,43 @@
 .input-area button:hover:not(:disabled) {
   opacity: 0.8;
 }
+
+/* 헤더 정렬 */
+.chat-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 15px;
+  background-color: #fff;
+  border-bottom: 1px solid #eee;
+}
+
+.chat-header-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* 나가기 버튼 스타일 */
+.btn-leave-room {
+  background-color: transparent;
+  color: #ff4d4f; /* 위험/나가기 느낌의 레드 계열 */
+  border: 1px solid #ff4d4f;
+  padding: 5px 12px;
+  border-radius: 4px;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.btn-leave-room:hover {
+  background-color: #ff4d4f;
+  color: #fff;
+}
+
+.btn-back {
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+}

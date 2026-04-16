@@ -52,3 +52,12 @@ export const updateReadStatus = async (roomId, userId) => {
   });
   return res.data;
 };
+
+// 채팅방 나가기 처리 API 호출
+export const leaveChatRoom = async (roomId, userId) => {
+  const res = await jwtAxios.put(`${host}/remove/${roomId}`, null, {
+    params: { userId: userId } 
+  });
+  return res.data;
+};
+

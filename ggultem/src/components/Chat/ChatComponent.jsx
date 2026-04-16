@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 import Stomp from "stompjs";
 import SockJS from "sockjs-client";
-import { getChatMessages, getChatRoom, updateReadStatus } from "../../api/ChatApi"; // ✨ 과거 내역 API 추가
+import { getChatMessages, getChatRoom, updateReadStatus, leaveChatRoom } from "../../api/ChatApi"; // ✨ 과거 내역 API 추가
 import useCustomLogin from "../../hooks/useCustomLogin";
 import "./ChatComponent.css";
 import useReport from "../../hooks/useReport";
 import ReportModal from "../../common/ReportModal";
+import { useNavigate } from "react-router";
 
 // 시간 포맷 함수 (서버의 regDate 형식에 맞춰 조정 가능)
 const formatTime = (regDate) => {
@@ -18,9 +19,10 @@ const ChatComponent = ({ roomId }) => {
   const [chatRoom, setChatRoom] = useState([]);
   const [messages, setMessages] = useState([]);
   const [message, setMessage] = useState("");
-  const { loginState, moveToLogin } = useCustomLogin();
+  const { loginState } = useCustomLogin();
   const stompClient = useRef(null);
   const scrollRef = useRef();
+  const navigate = useNavigate();
 
   const { showModal, setShowModal, sendReport } = useReport();
 
@@ -121,11 +123,41 @@ useEffect(() => {
   // ... (기존 소켓 연결 로직)
 }, [roomId, loginState.email]);
 
+const handleLeaveRoom = async (roomId) => {
+  if (!window.confirm("정말 이 채팅방을 나가시겠습니까?\n나간 후에는 이전 대화 내용을 볼 수 없습니다. 🧤")) return;
+
+  try {
+    // 백엔드 API 호출 (아까 만든 로직)
+    await leaveChatRoom(roomId, loginState.email); 
+    
+    alert("채팅방에서 나갔습니다. 🐝");
+    
+    // 나가기 성공 후 채팅 목록 페이지로 이동
+    navigate("/chatroom/list", { replace: true }); 
+  } catch (error) {
+    console.error("나가기 실패:", error);
+    alert("처리 중 오류가 발생했습니다.");
+  }
+};
+
   return (
     <div className="chat-container">
       <header className="chat-header">
-        <h2>{chatRoom.roomName}</h2>
-      </header>
+      <div className="chat-header-left">
+        <button className="btn-back" onClick={() => navigate(-1)}>〈</button>
+        <h2>{chatRoom.roomName || "꿀템 채팅"}</h2>
+      </div>
+      
+      <div className="chat-header-right">
+        <button 
+          className="btn-leave-room" 
+          onClick={() => handleLeaveRoom(roomId)}
+          title="채팅방 나가기"
+        >
+          나가기
+        </button>
+      </div>
+    </header>
       <div className="message-area" ref={scrollRef}>
         <ul className="message-list">
           {messages.map((msg, index) => {
